@@ -8,7 +8,7 @@ public class Main {
         DBConnection connection = new DBConnection();
 
         connection.ConnectToDB();
-        connection.ReadDataFromDB();
+        System.out.println(connection.ReadDataFromDB());
         connection.CloseDBConnect();
     }
 }

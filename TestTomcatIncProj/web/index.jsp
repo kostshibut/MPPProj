@@ -1,8 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-    <head>
-        <title>Second Lab</title>
-    </head>
+<head>
+    <title>Title</title>
+</head>
     <body>
-        <jsp:forward page="DBConnect.jsp"></jsp:forward>
+        <form action="DBConnect" method="get">
+            Press button <br>
+            <input type="submit">
+        </form>
     </body>
 </html>

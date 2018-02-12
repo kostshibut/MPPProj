@@ -8,7 +8,7 @@ public class DBConnection
 {
     private final String URL = "jdbc:mysql://localhost:3306/mydbtest";
     private final String USERNAME = "root";
-    private final String PASSWORD = "375291304064Dy";
+    private final String PASSWORD = "root";
     private Connection connector;
 
     public void ConnectToDB(){
@@ -27,8 +27,9 @@ public class DBConnection
         }
     }
 
-    public void ReadDataFromDB(){
+    public String ReadDataFromDB(){
         String query = "select * from users";
+        String answer = "";
         try {
             Statement statement = connector.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
@@ -39,12 +40,14 @@ public class DBConnection
                 user.setName(resultSet.getString(2));
                 user.setAge(resultSet.getInt(3));
 
-                System.out.println(user);
+                answer += user.toString() + " ";
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return answer;
     }
 
     public void CloseDBConnect(){

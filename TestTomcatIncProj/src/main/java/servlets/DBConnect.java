@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class DBConnect extends HttpServlet {
 
@@ -15,10 +16,12 @@ public class DBConnect extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         DBConnection dbConnection = new DBConnection();
-        dbConnection.ConnectToDB();
-        dbConnection.ReadDataFromDB();
-        dbConnection.CloseDBConnect();
 
-        req.getRequestDispatcher("DBConnect.jsp").forward(req, resp);
+        dbConnection.ConnectToDB();
+
+        PrintWriter out = resp.getWriter();
+        out.println(dbConnection.ReadDataFromDB());
+
+        dbConnection.CloseDBConnect();
     }
 }
