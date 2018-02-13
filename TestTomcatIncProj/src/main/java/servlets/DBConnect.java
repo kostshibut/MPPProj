@@ -13,15 +13,21 @@ import java.io.PrintWriter;
 public class DBConnect extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        DBConnection dbConnection = new DBConnection();
+        if(req.getParameter("action") != null && req.getParameter("action").equalsIgnoreCase("get_info")){
+            System.out.println(req.getParameter("setInfo"));
+            DBConnection dbConnection = new DBConnection();
 
-        dbConnection.ConnectToDB();
+            dbConnection.ConnectToDB();
 
-        PrintWriter out = resp.getWriter();
-        out.println(dbConnection.ReadDataFromDB());
 
-        dbConnection.CloseDBConnect();
+            req.setAttribute("answer", dbConnection.ReadDataFromDB());
+
+            dbConnection.CloseDBConnect();
+
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        }
+
     }
 }
