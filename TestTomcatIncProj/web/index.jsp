@@ -7,7 +7,7 @@
 </head>
     <body>
         <form action="DBConnect" method="post">
-            <input name="setInfo">
+            <!--<input name="setInfo">-->
             <input type="hidden" value="get_info" name="action">
             Press button <br>
             <input type="submit">
