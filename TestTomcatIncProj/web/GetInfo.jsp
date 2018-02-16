@@ -6,9 +6,15 @@
     <title>Title</title>
 </head>
 <body>
-<a href="GetInfo.jsp">Get info from Database</a> <br>
-<a href="SetInfo.jsp">Set info to Database</a> <br>
-<a href="DeleteInfo.jsp">Delete info from Database</a> <br>
-<a href="UpdateInfo.jsp">Update info from Database</a> <br>
+<form action="DBConnect" method="post">
+    <input type="hidden" value="get_info" name="action">
+    Press button to get info from db
+    <br>
+    <input type="submit">
+
+    <br>
+    <a href="index.jsp">Back</a>
+</form>
+${answer}
 </body>
 </html>
