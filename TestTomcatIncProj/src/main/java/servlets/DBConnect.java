@@ -1,6 +1,6 @@
 package servlets;
 
-import com.database.ClassPackage.DBConnection;
+import by.Team.CRUD.DB.DBConnection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

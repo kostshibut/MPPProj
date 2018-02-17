@@ -1,4 +1,4 @@
-package com.database.ClassPackage;
+package by.Team.CRUD.Actors;
 
 public class User {
     private int id;

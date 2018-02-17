@@ -1,5 +1,6 @@
-package com.database.ClassPackage;
+package by.Team.CRUD.DB;
 
+import by.Team.CRUD.Actors.User;
 import com.mysql.jdbc.Driver;
 
 import java.sql.*;
