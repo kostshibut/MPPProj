@@ -5,6 +5,7 @@
 </head>
 <body>
 <form action="DBConnect" method="post">
+    <input type="hidden" value="update_info" name="updating">
     Enter user's id : <input name="userIDToUpdate"> <br>
     Enter user's name : <input name="userNameToUpdate"> <br>
     Enter user's age : <input name="userAgeToUpdate"> <br>

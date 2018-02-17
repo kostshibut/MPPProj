@@ -12,6 +12,7 @@ public class DBConnection
     private final String INSERT_Request = "INSERT INTO users (name, age) VALUES(?, ?)";
     private final String DELETE_Request = "delete from users where id=(?)";
     private final String UPDATE_Request = "update users set name=(?), age=(?) where id=(?)";
+    private final String SELECT_Request = "select * from users";
     private Connection connector;
     private PreparedStatement preparedStatement = null;
 
@@ -32,11 +33,10 @@ public class DBConnection
     }
 
     public String ReadDataFromDB(){
-        String query = "select * from users";
         String answer = "";
         try {
-            Statement statement = connector.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
+            preparedStatement = connector.prepareStatement(SELECT_Request);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
                 User user = new User();

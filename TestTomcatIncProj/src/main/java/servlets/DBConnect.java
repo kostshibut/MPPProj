@@ -16,25 +16,25 @@ public class DBConnect extends HttpServlet {
         DBConnection dbConnection = new DBConnection();
         dbConnection.ConnectToDB();
 
-        if(req.getParameter("action") != null && req.getParameter("action").equalsIgnoreCase("get_info")){
+        if(req.getParameter("getting") != null){
             req.setAttribute("answer", dbConnection.ReadDataFromDB());
             req.getRequestDispatcher("GetInfo.jsp").forward(req, resp);
         }
 
-        if(req.getParameter("userNameToSet") != null && req.getParameter("userAgeToSet") != null){
+        if(req.getParameter("setting") != null) {
 
             dbConnection.SetDataInDB(req.getParameter("userNameToSet"), Integer.parseInt(req.getParameter("userAgeToSet")));
-            req.setAttribute("reaction", "Everybody be cool, u... be cool");
+            req.setAttribute("reaction", "Succesfull getting");
             req.getRequestDispatcher("SetInfo.jsp").forward(req, resp);
         }
 
-        if(req.getParameter("userIDDelete") != null){
+        if(req.getParameter("deleting") != null){
             dbConnection.DeleteDataFromDB(Integer.parseInt(req.getParameter("userIDDelete")));
             req.setAttribute("reaction", "Succesfull deletion");
             req.getRequestDispatcher("DeleteInfo.jsp").forward(req, resp);
         }
 
-        if(req.getParameter("userIDToUpdate") != null){
+        if(req.getParameter("updating") != null){
             dbConnection.UpdateDataFromDB(Integer.parseInt(req.getParameter("userIDToUpdate")), req.getParameter("userNameToUpdate"),
                     Integer.parseInt(req.getParameter("userAgeToUpdate")));
             req.setAttribute("reaction", "Succesfull udpdation");
