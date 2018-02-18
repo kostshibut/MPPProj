@@ -1,6 +1,7 @@
 package by.Team.CRUD.DB;
 
 import by.Team.CRUD.Actors.User;
+import by.Team.CRUD.Validate.Validator;
 import com.mysql.jdbc.Driver;
 
 import java.sql.*;
@@ -57,10 +58,12 @@ public class DBConnection
 
     public void SetDataInDB(String name, int age){
 
+        User user = new User(name, age);
+
         try {
             preparedStatement = connector.prepareStatement(INSERT_Request);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, age);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setInt(2, user.getAge());
 
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -69,9 +72,11 @@ public class DBConnection
     }
 
     public void DeleteDataFromDB(int id){
+        User user = new User();
+        user.setId(id);
         try {
             preparedStatement = connector.prepareStatement(DELETE_Request);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, user.getId());
 
             preparedStatement.execute();
 
@@ -81,11 +86,14 @@ public class DBConnection
     }
 
     public void UpdateDataFromDB(int id, String name, int age){
+
+        User user = new User(id, name, age);
+
         try{
             preparedStatement = connector.prepareStatement(UPDATE_Request);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, age);
-            preparedStatement.setInt(3, id);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setInt(2, user.getAge());
+            preparedStatement.setInt(3, user.getId());
 
             preparedStatement.execute();
 
@@ -97,7 +105,7 @@ public class DBConnection
     public void CloseDBConnect(){
         try {
             connector.close();
-
+            preparedStatement.close();
             if (connector.isClosed()){
                 System.out.println("Соединение с БД закрыто");
             }
