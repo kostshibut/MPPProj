@@ -1,12 +1,15 @@
-package com.database.ClassPackage;
+package by.Team.CRUD.Actors;
 
 public class User {
     private int id;
     private String name;
     private int age;
 
-    public User(){
+    public User(){}
 
+    public User(String name, int age){
+        this.name = name;
+        this.age = age;
     }
 
     public User(int id, String name, int age) {

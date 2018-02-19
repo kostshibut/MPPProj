@@ -1,6 +1,6 @@
-package com.database;
+package by.Team.CRUD;
 
-import com.database.ClassPackage.DBConnection;
+import by.Team.CRUD.DB.DBConnection;
 
 public class Main {
 
