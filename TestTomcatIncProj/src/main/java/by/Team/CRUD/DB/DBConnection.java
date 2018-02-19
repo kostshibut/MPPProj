@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class DBConnection
 {
-    private final String URL = "jdbc:mysql://localhost:3306/mydbtest";
+    private final String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
     private final String INSERT_Request = "INSERT INTO users (name, age) VALUES(?, ?)";
