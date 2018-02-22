@@ -10,7 +10,7 @@ logs/
 
 .mtj.tmp/
 
-.idea/workspace.xml
+TestTomcatIncProj/.idea/workspace.xml
 
 *.zip
 *.tar.gz

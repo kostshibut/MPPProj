@@ -4,7 +4,6 @@ import by.Team.CRUD.Actors.User;
 import com.mysql.jdbc.Driver;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO
 {

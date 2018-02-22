@@ -12,6 +12,7 @@ public class Validator {
     private final String SELECT_Request = "select * from users";
     private PreparedStatement preparedStatement = null;
     private UserDAOImpl userDAO;
+
     public Validator(UserDAO userDAO){
         this.userDAO = (UserDAOImpl)userDAO;
     }
