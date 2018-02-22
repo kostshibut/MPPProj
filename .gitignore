@@ -10,6 +10,8 @@ logs/
 
 .mtj.tmp/
 
+workspace.xml
+
 *.zip
 *.tar.gz
 *.rar
