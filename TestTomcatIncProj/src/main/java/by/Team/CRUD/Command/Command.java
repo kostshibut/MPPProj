@@ -3,6 +3,7 @@ package by.Team.CRUD.Command;
 import by.Team.CRUD.Actors.User;
 import by.Team.CRUD.DAO.UserDAO;
 import by.Team.CRUD.DAO.UserDAOImpl;
+import by.Team.CRUD.Validate.Validator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +15,13 @@ public class Command {
     private HttpServletResponse resp;
     private UserDAO userDAOImpl;
     private User user;
+    private Validator validator;
 
     public Command(HttpServletRequest req, HttpServletResponse resp){
         this.req = req;
         this.resp = resp;
         userDAOImpl = new UserDAOImpl();
+        validator = new Validator(userDAOImpl);
     }
 
     public void CRUDoperations() throws ServletException, IOException {
@@ -58,16 +61,30 @@ public class Command {
     private void DeletingFromDB() throws ServletException, IOException {
         user = new User();
         user.setId(Integer.parseInt(req.getParameter("userIDDelete")));
-        userDAOImpl.DeleteDataFromDB(user);
-        req.setAttribute("reaction", "Succesfull deletion");
+
+        if (validator.ValidateID(user)) {
+            userDAOImpl.DeleteDataFromDB(user);
+            req.setAttribute("reaction", "Succesfull deletion");
+        }
+        else {
+            req.setAttribute("reaction", "Non-existent value of the identifier");
+        }
+
         req.getRequestDispatcher("DeleteInfo.jsp").forward(req, resp);
     }
 
     private void UpdatingFromDB() throws ServletException, IOException {
         user = new User(Integer.parseInt(req.getParameter("userIDToUpdate")), req.getParameter("userNameToUpdate"),
                 Integer.parseInt(req.getParameter("userAgeToUpdate")));
-        userDAOImpl.UpdateDataFromDB(user);
-        req.setAttribute("reaction", "Succesfull udpdation");
+
+        if (validator.ValidateID(user)) {
+            userDAOImpl.UpdateDataFromDB(user);
+            req.setAttribute("reaction", "Succesfull udpdation");
+        }
+        else {
+            req.setAttribute("reaction", "Non-existent value of the identifier");
+        }
+
         req.getRequestDispatcher("UpdateInfo.jsp").forward(req, resp);
     }
 }

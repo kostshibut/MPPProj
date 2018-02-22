@@ -4,6 +4,7 @@ import by.Team.CRUD.Actors.User;
 import com.mysql.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDAOImpl implements UserDAO
 {
@@ -14,6 +15,11 @@ public class UserDAOImpl implements UserDAO
     private final String DELETE_Request = "delete from users where id=(?)";
     private final String UPDATE_Request = "update users set name=(?), age=(?) where id=(?)";
     private final String SELECT_Request = "select * from users";
+
+    public Connection getConnector() {
+        return connector;
+    }
+
     private Connection connector;
     private PreparedStatement preparedStatement = null;
 
