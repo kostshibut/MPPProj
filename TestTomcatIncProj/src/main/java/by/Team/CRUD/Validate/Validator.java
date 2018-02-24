@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Validator {
-    private final String SELECT_Request = "select * from users";
+    private final String SELECT_Request = "select id from users";
     private PreparedStatement preparedStatement = null;
     private UserDAOImpl userDAO;
 

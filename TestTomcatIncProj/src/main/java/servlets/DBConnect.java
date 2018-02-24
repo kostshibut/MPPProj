@@ -13,6 +13,6 @@ public class DBConnect extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Command command = new Command(req, resp);
-        command.CRUDoperations();
+        command.CRUDOperations();
     }
 }

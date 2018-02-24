@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO
     private Connection connector;
     private PreparedStatement preparedStatement = null;
 
-    public void ConnectToDB(){
+    public UserDAOImpl(){
         try {
             Driver driver = new Driver();
             DriverManager.registerDriver(driver);
@@ -98,7 +98,8 @@ public class UserDAOImpl implements UserDAO
         }
     }
 
-    public void CloseDBConnect(){
+    @Override
+    protected void finalize() throws Throwable {
         try {
             connector.close();
             preparedStatement.close();

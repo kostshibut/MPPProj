@@ -24,9 +24,7 @@ public class Command {
         validator = new Validator(userDAOImpl);
     }
 
-    public void CRUDoperations() throws ServletException, IOException {
-        userDAOImpl.ConnectToDB();
-
+    public void CRUDOperations() throws ServletException, IOException {
         if(req.getParameter("getting") != null){
             GettingFromDb();
         }
@@ -42,8 +40,6 @@ public class Command {
         if(req.getParameter("updating") != null){
             UpdatingFromDB();
         }
-
-        userDAOImpl.CloseDBConnect();
     }
 
     private void GettingFromDb() throws ServletException, IOException {
