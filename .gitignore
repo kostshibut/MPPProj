@@ -9,6 +9,8 @@ logs/
 .ctxt
 
 .mtj.tmp/
+TestTomcatIncProj.idea/
+TestTomcatIncProj/.idea/workspace.xml
 
 *.zip
 *.tar.gz
