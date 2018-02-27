@@ -5,16 +5,23 @@ import by.Team.CRUD.DAO.UserDAO;
 import by.Team.CRUD.DAO.UserDAOImpl;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.Before;
 
 public class ValidatorTest {
+    private Validator validator;
+    private User user;
+    private UserDAO userDAO;
 
-    @org.junit.Test
+    @Before
+    public void initValidate(){
+        userDAO = new UserDAOImpl();
+        validator = new Validator(userDAO);
+        user = new User();
+    }
+    @Test
     public void validateID() {
-        UserDAO userDAO = new UserDAOImpl();
-        Validator validator = new Validator(userDAO);
-        User user = new User();
         user.setId(5);
-
-        assertEquals(false, validator.ValidateID(user));
+        assertEquals(true , validator.ValidateID(user));
     }
 }
