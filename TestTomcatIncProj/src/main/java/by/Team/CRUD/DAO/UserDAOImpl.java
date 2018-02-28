@@ -1,7 +1,7 @@
 package by.Team.CRUD.DAO;
 
 import by.Team.CRUD.Actors.User;
-import com.mysql.jdbc.Driver;
+import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 
