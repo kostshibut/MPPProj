@@ -7,7 +7,8 @@ import java.sql.*;
 
 public class UserDAOImpl implements UserDAO
 {
-    private final String URL = "jdbc:mysql://localhost:3306/mydbtest?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private final String URL = "jdbc:mysql://localhost:3306/mydbtest" +
+            "?autoReconnect=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private final String USERNAME = "root";
     private final String PASSWORD = "root";
     private final String INSERT_Request = "INSERT INTO users (name, age) VALUES(?, ?)";
@@ -28,10 +29,6 @@ public class UserDAOImpl implements UserDAO
             DriverManager.registerDriver(driver);
 
             connector = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-            if(!connector.isClosed()){
-                System.out.println("Соединение с БД установлено");
-            }
         }
         catch (SQLException ex){
             System.err.println(ex.getMessage());
@@ -60,31 +57,35 @@ public class UserDAOImpl implements UserDAO
         return answer;
     }
 
-    public void SetDataInDB(User user){
+    public boolean SetDataInDB(User user){
         try {
             preparedStatement = connector.prepareStatement(INSERT_Request);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setInt(2, user.getAge());
 
             preparedStatement.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void DeleteDataFromDB(User user){
+    public boolean DeleteDataFromDB(User user){
         try {
             preparedStatement = connector.prepareStatement(DELETE_Request);
             preparedStatement.setInt(1, user.getId());
 
             preparedStatement.execute();
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
-    public void UpdateDataFromDB(User user){
+    public boolean UpdateDataFromDB(User user){
         try{
             preparedStatement = connector.prepareStatement(UPDATE_Request);
             preparedStatement.setString(1, user.getName());
@@ -92,9 +93,11 @@ public class UserDAOImpl implements UserDAO
             preparedStatement.setInt(3, user.getId());
 
             preparedStatement.execute();
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
