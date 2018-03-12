@@ -1,5 +1,7 @@
 package com.Dimcooo.model;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import javax.persistence.*;
 
 @Entity
