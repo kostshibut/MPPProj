@@ -6,7 +6,7 @@
 
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.Dimcooo"/>
-    <mvc:view-controller path="/" view-name="start_page"/>
+    <!--<mvc:view-controller path="/" view-name="start_page"/>-->
 
     <bean id="resolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
