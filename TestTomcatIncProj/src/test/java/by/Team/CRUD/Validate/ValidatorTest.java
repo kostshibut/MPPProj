@@ -80,7 +80,7 @@ public class ValidatorTest {
     }
 
     @After
-    public void finishValidate(){
+    public void theEnd(){
         userDAO = null;
         validator = null;
         user = null;

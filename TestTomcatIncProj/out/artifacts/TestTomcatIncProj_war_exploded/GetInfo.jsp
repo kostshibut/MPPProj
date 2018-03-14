@@ -9,7 +9,6 @@
         Press button to get info from db
         <br>
         <input type="submit">
-
         <br>
         <a href="index.jsp">Back</a>
     </form>
