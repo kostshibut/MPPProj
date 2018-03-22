@@ -1,8 +1,6 @@
 package com.Dimcooo.controllers;
 
-import com.Dimcooo.model.UsersEntity;
-import com.Dimcooo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Dimcooo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,23 +10,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private UserService userService;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
         return "start_page";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.GET)
     public String jumpToPageGet(Model model){
-        model.addAttribute("userJSP", new UsersEntity());
+        model.addAttribute("userJSP", new User());
         return "signUp_page";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     public @ResponseBody
-    String signUpUser(@ModelAttribute("userJSP") UsersEntity user){
+    String signUpUser(@ModelAttribute("userJSP") User user){
+
         return "Everybody be cool";
     }
 }

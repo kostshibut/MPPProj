@@ -7,9 +7,11 @@
     <body>
         <%--@elvariable id="userJSP" type="com.Dimcooo"--%>
         <spring:form method="post" modelAttribute="userJSP" action="/signUp">
-            Name: <spring:input path="name"/>
-            Age: <spring:input path="age"/>
+            Name: <spring:input path="username"/>
+            Age: <spring:input path="password"/>
             <spring:button>Sign Up</spring:button>
         </spring:form>
+
+        <a href="${contextPath}/start">back</a>
     </body>
 </html>

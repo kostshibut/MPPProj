@@ -4,15 +4,15 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.Dimcooo.model.UsersEntity" table="users" schema="mydbtest">
+    <class name="com.Dimcooo.model.User" table="users" schema="springwebappdb">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
         </id>
-        <property name="name">
-            <column name="name" sql-type="varchar(45)" length="45"/>
+        <property name="username">
+            <column name="username" sql-type="varchar(255)"/>
         </property>
-        <property name="age">
-            <column name="age" sql-type="int(3)" not-null="true"/>
+        <property name="password">
+            <column name="password" sql-type="varchar(255)"/>
         </property>
     </class>
 </hibernate-mapping>

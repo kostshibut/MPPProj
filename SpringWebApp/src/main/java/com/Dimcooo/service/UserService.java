@@ -1,16 +1,9 @@
 package com.Dimcooo.service;
 
-import com.Dimcooo.dao.UserDAO;
-import com.Dimcooo.model.UsersEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.Dimcooo.model.User;
 
-@Service
-public class UserService {
-    @Autowired
-    private UserDAO userDAO;
+public interface UserService {
+    void save(User user);
 
-    public boolean RegisterUser(UsersEntity user){
-        return userDAO.AddUser(user);
-    }
+    User findByUsername(String username);
 }

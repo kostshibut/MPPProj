@@ -1,7 +1,6 @@
 package com.Dimcooo;
 
-import com.Dimcooo.model.AdminsEntity;
-import com.Dimcooo.model.UsersEntity;
+import com.Dimcooo.model.User;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Session;
 
@@ -12,15 +11,11 @@ public class Main {
             Session session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
-            UsersEntity usersEntity = new UsersEntity();
-            usersEntity.setName("Test");
-            usersEntity.setAge(10);
+            User user = new User();
+            user.setUsername("Ivan");
+            user.setPassword("$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG");
 
-            AdminsEntity adminsEntity = new AdminsEntity();
-            adminsEntity.setName("AdmTest");
-
-            session.save(usersEntity);
-            session.save(adminsEntity);
+            session.save(user);
             session.getTransaction().commit();
 
             session.getSessionFactory().close();
