@@ -9,8 +9,8 @@
         <spring:form method="post" modelAttribute="userJSP" action="/signUp">
             Name: <spring:input path="login"/> <br>
             Password: <spring:input path="password"/> <br>
-            <%--First Name: <spring:input path="first_name"/> <br>--%>
-            <%--Last Name: <spring:input path="last_name"/> <br>--%>
+            First Name: <spring:input path="firstName"/> <br>
+            Last Name: <spring:input path="lastName"/> <br>
             Email: <spring:input path="email"/> <br>
             Age: <spring:input path="age"/> <br>
             Education <spring:input path="education"/> <br>

@@ -45,7 +45,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "first_name", length = 45)
+    @Column(name = "first_name", nullable = false, length = 45)
     public String getFirstName() {
         return first_name;
     }
@@ -55,7 +55,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "last_name", length = 45)
+    @Column(name = "last_name", nullable = false, length = 45)
     public String getLastName() {
         return last_name;
     }

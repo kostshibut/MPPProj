@@ -18,8 +18,8 @@ public class UserDAOImpl implements UserDAO {
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
-            user.setFirstName("some first name"); //costyl
-            user.setLastName("some last name"); //costyl
+//            user.setFirstName("some first name"); //costyl
+//            user.setLastName("some last name"); //costyl
 
             session.save(user);
             session.getTransaction().commit();
