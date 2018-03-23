@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/training_center</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+     <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+      <mapping resource="hibernate/Admin.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Admin"/>
+      <mapping resource="hibernate/Lesson.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Lesson"/>
+      <mapping resource="hibernate/Scholar.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Scholar"/>
+      <mapping resource="hibernate/SigninInfo.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.User"/>
+      <mapping resource="hibernate/Subject.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Subject"/>
+      <mapping resource="hibernate/SubjectFeedback.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.SubjectFeedback"/>
+      <mapping resource="hibernate/SubjectScholarList.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.SubjectScholarList"/>
+      <mapping resource="hibernate/Task.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Task"/>
+      <mapping class="com.Dimcooo.model.Teacher"/>
+      <mapping resource="hibernate/Teacher.hbm.xml"/>
+      <mapping resource="hibernate/TeacherFeedback.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.TeacherFeedback"/>
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

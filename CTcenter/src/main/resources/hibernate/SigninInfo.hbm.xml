@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.User" table="signin_info" schema="training_center">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="login">
+            <column name="login" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="firstName">
+            <column name="first_name" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="lastName">
+            <column name="last_name" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="age">
+            <column name="age" sql-type="int(3)"/>
+        </property>
+        <property name="education">
+            <column name="education" sql-type="varchar(45)" length="45"/>
+        </property>
+    </class>
+</hibernate-mapping>
