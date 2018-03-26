@@ -10,5 +10,6 @@
     </head>
     <body>
         <a href="${contextPath}/signUp">Sign Up</a>
+        <a href="${contextPath}/signIn">Sign In</a>
     </body>
 </html>

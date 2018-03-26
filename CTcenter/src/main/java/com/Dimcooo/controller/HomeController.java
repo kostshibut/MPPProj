@@ -30,13 +30,17 @@ public class HomeController {
         return "signUp_page";
     }
 
+    @RequestMapping(value = "/signIn", method = RequestMethod.GET)
+    public String jumpToPageSignInGet(){
+        return "signIn_page";
+    }
+
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
-    public @ResponseBody
-    String signUpUser(@ModelAttribute("userJSP")User user){
+    public String signUpUser(@ModelAttribute("userJSP")User user){
 
         try {
             userService.SaveUser(user);
-            return "good";
+            return "redirect:/signUp?success=true";
         }
         catch (Exception ex){
             return ex.getMessage();
