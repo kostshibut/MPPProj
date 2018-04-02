@@ -5,30 +5,33 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="connection.url">jdbc:mysql://localhost:3306/training_center</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/ct_center</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-     <property name="connection.username">root</property>
+    <property name="connection.username">root</property>
     <property name="connection.password">root</property>
-      <mapping resource="hibernate/Admin.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Admin"/>
-      <mapping resource="hibernate/Lesson.hbm.xml"/>
+      <mapping resource="Model.cfg/Admin.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Lesson"/>
-      <mapping resource="hibernate/Scholar.hbm.xml"/>
+      <mapping resource="Model.cfg/Lesson.hbm.xml"/>
+      <mapping resource="Model.cfg/ListScholarSubject.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.ListScholarSubject"/>
       <mapping class="com.Dimcooo.model.Scholar"/>
-      <mapping resource="hibernate/SigninInfo.hbm.xml"/>
-      <mapping class="com.Dimcooo.model.User"/>
-      <mapping resource="hibernate/Subject.hbm.xml"/>
+      <mapping resource="Model.cfg/Scholar.hbm.xml"/>
+      <mapping resource="Model.cfg/Subject.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Subject"/>
-      <mapping resource="hibernate/SubjectFeedback.hbm.xml"/>
       <mapping class="com.Dimcooo.model.SubjectFeedback"/>
-      <mapping resource="hibernate/SubjectScholarList.hbm.xml"/>
-      <mapping class="com.Dimcooo.model.SubjectScholarList"/>
-      <mapping resource="hibernate/Task.hbm.xml"/>
+      <mapping resource="Model.cfg/SubjectFeedback.hbm.xml"/>
+      <mapping resource="Model.cfg/Task.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Task"/>
+      <mapping resource="Model.cfg/Teacher.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Teacher"/>
-      <mapping resource="hibernate/Teacher.hbm.xml"/>
-      <mapping resource="hibernate/TeacherFeedback.hbm.xml"/>
       <mapping class="com.Dimcooo.model.TeacherFeedback"/>
+      <mapping resource="Model.cfg/TeacherFeedback.hbm.xml"/>
+      <mapping resource="Model.cfg/User.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.User"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

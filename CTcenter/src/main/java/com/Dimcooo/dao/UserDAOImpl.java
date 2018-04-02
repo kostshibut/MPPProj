@@ -1,5 +1,6 @@
 package com.Dimcooo.dao;
 
+import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Session;
@@ -18,9 +19,6 @@ public class UserDAOImpl implements UserDAO {
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
-//            user.setFirstName("some first name"); //costyl
-//            user.setLastName("some last name"); //costyl
-
             session.save(user);
             session.getTransaction().commit();
 
@@ -30,6 +28,27 @@ public class UserDAOImpl implements UserDAO {
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public Scholar AddScholar(User user) {
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Scholar scholar = new Scholar();
+            scholar.setUserUserId(user.getUserId());
+            session.save(scholar);
+            session.getTransaction().commit();
+
+            session.getSessionFactory().close();
+
+            return scholar;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
         }
     }
 

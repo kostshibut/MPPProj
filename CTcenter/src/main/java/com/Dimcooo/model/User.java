@@ -1,27 +1,31 @@
 package com.Dimcooo.model;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@Table(name = "signin_info", schema = "training_center")
 public class User {
-    private int id;
+    private int userId;
     private String login;
     private String password;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String email;
     private int age;
     private String education;
+    private Collection<Admin> adminsByUserId;
+    private Collection<Scholar> scholarsByUserId;
+    private Collection<Teacher> teachersByUserId;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "user_id", nullable = false)
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -45,23 +49,23 @@ public class User {
     }
 
     @Basic
-    @Column(name = "first_name", nullable = false, length = 45)
+    @Column(name = "firstName", nullable = false, length = 45)
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.first_name = firstName;
+        this.firstName = firstName;
     }
 
     @Basic
-    @Column(name = "last_name", nullable = false, length = 45)
+    @Column(name = "lastName", nullable = false, length = 45)
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.last_name = lastName;
+        this.lastName = lastName;
     }
 
     @Basic
@@ -85,7 +89,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "education", nullable = false, length = 45)
+    @Column(name = "education", nullable = true, length = 45)
     public String getEducation() {
         return education;
     }
@@ -98,31 +102,47 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        User that = (User) o;
-
-        if (id != that.id) return false;
-        if (age != that.age) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (first_name != null ? !first_name.equals(that.first_name) : that.first_name != null) return false;
-        if (last_name != null ? !last_name.equals(that.last_name) : that.last_name != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (education != null ? !education.equals(that.education) : that.education != null) return false;
-
-        return true;
+        User user = (User) o;
+        return userId == user.userId &&
+                age == user.age &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(education, user.education);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (first_name != null ? first_name.hashCode() : 0);
-        result = 31 * result + (last_name != null ? last_name.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + age;
-        result = 31 * result + (education != null ? education.hashCode() : 0);
-        return result;
+
+        return Objects.hash(userId, login, password, firstName, lastName, email, age, education);
+    }
+
+    @OneToMany(mappedBy = "userByUserUserId")
+    public Collection<Admin> getAdminsByUserId() {
+        return adminsByUserId;
+    }
+
+    public void setAdminsByUserId(Collection<Admin> adminsByUserId) {
+        this.adminsByUserId = adminsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserUserId")
+    public Collection<Scholar> getScholarsByUserId() {
+        return scholarsByUserId;
+    }
+
+    public void setScholarsByUserId(Collection<Scholar> scholarsByUserId) {
+        this.scholarsByUserId = scholarsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserUserId")
+    public Collection<Teacher> getTeachersByUserId() {
+        return teachersByUserId;
+    }
+
+    public void setTeachersByUserId(Collection<Teacher> teachersByUserId) {
+        this.teachersByUserId = teachersByUserId;
     }
 }

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.Teacher" table="teacher" schema="ct_center">
+        <id name="teacherId">
+            <column name="teacher_id" sql-type="int(11)"/>
+        </id>
+        <property name="spetialization">
+            <column name="spetialization" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <property name="userUserId" insert="false" update="false">
+            <column name="user_user_id" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="userByUserUserId" class="com.Dimcooo.model.User" insert="false" update="false">
+            <column name="user_user_id"/>
+        </many-to-one>
+        <set name="subjectsByTeacherId" inverse="true">
+            <key>
+                <column name="teacher_teacher_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.Subject"/>
+        </set>
+        <set name="teacherFeedbacksByTeacherId" inverse="true">
+            <key>
+                <column name="teacher_teacher_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.TeacherFeedback"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.Scholar" table="scholar" schema="ct_center">
+        <id name="scholarId">
+            <column name="scholar_id" sql-type="int(11)"/>
+        </id>
+        <property name="userUserId" insert="false" update="false">
+            <column name="user_user_id" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="userByUserUserId" class="com.Dimcooo.model.User">
+            <column name="user_user_id"/>
+        </many-to-one>
+        <set name="listScholarSubjectsByScholarId" inverse="true">
+            <key>
+                <column name="scholar_scholar_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.ListScholarSubject"/>
+        </set>
+        <set name="subjectFeedbacksByScholarId" inverse="true">
+            <key>
+                <column name="scholar_scholar_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.SubjectFeedback"/>
+        </set>
+        <set name="teacherFeedbacksByScholarId" inverse="true">
+            <key>
+                <column name="scholar_scholar_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.TeacherFeedback"/>
+        </set>
+    </class>
+</hibernate-mapping>

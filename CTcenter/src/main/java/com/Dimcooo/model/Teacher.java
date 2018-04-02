@@ -1,27 +1,30 @@
 package com.Dimcooo.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Teacher {
-    private int id;
+    private int teacherId;
     private String spetialization;
+    private int userUserId;
+    private Collection<Subject> subjectsByTeacherId;
+    private User userByUserUserId;
+    private Collection<TeacherFeedback> teacherFeedbacksByTeacherId;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "teacher_id", nullable = false)
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     @Basic
-    @Column(name = "spetialization", nullable = false, length = 45)
+    @Column(name = "spetialization", nullable = true, length = 45)
     public String getSpetialization() {
         return spetialization;
     }
@@ -30,24 +33,57 @@ public class Teacher {
         this.spetialization = spetialization;
     }
 
+    @Basic
+    @Column(name = "user_user_id", nullable = false)
+    public int getUserUserId() {
+        return userUserId;
+    }
+
+    public void setUserUserId(int userUserId) {
+        this.userUserId = userUserId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Teacher teacher = (Teacher) o;
-
-        if (id != teacher.id) return false;
-        if (spetialization != null ? !spetialization.equals(teacher.spetialization) : teacher.spetialization != null)
-            return false;
-
-        return true;
+        return teacherId == teacher.teacherId &&
+                userUserId == teacher.userUserId &&
+                Objects.equals(spetialization, teacher.spetialization);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (spetialization != null ? spetialization.hashCode() : 0);
-        return result;
+
+        return Objects.hash(teacherId, spetialization, userUserId);
+    }
+
+    @OneToMany(mappedBy = "teacherByTeacherTeacherId")
+    public Collection<Subject> getSubjectsByTeacherId() {
+        return subjectsByTeacherId;
+    }
+
+    public void setSubjectsByTeacherId(Collection<Subject> subjectsByTeacherId) {
+        this.subjectsByTeacherId = subjectsByTeacherId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_user_id", referencedColumnName = "user_id", nullable = false)
+    public User getUserByUserUserId() {
+        return userByUserUserId;
+    }
+
+    public void setUserByUserUserId(User userByUserUserId) {
+        this.userByUserUserId = userByUserUserId;
+    }
+
+    @OneToMany(mappedBy = "teacherByTeacherTeacherId")
+    public Collection<TeacherFeedback> getTeacherFeedbacksByTeacherId() {
+        return teacherFeedbacksByTeacherId;
+    }
+
+    public void setTeacherFeedbacksByTeacherId(Collection<TeacherFeedback> teacherFeedbacksByTeacherId) {
+        this.teacherFeedbacksByTeacherId = teacherFeedbacksByTeacherId;
     }
 }

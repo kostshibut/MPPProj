@@ -1,24 +1,28 @@
 package com.Dimcooo.model;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Subject {
-    private int id;
+    private int subjectId;
     private String name;
-    private Time duration;
-    private Teacher teacherByTeacherId;
-    private SubjectScholarList subjectScholarListByScholarListId;
+    private Integer duration;
+    private int teacherTeacherId;
+    private Collection<Lesson> lessonsBySubjectId;
+    private Collection<ListScholarSubject> listScholarSubjectsBySubjectId;
+    private Teacher teacherByTeacherTeacherId;
+    private Collection<SubjectFeedback> subjectFeedbacksBySubjectId;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "subject_id", nullable = false)
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 
     @Basic
@@ -32,54 +36,76 @@ public class Subject {
     }
 
     @Basic
-    @Column(name = "duration", nullable = false)
-    public Time getDuration() {
+    @Column(name = "duration", nullable = true)
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    @Basic
+    @Column(name = "teacher_teacher_id", nullable = false)
+    public int getTeacherTeacherId() {
+        return teacherTeacherId;
+    }
+
+    public void setTeacherTeacherId(int teacherTeacherId) {
+        this.teacherTeacherId = teacherTeacherId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Subject subject = (Subject) o;
-
-        if (id != subject.id) return false;
-        if (name != null ? !name.equals(subject.name) : subject.name != null) return false;
-        if (duration != null ? !duration.equals(subject.duration) : subject.duration != null) return false;
-
-        return true;
+        return subjectId == subject.subjectId &&
+                teacherTeacherId == subject.teacherTeacherId &&
+                Objects.equals(name, subject.name) &&
+                Objects.equals(duration, subject.duration);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (duration != null ? duration.hashCode() : 0);
-        return result;
+
+        return Objects.hash(subjectId, name, duration, teacherTeacherId);
+    }
+
+    @OneToMany(mappedBy = "subjectBySubjectSubjectId")
+    public Collection<Lesson> getLessonsBySubjectId() {
+        return lessonsBySubjectId;
+    }
+
+    public void setLessonsBySubjectId(Collection<Lesson> lessonsBySubjectId) {
+        this.lessonsBySubjectId = lessonsBySubjectId;
+    }
+
+    @OneToMany(mappedBy = "subjectBySubjectSubjectId")
+    public Collection<ListScholarSubject> getListScholarSubjectsBySubjectId() {
+        return listScholarSubjectsBySubjectId;
+    }
+
+    public void setListScholarSubjectsBySubjectId(Collection<ListScholarSubject> listScholarSubjectsBySubjectId) {
+        this.listScholarSubjectsBySubjectId = listScholarSubjectsBySubjectId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "Teacher_id", referencedColumnName = "id", nullable = false)
-    public Teacher getTeacherByTeacherId() {
-        return teacherByTeacherId;
+    @JoinColumn(name = "teacher_teacher_id", referencedColumnName = "teacher_id", nullable = false)
+    public Teacher getTeacherByTeacherTeacherId() {
+        return teacherByTeacherTeacherId;
     }
 
-    public void setTeacherByTeacherId(Teacher teacherByTeacherId) {
-        this.teacherByTeacherId = teacherByTeacherId;
+    public void setTeacherByTeacherTeacherId(Teacher teacherByTeacherTeacherId) {
+        this.teacherByTeacherTeacherId = teacherByTeacherTeacherId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "Scholar_list_ID", referencedColumnName = "ID", nullable = false)
-    public SubjectScholarList getSubjectScholarListByScholarListId() {
-        return subjectScholarListByScholarListId;
+    @OneToMany(mappedBy = "subjectBySubjectSubjectId")
+    public Collection<SubjectFeedback> getSubjectFeedbacksBySubjectId() {
+        return subjectFeedbacksBySubjectId;
     }
 
-    public void setSubjectScholarListByScholarListId(SubjectScholarList subjectScholarListByScholarListId) {
-        this.subjectScholarListByScholarListId = subjectScholarListByScholarListId;
+    public void setSubjectFeedbacksBySubjectId(Collection<SubjectFeedback> subjectFeedbacksBySubjectId) {
+        this.subjectFeedbacksBySubjectId = subjectFeedbacksBySubjectId;
     }
 }

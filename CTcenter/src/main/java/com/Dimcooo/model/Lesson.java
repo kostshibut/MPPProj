@@ -2,22 +2,26 @@ package com.Dimcooo.model;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Lesson {
-    private int id;
+    private int lessonId;
     private String theme;
     private Time duration;
-    private Subject subjectBySubjectId;
+    private int subjectSubjectId;
+    private Subject subjectBySubjectSubjectId;
+    private Collection<Task> tasksByLessonId;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "lesson_id", nullable = false)
+    public int getLessonId() {
+        return lessonId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLessonId(int lessonId) {
+        this.lessonId = lessonId;
     }
 
     @Basic
@@ -40,35 +44,49 @@ public class Lesson {
         this.duration = duration;
     }
 
+    @Basic
+    @Column(name = "subject_subject_id", nullable = false)
+    public int getSubjectSubjectId() {
+        return subjectSubjectId;
+    }
+
+    public void setSubjectSubjectId(int subjectSubjectId) {
+        this.subjectSubjectId = subjectSubjectId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Lesson lesson = (Lesson) o;
-
-        if (id != lesson.id) return false;
-        if (theme != null ? !theme.equals(lesson.theme) : lesson.theme != null) return false;
-        if (duration != null ? !duration.equals(lesson.duration) : lesson.duration != null) return false;
-
-        return true;
+        return lessonId == lesson.lessonId &&
+                subjectSubjectId == lesson.subjectSubjectId &&
+                Objects.equals(theme, lesson.theme) &&
+                Objects.equals(duration, lesson.duration);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (theme != null ? theme.hashCode() : 0);
-        result = 31 * result + (duration != null ? duration.hashCode() : 0);
-        return result;
+
+        return Objects.hash(lessonId, theme, duration, subjectSubjectId);
     }
 
     @ManyToOne
-    @JoinColumn(name = "Subject_id", referencedColumnName = "id", nullable = false)
-    public Subject getSubjectBySubjectId() {
-        return subjectBySubjectId;
+    @JoinColumn(name = "subject_subject_id", referencedColumnName = "subject_id", nullable = false)
+    public Subject getSubjectBySubjectSubjectId() {
+        return subjectBySubjectSubjectId;
     }
 
-    public void setSubjectBySubjectId(Subject subjectBySubjectId) {
-        this.subjectBySubjectId = subjectBySubjectId;
+    public void setSubjectBySubjectSubjectId(Subject subjectBySubjectSubjectId) {
+        this.subjectBySubjectSubjectId = subjectBySubjectSubjectId;
+    }
+
+    @OneToMany(mappedBy = "lessonByLessonLessonId")
+    public Collection<Task> getTasksByLessonId() {
+        return tasksByLessonId;
+    }
+
+    public void setTasksByLessonId(Collection<Task> tasksByLessonId) {
+        this.tasksByLessonId = tasksByLessonId;
     }
 }

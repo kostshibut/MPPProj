@@ -9,7 +9,7 @@
         <title>Title</title>
     </head>
     <body>
-        <a href="${contextPath}/signUp">Sign Up</a>
-        <a href="${contextPath}/signIn">Sign In</a>
+        <a href="${contextPath}/signUp">Sign Up</a> <br>
+        <a href="${contextPath}/signIn">Sign In</a> <br>
     </body>
 </html>

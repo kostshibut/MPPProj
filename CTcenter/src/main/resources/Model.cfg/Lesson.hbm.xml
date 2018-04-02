@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.Lesson" table="lesson" schema="ct_center">
+        <id name="lessonId">
+            <column name="lesson_id" sql-type="int(11)"/>
+        </id>
+        <property name="theme">
+            <column name="theme" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="duration">
+            <column name="duration" sql-type="time(5)"/>
+        </property>
+        <property name="subjectSubjectId" insert="false" update="false">
+            <column name="subject_subject_id" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="subjectBySubjectSubjectId" class="com.Dimcooo.model.Subject">
+            <column name="subject_subject_id"/>
+        </many-to-one>
+        <set name="tasksByLessonId" inverse="true">
+            <key>
+                <column name="lesson_lesson_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.Task"/>
+        </set>
+    </class>
+</hibernate-mapping>

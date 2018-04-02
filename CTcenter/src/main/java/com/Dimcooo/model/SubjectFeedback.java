@@ -1,38 +1,41 @@
 package com.Dimcooo.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "subject_feedback", schema = "training_center")
+@Table(name = "subject_feedback", schema = "ct_center", catalog = "")
 public class SubjectFeedback {
-    private int id;
-    private int mark;
+    private int subjectFeedbackId;
+    private Integer mark;
     private String description;
-    private Scholar scholarByScholarId;
-    private Subject subjectBySubjectId;
+    private int subjectSubjectId;
+    private int scholarScholarId;
+    private Subject subjectBySubjectSubjectId;
+    private Scholar scholarByScholarScholarId;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "subject_feedback_id", nullable = false)
+    public int getSubjectFeedbackId() {
+        return subjectFeedbackId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSubjectFeedbackId(int subjectFeedbackId) {
+        this.subjectFeedbackId = subjectFeedbackId;
     }
 
     @Basic
-    @Column(name = "mark", nullable = false)
-    public int getMark() {
+    @Column(name = "mark", nullable = true)
+    public Integer getMark() {
         return mark;
     }
 
-    public void setMark(int mark) {
+    public void setMark(Integer mark) {
         this.mark = mark;
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 255)
+    @Column(name = "description", nullable = true, length = 255)
     public String getDescription() {
         return description;
     }
@@ -41,45 +44,61 @@ public class SubjectFeedback {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "subject_subject_id", nullable = false)
+    public int getSubjectSubjectId() {
+        return subjectSubjectId;
+    }
+
+    public void setSubjectSubjectId(int subjectSubjectId) {
+        this.subjectSubjectId = subjectSubjectId;
+    }
+
+    @Basic
+    @Column(name = "scholar_scholar_id", nullable = false)
+    public int getScholarScholarId() {
+        return scholarScholarId;
+    }
+
+    public void setScholarScholarId(int scholarScholarId) {
+        this.scholarScholarId = scholarScholarId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         SubjectFeedback that = (SubjectFeedback) o;
-
-        if (id != that.id) return false;
-        if (mark != that.mark) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-
-        return true;
+        return subjectFeedbackId == that.subjectFeedbackId &&
+                subjectSubjectId == that.subjectSubjectId &&
+                scholarScholarId == that.scholarScholarId &&
+                Objects.equals(mark, that.mark) &&
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + mark;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
+
+        return Objects.hash(subjectFeedbackId, mark, description, subjectSubjectId, scholarScholarId);
     }
 
     @ManyToOne
-    @JoinColumn(name = "Scholar_id", referencedColumnName = "id", nullable = false)
-    public Scholar getScholarByScholarId() {
-        return scholarByScholarId;
+    @JoinColumn(name = "subject_subject_id", referencedColumnName = "subject_id", nullable = false)
+    public Subject getSubjectBySubjectSubjectId() {
+        return subjectBySubjectSubjectId;
     }
 
-    public void setScholarByScholarId(Scholar scholarByScholarId) {
-        this.scholarByScholarId = scholarByScholarId;
+    public void setSubjectBySubjectSubjectId(Subject subjectBySubjectSubjectId) {
+        this.subjectBySubjectSubjectId = subjectBySubjectSubjectId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "Subject_id", referencedColumnName = "id", nullable = false)
-    public Subject getSubjectBySubjectId() {
-        return subjectBySubjectId;
+    @JoinColumn(name = "scholar_scholar_id", referencedColumnName = "scholar_id", nullable = false)
+    public Scholar getScholarByScholarScholarId() {
+        return scholarByScholarScholarId;
     }
 
-    public void setSubjectBySubjectId(Subject subjectBySubjectId) {
-        this.subjectBySubjectId = subjectBySubjectId;
+    public void setScholarByScholarScholarId(Scholar scholarByScholarScholarId) {
+        this.scholarByScholarScholarId = scholarByScholarScholarId;
     }
 }
