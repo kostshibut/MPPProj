@@ -17,6 +17,7 @@ public class User {
     private Collection<Admin> adminsByUserId;
     private Collection<Scholar> scholarsByUserId;
     private Collection<Teacher> teachersByUserId;
+    private String ghostUserId;
 
     @Id
     @Column(name = "user_id", nullable = false)
@@ -158,5 +159,15 @@ public class User {
                 ", age=" + age +
                 ", education='" + education + '\'' +
                 '}';
+    }
+
+    @Basic
+    @Column(name = "ghostUserId", nullable = true, length = 100)
+    public String getGhostUserId() {
+        return ghostUserId;
+    }
+
+    public void setGhostUserId(String ghostUserId) {
+        this.ghostUserId = ghostUserId;
     }
 }

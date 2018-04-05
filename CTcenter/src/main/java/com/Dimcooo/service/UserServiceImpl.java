@@ -4,6 +4,7 @@ import com.Dimcooo.dao.UserDAO;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDAO userDAO;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public void SaveUser(User user) {
@@ -25,5 +28,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Scholar CreateScholar(User user) {
         return userDAO.AddScholar(user);
+    }
+
+    @Override
+    public String AutologinUser(User user) {
+        return bCryptPasswordEncoder.encode(user.getPassword());
     }
 }

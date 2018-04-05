@@ -9,7 +9,7 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
-      <mapping class="com.Dimcooo.model.Admin"/>
+    <mapping class="com.Dimcooo.model.Admin"/>
       <mapping resource="Model.cfg/Admin.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Lesson"/>
       <mapping resource="Model.cfg/Lesson.hbm.xml"/>
@@ -29,7 +29,9 @@
       <mapping resource="Model.cfg/TeacherFeedback.hbm.xml"/>
       <mapping resource="Model.cfg/User.hbm.xml"/>
       <mapping class="com.Dimcooo.model.User"/>
-      <!-- <property name="connection.username"/> -->
+      <mapping resource="Model.cfg/User.hbm.xml"/>
+    <mapping resource="Model.cfg/User.hbm.xml"/>
+    <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

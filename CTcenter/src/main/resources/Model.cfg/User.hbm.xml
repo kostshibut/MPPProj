@@ -47,5 +47,8 @@
             </key>
             <one-to-many not-found="ignore" class="com.Dimcooo.model.Teacher"/>
         </set>
+        <property name="ghostUserId">
+            <column name="ghostUserId" sql-type="varchar(100)" length="100"/>
+        </property>
     </class>
 </hibernate-mapping>

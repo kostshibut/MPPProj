@@ -7,4 +7,5 @@ public interface UserService {
     void SaveUser(User user);
     User LoginUser(String login, String pass);
     Scholar CreateScholar(User user);
+    String AutologinUser(User user);
 }
