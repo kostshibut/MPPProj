@@ -11,5 +11,9 @@
     <body>
         <a href="${contextPath}/signUp">Sign Up</a> <br>
         <a href="${contextPath}/signIn">Sign In</a> <br>
+
+        <c:if test="${param.userID != null}">
+            ${param.userID} <br>
+        </c:if>
     </body>
 </html>
