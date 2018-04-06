@@ -5,7 +5,6 @@ import com.Dimcooo.model.User;
 
 public interface UserService {
     void SaveUser(User user);
-    User LoginUser(String login, String pass);
+    User FindByLogin(String login);
     Scholar CreateScholar(User user);
-    String AutologinUser(User user);
 }

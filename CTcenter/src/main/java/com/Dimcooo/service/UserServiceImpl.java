@@ -13,25 +13,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
     @Override
     public void SaveUser(User user) {
         userDAO.AddUser(user);
     }
 
     @Override
-    public User LoginUser(String login, String pass) {
-        return userDAO.FindUser(login, pass);
+    public User FindByLogin(String login) {
+        return userDAO.FindUser(login);
     }
 
     @Override
     public Scholar CreateScholar(User user) {
         return userDAO.AddScholar(user);
-    }
-
-    @Override
-    public String AutologinUser(User user) {
-        return bCryptPasswordEncoder.encode(user.getPassword());
     }
 }

@@ -2,6 +2,7 @@ package com.Dimcooo.dao;
 
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
+import com.Dimcooo.util.Encryptor;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -21,6 +22,7 @@ public class UserDAOImpl implements UserDAO {
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
+            user.setPassword(Encryptor.EncryptString(user.getPassword()));
             session.save(user);
             session.getTransaction().commit();
 
@@ -34,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User FindUser(String login, String pass) {
+    public User FindUser(String login) {
         try {
             System.out.println("start");
             session = HibernateSessionFactory.getSessionFactory().openSession();

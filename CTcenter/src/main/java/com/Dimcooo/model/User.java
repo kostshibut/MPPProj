@@ -40,7 +40,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password", nullable = false, length = 45)
+    @Column(name = "password", nullable = false, length = 100)
     public String getPassword() {
         return password;
     }

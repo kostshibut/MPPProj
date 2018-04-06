@@ -9,13 +9,14 @@
         <title>Title</title>
     </head>
     <body>
-        <c:if test="${user != null}">
-            Asuh ${user.firstName} <br>
+        <c:if test="${loggedUser != null}">
+            Asuh ${loggedUser.firstName} <br>
         </c:if>
-
-        <c:if test="${user == null}">
+        <%--${error.description}--%>
+        <%--<c:if test="${user == null}">--%>
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
-        </c:if>
+            <a href="${contextPath}/personalArea">Personal Area</a>
+        <%--</c:if>--%>
     </body>
 </html>
