@@ -22,7 +22,6 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
-
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
         return "start_page";
@@ -30,14 +29,27 @@ public class HomeController {
 
     @RequestMapping(value = "/signIn", method = RequestMethod.GET)
     public String signInGet(@ModelAttribute("loginUser") LoginUser loginUser){
-        //httpSession.setAttribute("user", new LoginUser());
         return "signIn_page";
+    }
+
+    @RequestMapping(value = "signUp", method = RequestMethod.GET)
+    public String signUpGet(@ModelAttribute("userUp")User user){
+        return "signUp_page";
     }
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)
     public ModelAndView signInPost(@ModelAttribute("loginUser") LoginUser loginUser){
         ModelAndView modelAndView = new ModelAndView("start_page");
         User user = userService.LoginUser(loginUser.getLogin(), loginUser.getPass());
+        modelAndView.addObject(user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "signUp", method = RequestMethod.POST)
+    public ModelAndView signUpPost(@ModelAttribute("userUp")User user){
+        ModelAndView modelAndView = new ModelAndView("start_page");
+        user.setGhostUserId(userService.AutologinUser(user));
+        userService.SaveUser(user);
         modelAndView.addObject(user);
         return modelAndView;
     }

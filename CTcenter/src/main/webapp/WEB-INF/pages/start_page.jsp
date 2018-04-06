@@ -9,7 +9,13 @@
         <title>Title</title>
     </head>
     <body>
-        ${user.password}
-        <a href="${contextPath}/signIn">Sign In</a> <br>
+        <c:if test="${user != null}">
+            Asuh ${user.firstName} <br>
+        </c:if>
+
+        <c:if test="${user == null}">
+            <a href="${contextPath}/signUp">Sign Up</a> <br>
+            <a href="${contextPath}/signIn">Sign In</a> <br>
+        </c:if>
     </body>
 </html>
