@@ -11,11 +11,11 @@ public  class Encryptor {
             byte[] passBytes = pass.getBytes();
             messageDigest.reset();
             byte[] digested = messageDigest.digest(passBytes);
-            StringBuffer sb = new StringBuffer();
-            for(int i=0;i<digested.length;i++){
-                sb.append(Integer.toHexString(0xff & digested[i]));
+            StringBuffer stringBuffer = new StringBuffer();
+            for(int i = 0; i < digested.length; i++){
+                stringBuffer.append(Integer.toHexString(0xff & digested[i]));
             }
-            return sb.toString();
+            return stringBuffer.toString();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

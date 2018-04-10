@@ -12,15 +12,12 @@
             <spring:button>SignIn</spring:button>
         </spring:form>
 
-        <%--<c:if test="${user != null}">--%>
-            <%--${user.password}--%>
-        <%--</c:if>--%>
-        ${loggedUser}
-        <%--<c:if test="${error != null}">--%>
-            <%--${loggedUser}--%>
-            <%--${error.name} <br>--%>
-            <%--${error.description} <br>--%>
-        <%--</c:if>--%>
+        <c:if test="${error != null}">
+            ${error.name} <br>
+            ${error.description} <br>
+        </c:if>
+
+        <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 
         <a href="${contextPath}/signUp">Create an account</a> <br>
         <a href="${contextPath}/start">back</a> <br>

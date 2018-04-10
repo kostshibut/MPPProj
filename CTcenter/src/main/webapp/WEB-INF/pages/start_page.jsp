@@ -12,6 +12,13 @@
         <c:if test="${loggedUser != null}">
             Asuh ${loggedUser.firstName} <br>
         </c:if>
+
+        <c:if test="${error != null}">
+            ${loggedUser}
+            ${error.name} <br>
+            ${error.description} <br>
+        </c:if>
+
         <%--${error.description}--%>
         <%--<c:if test="${user == null}">--%>
             <a href="${contextPath}/signUp">Sign Up</a> <br>

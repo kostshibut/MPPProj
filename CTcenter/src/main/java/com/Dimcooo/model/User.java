@@ -160,14 +160,4 @@ public class User {
                 ", education='" + education + '\'' +
                 '}';
     }
-
-    @Basic
-    @Column(name = "ghostUserId", nullable = true, length = 100)
-    public String getGhostUserId() {
-        return ghostUserId;
-    }
-
-    public void setGhostUserId(String ghostUserId) {
-        this.ghostUserId = ghostUserId;
-    }
 }

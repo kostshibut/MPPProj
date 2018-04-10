@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@SessionAttributes("user")
+//@SessionAttributes("user")
 public class HomeController {
     @Autowired
     private UserService userService;
@@ -39,27 +40,27 @@ public class HomeController {
     }
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)
-    public ModelAndView signInPost(@ModelAttribute("loginUser") LoginUser loginUser,
-                                   HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView signInPost(@ModelAttribute("loginUser") LoginUser loginUser, HttpServletRequest request) throws ServletException {
         ModelAndView modelAndView = new ModelAndView("start_page");
         User user = userService.FindByLogin(loginUser.getLogin());
 
-//        if (Validator.AutentificationSignIn(user, loginUser)) {
-//            modelAndView.addObject(user);
-//        }
-//        else {
-//            Error error = new Error();
-//            error.setName("Authentication error");
-//            error.setDescription("Incorrect login or password");
-//            modelAndView.setViewName("signIn_page");
-//            modelAndView.addObject(error);
-//        }
-        request.getSession().setAttribute("loggedUser", user);
+        if (Validator.AutentificationSignIn(user, loginUser)) {
+            request.getSession().setAttribute("loggedUser", user);
+        }
+        else {
+            Error error = new Error();
+            error.setName("Authentication error");
+            error.setDescription("Incorrect login or password");
+            modelAndView.setViewName("signIn_page");
+            modelAndView.addObject("error", error);
+            request.logout();
+        }
+
         return modelAndView;
     }
 
     @RequestMapping(value = "/personalArea", method = RequestMethod.GET)
-    public ModelAndView persArea(HttpServletRequest request){
+    public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
         return modelAndView;
     }
