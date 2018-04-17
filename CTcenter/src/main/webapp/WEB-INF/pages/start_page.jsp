@@ -19,7 +19,7 @@
             ${error.description} <br>
         </c:if>
 
-        <c:if test="${loggedUser == null}">
+        <c:if test="${loggedUser == null or param.logout eq true}">
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>

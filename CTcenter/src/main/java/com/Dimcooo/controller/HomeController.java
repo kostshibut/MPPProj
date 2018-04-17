@@ -85,10 +85,10 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public ModelAndView logout(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("logout_page");
+    public String logout(HttpServletRequest request){
+        //ModelAndView modelAndView = new ModelAndView("start_page");
         //request.getSession().setAttribute("loggedUser", null);
         request.getSession().invalidate();
-        return modelAndView;
+        return "redirect:/start?logout=true";
     }
 }

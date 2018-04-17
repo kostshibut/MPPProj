@@ -21,19 +21,7 @@ import java.util.List;
 public class Main {
     public static void main(String args[]){
         try {
-            User user = new User();
-            user.setLogin("testLogin");
-            user.setPassword("testPass");
-            user.setLastName("testFName");
-            user.setLastName("testLName");
-            user.setAge(18);
-            user.setEducation("Low");
-
-            UserServiceImpl userService = new UserServiceImpl();
-
-            userService.SaveUser(user);
-
-            System.out.println(user);
+            System.out.println(Encryptor.EncryptString("123"));
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

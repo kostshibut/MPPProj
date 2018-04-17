@@ -13,7 +13,8 @@
         <title>Title</title>
     </head>
     <body>
-        <a href="${contextPath}/logout">logout</a>
+        <a href="${contextPath}/logout">logout</a> <br>
+
         <c:if test="${loggedUser != null}">
             Last Name: ${loggedUser.lastName} <br>
             First Name: ${loggedUser.firstName} <br>
