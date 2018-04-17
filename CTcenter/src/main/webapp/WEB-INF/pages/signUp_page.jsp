@@ -18,5 +18,10 @@
         </spring:form>
 
         <a href="${contextPath}/start">back</a>
+
+        <c:if test="${error != null}">
+            ${error.name} <br>
+            ${error.description} <br>
+        </c:if>
     </body>
 </html>

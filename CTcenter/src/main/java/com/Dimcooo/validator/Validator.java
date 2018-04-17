@@ -1,5 +1,6 @@
 package com.Dimcooo.validator;
 
+import com.Dimcooo.dao.UserDAOImpl;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.User;
 import com.Dimcooo.util.Encryptor;
@@ -14,6 +15,16 @@ public class Validator {
         }
         else {
             return false;
+        }
+    }
+
+    public static boolean FindSimilarLogins(String registerLogin){
+        UserDAOImpl userDAO = new UserDAOImpl();
+        if(userDAO.FindUserByLogin(registerLogin) != null){
+            return false;
+        }
+        else {
+            return true;
         }
     }
 }

@@ -11,19 +11,17 @@
     <body>
         <c:if test="${loggedUser != null}">
             Asuh ${loggedUser.firstName} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a>
         </c:if>
 
         <c:if test="${error != null}">
-            ${loggedUser}
             ${error.name} <br>
             ${error.description} <br>
         </c:if>
 
-        <%--${error.description}--%>
-        <%--<c:if test="${user == null}">--%>
+        <c:if test="${loggedUser == null}">
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
-            <a href="${contextPath}/personalArea">Personal Area</a>
-        <%--</c:if>--%>
+        </c:if>
     </body>
 </html>

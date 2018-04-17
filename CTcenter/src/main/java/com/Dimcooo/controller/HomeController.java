@@ -3,6 +3,7 @@ package com.Dimcooo.controller;
 import com.Dimcooo.model.Error;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.User;
+import com.Dimcooo.service.ScholarService;
 import com.Dimcooo.service.UserService;
 import com.Dimcooo.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
-//@SessionAttributes("user")
 public class HomeController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ScholarService scholarService;
 
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
@@ -41,35 +41,54 @@ public class HomeController {
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)
     public ModelAndView signInPost(@ModelAttribute("loginUser") LoginUser loginUser, HttpServletRequest request) throws ServletException {
-        ModelAndView modelAndView = new ModelAndView("start_page");
+        ModelAndView modelAndView = new ModelAndView();
         User user = userService.FindByLogin(loginUser.getLogin());
 
         if (Validator.AutentificationSignIn(user, loginUser)) {
+            modelAndView.setViewName("start_page");
             request.getSession().setAttribute("loggedUser", user);
         }
         else {
             Error error = new Error();
+            modelAndView.setViewName("signIn_page");
             error.setName("Authentication error");
             error.setDescription("Incorrect login or password");
-            modelAndView.setViewName("signIn_page");
             modelAndView.addObject("error", error);
-            request.logout();
         }
-
         return modelAndView;
     }
 
-    @RequestMapping(value = "/personalArea", method = RequestMethod.GET)
+    @RequestMapping(value = "personalArea", method = RequestMethod.GET)
     public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
         return modelAndView;
     }
 
     @RequestMapping(value = "signUp", method = RequestMethod.POST)
-    public ModelAndView signUpPost(@ModelAttribute("userUp")User user){
-        ModelAndView modelAndView = new ModelAndView("start_page");
-        userService.SaveUser(user);
-        modelAndView.addObject(user);
+    public ModelAndView signUpPost(@ModelAttribute("userUp")User userForm, HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        if (Validator.FindSimilarLogins(userForm.getLogin())) {
+            modelAndView.setViewName("start_page");
+            User user = userService.SaveUser(userForm);
+            scholarService.AddScholar(user);
+            request.getSession().setAttribute("loggedUser", user);
+        }
+        else
+        {
+            Error error = new Error();
+            modelAndView.setViewName("signUp_page");
+            error.setName("Authentication error");
+            error.setDescription("Login already exists");
+            modelAndView.addObject("error", error);
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("logout_page");
+        //request.getSession().setAttribute("loggedUser", null);
+        request.getSession().invalidate();
         return modelAndView;
     }
 }

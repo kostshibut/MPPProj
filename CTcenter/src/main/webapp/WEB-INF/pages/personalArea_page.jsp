@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yakubovich
@@ -8,12 +9,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <c:if test="${loggedUser != null}">
-        Asuh ${loggedUser.lastName} <br>
-    </c:if>
-</body>
+    <head>
+        <title>Title</title>
+    </head>
+    <body>
+        <a href="${contextPath}/logout">logout</a>
+        <c:if test="${loggedUser != null}">
+            Last Name: ${loggedUser.lastName} <br>
+            First Name: ${loggedUser.firstName} <br>
+        </c:if>
+    </body>
 </html>

@@ -1,6 +1,7 @@
 package com.Dimcooo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -17,7 +18,6 @@ public class User {
     private Collection<Admin> adminsByUserId;
     private Collection<Scholar> scholarsByUserId;
     private Collection<Teacher> teachersByUserId;
-    private String ghostUserId;
 
     @Id
     @Column(name = "user_id", nullable = false)

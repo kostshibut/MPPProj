@@ -1,10 +1,8 @@
 package com.Dimcooo.service;
 
 import com.Dimcooo.dao.UserDAO;
-import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,17 +12,15 @@ public class UserServiceImpl implements UserService {
     UserDAO userDAO;
 
     @Override
-    public void SaveUser(User user) {
+    public User SaveUser(User user) {
         userDAO.AddUser(user);
+        User userByLogin = FindByLogin(user.getLogin());
+        System.out.println("in Service" + userByLogin);
+        return userByLogin;
     }
 
     @Override
     public User FindByLogin(String login) {
-        return userDAO.FindUser(login);
-    }
-
-    @Override
-    public Scholar CreateScholar(User user) {
-        return userDAO.AddScholar(user);
+        return userDAO.FindUserByLogin(login);
     }
 }

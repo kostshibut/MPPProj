@@ -4,6 +4,7 @@ import com.Dimcooo.model.Admin;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
+import com.Dimcooo.service.UserServiceImpl;
 import com.Dimcooo.util.Encryptor;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
@@ -20,18 +21,19 @@ import java.util.List;
 public class Main {
     public static void main(String args[]){
         try {
-            System.out.println(Encryptor.EncryptString("1234"));
-//            System.out.println("start");
-//            Session session = HibernateSessionFactory.getSessionFactory().openSession();
-//            session.beginTransaction();
-//
-//            session.save(null);
-//
-//            session.getTransaction().commit();
-//
-//            session.getSessionFactory().close();
-//
-//            System.out.println("done");
+            User user = new User();
+            user.setLogin("testLogin");
+            user.setPassword("testPass");
+            user.setLastName("testFName");
+            user.setLastName("testLName");
+            user.setAge(18);
+            user.setEducation("Low");
+
+            UserServiceImpl userService = new UserServiceImpl();
+
+            userService.SaveUser(user);
+
+            System.out.println(user);
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

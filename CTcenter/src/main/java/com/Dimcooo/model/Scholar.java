@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Scholar {
     private int scholarId;
     private int userUserId;
+    private String role;
     private Collection<ListScholarSubject> listScholarSubjectsByScholarId;
     private User userByUserUserId;
     private Collection<SubjectFeedback> subjectFeedbacksByScholarId;
@@ -31,6 +32,14 @@ public class Scholar {
 
     public void setUserUserId(int userUserId) {
         this.userUserId = userUserId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    private void setRole(String role) {
+        this.role = role;
     }
 
     @Override

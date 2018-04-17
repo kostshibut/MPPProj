@@ -16,39 +16,18 @@ public class UserDAOImpl implements UserDAO {
     private Session session;
 
     @Transactional
-    public void AddUser(User user) {
+    @Override
+    public User AddUser(User user) {
         try {
             System.out.println("start");
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
             user.setPassword(Encryptor.EncryptString(user.getPassword()));
+
             session.save(user);
+            System.out.println("In DAO " + user);
             session.getTransaction().commit();
-
-            session.getSessionFactory().close();
-
-            System.out.println("done");
-        }
-        catch (Exception ex){
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    @Override
-    public User FindUser(String login) {
-        try {
-            System.out.println("start");
-            session = HibernateSessionFactory.getSessionFactory().openSession();
-            session.beginTransaction();
-
-            Criteria criteria = session.createCriteria(User.class);
-            User user = (User)(criteria.add(Restrictions.eq("login", login)).uniqueResult());
-
-            session.getTransaction().commit();
-
-            session.getSessionFactory().close();
-
             System.out.println("done");
 
             return user;
@@ -60,23 +39,40 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public Scholar AddScholar(User user) {
+    public User FindUserByID(int id) {
         try {
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
-            User userToAdd = session.load(User.class, user.getUserId());
+            User user = session.load(User.class, id);
 
-            Scholar scholar = new Scholar();
-            scholar.setUserUserId(user.getUserId());
-            scholar.setUserByUserUserId(userToAdd);
-
-            session.save(scholar);
             session.getTransaction().commit();
 
-            session.getSessionFactory().close();
+            return user;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 
-            return scholar;
+    @Override
+    public User FindUserByLogin(String login) {
+        try {
+            System.out.println("start");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Criteria criteria = session.createCriteria(User.class);
+            User user = (User)(criteria.add(Restrictions.eq("login", login)).uniqueResult());
+
+            session.getTransaction().commit();
+
+//            session.getSessionFactory().close();
+
+            System.out.println("done");
+
+            return user;
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());
