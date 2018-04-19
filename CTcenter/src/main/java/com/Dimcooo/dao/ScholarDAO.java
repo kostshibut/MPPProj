@@ -5,5 +5,5 @@ import com.Dimcooo.model.User;
 
 public interface ScholarDAO {
     Scholar AddScholar(User user);
-    User FindScholarInfo(Scholar scholar);
+    User FindScholarInfo(int id);
 }

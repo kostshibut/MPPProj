@@ -18,6 +18,6 @@ public class ScholarServiceImpl implements ScholarService{
 
     @Override
     public User FindScholarInfo(Scholar scholar) {
-        return scholarDAO.FindScholarInfo(scholar);
+        return scholarDAO.FindScholarInfo(scholar.getScholarId());
     }
 }

@@ -17,11 +17,30 @@
             <spring:button>Sign Up</spring:button>
         </spring:form>
 
-        <a href="${contextPath}/start">back</a>
+        <script>
+            document.getElementById("login").addEventListener("focusout", function () {
+                checkFunc(/^.{0,10}$/, login);
+            });
 
-        <c:if test="${error != null}">
-            ${error.name} <br>
-            ${error.description} <br>
-        </c:if>
+            document.getElementById("password").addEventListener("focusout", function () {
+                checkFunc(/^.{10,}$/, password);
+            });
+
+            document.getElementById("age").addEventListener("focusout", function () {
+                checkFunc(/^(1(00?|\d)|[2-5]\d|[6-9]\d?)$/, age);
+            });
+
+            function checkFunc(regEx, inputName) {
+
+                if(inputName.value.search(regEx) == -1){
+                    console.log("it is NOT a normal value");
+                }
+                else {
+                    console.log("it is a normal value");
+                }
+            }
+        </script>
+
+        <a href="${contextPath}/start">back</a>
     </body>
 </html>

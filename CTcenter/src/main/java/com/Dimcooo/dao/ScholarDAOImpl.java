@@ -40,12 +40,12 @@ public class ScholarDAOImpl implements ScholarDAO {
     }
 
     @Override
-    public User FindScholarInfo(Scholar scholar) {
+    public User FindScholarInfo(int id) {
         try {
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
-            User user = session.load(User.class, scholar.getScholarId());
+            User user = session.load(User.class, id);
 
             session.getTransaction().commit();
 

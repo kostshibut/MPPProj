@@ -39,6 +39,18 @@ public class HomeController {
         return "signUp_page";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/start?logout=true";
+    }
+
+    @RequestMapping(value = "personalArea", method = RequestMethod.GET)
+    public ModelAndView personalArea(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("personalArea_page");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "signIn", method = RequestMethod.POST)
     public ModelAndView signInPost(@ModelAttribute("loginUser") LoginUser loginUser, HttpServletRequest request) throws ServletException {
         ModelAndView modelAndView = new ModelAndView();
@@ -58,12 +70,6 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "personalArea", method = RequestMethod.GET)
-    public ModelAndView personalArea(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView("personalArea_page");
-        return modelAndView;
-    }
-
     @RequestMapping(value = "signUp", method = RequestMethod.POST)
     public ModelAndView signUpPost(@ModelAttribute("userUp")User userForm, HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
@@ -72,6 +78,7 @@ public class HomeController {
             User user = userService.SaveUser(userForm);
             scholarService.AddScholar(user);
             request.getSession().setAttribute("loggedUser", user);
+            System.out.println();
         }
         else
         {
@@ -82,13 +89,5 @@ public class HomeController {
             modelAndView.addObject("error", error);
         }
         return modelAndView;
-    }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(HttpServletRequest request){
-        //ModelAndView modelAndView = new ModelAndView("start_page");
-        //request.getSession().setAttribute("loggedUser", null);
-        request.getSession().invalidate();
-        return "redirect:/start?logout=true";
     }
 }

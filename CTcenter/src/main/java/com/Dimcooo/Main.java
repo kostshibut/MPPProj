@@ -1,5 +1,6 @@
 package com.Dimcooo;
 
+import com.Dimcooo.dao.ScholarDAOImpl;
 import com.Dimcooo.model.Admin;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.Scholar;
@@ -21,7 +22,7 @@ import java.util.List;
 public class Main {
     public static void main(String args[]){
         try {
-            System.out.println(Encryptor.EncryptString("123"));
+            System.out.println(Encryptor.EncryptString("37529"));
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());
