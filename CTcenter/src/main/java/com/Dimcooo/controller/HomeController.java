@@ -3,8 +3,9 @@ package com.Dimcooo.controller;
 import com.Dimcooo.model.Error;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.User;
-import com.Dimcooo.service.ScholarService;
-import com.Dimcooo.service.UserService;
+import com.Dimcooo.service.Scholar.ScholarService;
+import com.Dimcooo.service.Teacher.TeacherService;
+import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class HomeController {
 
     @Autowired
     private ScholarService scholarService;
+
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
@@ -48,6 +52,18 @@ public class HomeController {
     @RequestMapping(value = "personalArea", method = RequestMethod.GET)
     public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "subjectList", method = RequestMethod.GET)
+    public ModelAndView imageSubjectList(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("subjects_page");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "teacherList", method = RequestMethod.GET)
+    public ModelAndView imageTeachersList(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("teachers_page");
         return modelAndView;
     }
 

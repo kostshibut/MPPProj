@@ -1,6 +1,6 @@
-package com.Dimcooo.service;
+package com.Dimcooo.service.User;
 
-import com.Dimcooo.dao.UserDAO;
+import com.Dimcooo.dao.User.UserDAO;
 import com.Dimcooo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

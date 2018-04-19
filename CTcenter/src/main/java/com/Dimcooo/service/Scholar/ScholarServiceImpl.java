@@ -1,6 +1,6 @@
-package com.Dimcooo.service;
+package com.Dimcooo.service.Scholar;
 
-import com.Dimcooo.dao.ScholarDAO;
+import com.Dimcooo.dao.Scholar.ScholarDAO;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
-package com.Dimcooo.dao;
+package com.Dimcooo.dao.User;
 
-import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import com.Dimcooo.util.Encryptor;
 import com.Dimcooo.util.HibernateSessionFactory;

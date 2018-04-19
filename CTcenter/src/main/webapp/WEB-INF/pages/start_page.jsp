@@ -23,5 +23,11 @@
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
+
+        <br>
+        <br>
+
+        <a href="${contextPath}/subjectList">Subjects</a> <br>
+        <a href="${contextPath}/teacherList">Teachers</a> <br>
     </body>
 </html>

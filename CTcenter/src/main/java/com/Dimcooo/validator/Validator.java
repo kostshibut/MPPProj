@@ -1,10 +1,9 @@
 package com.Dimcooo.validator;
 
-import com.Dimcooo.dao.UserDAOImpl;
+import com.Dimcooo.dao.User.UserDAOImpl;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.User;
 import com.Dimcooo.util.Encryptor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Validator {
     public static boolean AutentificationSignIn(User user, LoginUser loginUser) {

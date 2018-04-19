@@ -1,4 +1,4 @@
-package com.Dimcooo.dao;
+package com.Dimcooo.dao.User;
 
 import com.Dimcooo.model.User;
 

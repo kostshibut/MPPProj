@@ -1,4 +1,4 @@
-package com.Dimcooo.service;
+package com.Dimcooo.service.Scholar;
 
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
