@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yakubovich
@@ -11,6 +12,12 @@
     <title>Title</title>
 </head>
 <body>
-    asuh, we a teachers
+    <c:forEach items="${listOfTeachers}" var="teacher">
+        ${teacher.spetialization} <br>
+        ${teacher.userByUserUserId.firstName} <br>
+        ${teacher.userByUserUserId.lastName} <br> <br>
+    </c:forEach>
+
+    <a href="${contextPath}/start">back</a> <br>
 </body>
 </html>

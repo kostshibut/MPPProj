@@ -19,5 +19,7 @@
             Last Name: ${loggedUser.lastName} <br>
             First Name: ${loggedUser.firstName} <br>
         </c:if>
+
+        <a href="${contextPath}/start">back</a> <br>
     </body>
 </html>

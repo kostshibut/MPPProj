@@ -86,4 +86,16 @@ public class Teacher {
     public void setTeacherFeedbacksByTeacherId(Collection<TeacherFeedback> teacherFeedbacksByTeacherId) {
         this.teacherFeedbacksByTeacherId = teacherFeedbacksByTeacherId;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", spetialization='" + spetialization + '\'' +
+                ", userUserId=" + userUserId +
+                ", subjectsByTeacherId=" + subjectsByTeacherId +
+                ", userByUserUserId=" + userByUserUserId +
+                ", teacherFeedbacksByTeacherId=" + teacherFeedbacksByTeacherId +
+                '}';
+    }
 }

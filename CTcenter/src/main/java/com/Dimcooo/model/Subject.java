@@ -108,4 +108,14 @@ public class Subject {
     public void setSubjectFeedbacksBySubjectId(Collection<SubjectFeedback> subjectFeedbacksBySubjectId) {
         this.subjectFeedbacksBySubjectId = subjectFeedbacksBySubjectId;
     }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subjectId=" + subjectId +
+                ", name='" + name + '\'' +
+                ", duration=" + duration +
+                ", teacherTeacherId=" + teacherTeacherId +
+                '}';
+    }
 }

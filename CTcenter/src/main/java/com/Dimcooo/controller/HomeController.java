@@ -6,6 +6,7 @@ import com.Dimcooo.model.User;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
+import com.Dimcooo.service.subject.SubjectService;
 import com.Dimcooo.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomeController {
@@ -27,6 +29,9 @@ public class HomeController {
 
     @Autowired
     private TeacherService teacherService;
+
+    @Autowired
+    private SubjectService subjectService;
 
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
@@ -58,13 +63,20 @@ public class HomeController {
     @RequestMapping(value = "subjectList", method = RequestMethod.GET)
     public ModelAndView imageSubjectList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("subjects_page");
+        modelAndView.addObject("listOfSubjects", subjectService.GetListOfSubjects());
         return modelAndView;
     }
 
     @RequestMapping(value = "teacherList", method = RequestMethod.GET)
     public ModelAndView imageTeachersList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("teachers_page");
+        modelAndView.addObject("listOfTeachers", teacherService.GetListOfTeachers());
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/enroll", method = RequestMethod.POST)
+    public void enrollToSubject(HttpServletResponse response){
+        //response.
     }
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)
