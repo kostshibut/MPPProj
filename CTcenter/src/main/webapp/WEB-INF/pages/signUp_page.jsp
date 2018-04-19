@@ -13,17 +13,35 @@
             Last Name: <spring:input path="lastName"/> <br>
             Email: <spring:input path="email"/> <br>
             Age: <spring:input path="age"/> <br>
-            Education <spring:input path="education"/> <br>
+            Education
+            <spring:select path="education">
+                <spring:option value="High">High</spring:option>
+                <spring:option value="Middle">Middle</spring:option>
+                <spring:option value="Begin">Begin</spring:option>
+            </spring:select> <br>
             <spring:button>Sign Up</spring:button>
         </spring:form>
 
         <script>
             document.getElementById("login").addEventListener("focusout", function () {
-                checkFunc(/^.{0,10}$/, login);
+                checkFunc(/^.{1,10}$/, login);
             });
 
             document.getElementById("password").addEventListener("focusout", function () {
                 checkFunc(/^.{10,}$/, password);
+            });
+
+            document.getElementById("firstName").addEventListener("focusout", function () {
+                checkFunc(/[A-Z][a-zA-Z]*.{1,15}$/, firstName);
+            });
+
+            document.getElementById("lastName").addEventListener("focusout", function () {
+                checkFunc(/[A-Z][a-zA-Z]*.{1,15}$/, lastName);
+            });
+
+            document.getElementById("email").addEventListener("focusout", function () {
+                checkFunc(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    email);
             });
 
             document.getElementById("age").addEventListener("focusout", function () {
