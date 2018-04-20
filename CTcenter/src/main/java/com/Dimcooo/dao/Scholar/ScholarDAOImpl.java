@@ -3,7 +3,9 @@ package com.Dimcooo.dao.Scholar;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import com.Dimcooo.util.HibernateSessionFactory;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,5 +59,20 @@ public class ScholarDAOImpl implements ScholarDAO {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public Scholar FindScholarByUserId(int id) {
+        System.out.println("start");
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Criteria criteria = session.createCriteria(Scholar.class);
+
+        Scholar scholar = (Scholar)(criteria.add(Restrictions.eq("userUserId", id)).uniqueResult());
+
+        session.getTransaction().commit();
+
+        return scholar;
     }
 }

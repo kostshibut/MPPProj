@@ -23,4 +23,16 @@ public class SubjectDAOImpl implements SubjectDAO {
         session.getTransaction().commit();
         return criteria.list();
     }
+
+    @Override
+    public Subject FindSubjectById(int id) {
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Subject subject = session.load(Subject.class, id);
+
+        session.getTransaction().commit();
+
+        return subject;
+    }
 }

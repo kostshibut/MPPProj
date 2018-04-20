@@ -8,16 +8,21 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <c:forEach items="${listOfTeachers}" var="teacher">
-        ${teacher.spetialization} <br>
-        ${teacher.userByUserUserId.firstName} <br>
-        ${teacher.userByUserUserId.lastName} <br> <br>
-    </c:forEach>
+    <head>
+        <title>Title</title>
+    </head>
+    <body>
+        <c:if test="${loggedUser != null}">
+            Last Name: ${loggedUser.lastName} <br>
+            First Name: ${loggedUser.firstName} <br>
+        </c:if> <br> <br>
 
-    <a href="${contextPath}/start">back</a> <br>
-</body>
+        <c:forEach items="${listOfTeachers}" var="teacher">
+            ${teacher.spetialization} <br>
+            ${teacher.userByUserUserId.firstName} <br>
+            ${teacher.userByUserUserId.lastName} <br> <br>
+        </c:forEach>
+
+        <a href="${contextPath}/start">back</a> <br>
+    </body>
 </html>

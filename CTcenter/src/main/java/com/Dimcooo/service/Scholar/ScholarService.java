@@ -6,4 +6,5 @@ import com.Dimcooo.model.User;
 public interface ScholarService {
     Scholar AddScholar(User user);
     User FindScholarInfo(Scholar scholar);
+    Scholar FindScholarByUser(User user);
 }

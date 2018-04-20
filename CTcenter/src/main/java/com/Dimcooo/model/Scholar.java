@@ -34,14 +34,6 @@ public class Scholar {
         this.userUserId = userUserId;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    private void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,5 +84,14 @@ public class Scholar {
 
     public void setTeacherFeedbacksByScholarId(Collection<TeacherFeedback> teacherFeedbacksByScholarId) {
         this.teacherFeedbacksByScholarId = teacherFeedbacksByScholarId;
+    }
+
+    @Override
+    public String toString() {
+        return "Scholar{" +
+                "scholarId=" + scholarId +
+                ", userUserId=" + userUserId +
+                ", userByUserUserId=" + userByUserUserId +
+                '}';
     }
 }

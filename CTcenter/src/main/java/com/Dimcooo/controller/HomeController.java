@@ -6,18 +6,19 @@ import com.Dimcooo.model.User;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
+import com.Dimcooo.service.listScholarSubject.ListScholarSubjectService;
 import com.Dimcooo.service.subject.SubjectService;
 import com.Dimcooo.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomeController {
@@ -32,6 +33,9 @@ public class HomeController {
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private ListScholarSubjectService scholarSubjectService;
 
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
@@ -74,9 +78,16 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/enroll", method = RequestMethod.POST)
-    public void enrollToSubject(HttpServletResponse response){
-        //response.
+    @RequestMapping(value = "/enroll/{id}", method = RequestMethod.POST)
+    public String enrollToSubject(@PathVariable("id")int subjectID, HttpServletRequest request){
+        User user = (User)request.getSession().getAttribute("loggedUser");
+        System.out.println(user);
+        System.out.println(subjectID);
+        System.out.println(subjectService.FindSubjectInfo(subjectID));
+        System.out.println(scholarService.FindScholarByUser(user));
+        System.out.println(scholarSubjectService.EnrollScholarToSubject(scholarService.FindScholarByUser(user),
+                subjectService.FindSubjectInfo(subjectID)));
+        return "redirect:/subjectList";
     }
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)

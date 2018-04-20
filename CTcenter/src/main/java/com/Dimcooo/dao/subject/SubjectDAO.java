@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SubjectDAO {
     List<Subject> GetDataFromSubjectTable();
+    Subject FindSubjectById(int id);
 }

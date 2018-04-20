@@ -16,4 +16,9 @@ public class SubjectServiceImpl implements SubjectService{
     public List<Subject> GetListOfSubjects() {
         return subjectDAO.GetDataFromSubjectTable();
     }
+
+    @Override
+    public Subject FindSubjectInfo(int id) {
+        return subjectDAO.FindSubjectById(id);
+    }
 }

@@ -20,4 +20,9 @@ public class ScholarServiceImpl implements ScholarService{
     public User FindScholarInfo(Scholar scholar) {
         return scholarDAO.FindScholarById(scholar.getScholarId());
     }
+
+    @Override
+    public Scholar FindScholarByUser(User user) {
+        return scholarDAO.FindScholarByUserId(user.getUserId());
+    }
 }

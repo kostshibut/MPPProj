@@ -13,16 +13,23 @@
         <title>Title</title>
     </head>
     <body>
+        <c:if test="${loggedUser != null}">
+            Last Name: ${loggedUser.lastName} <br>
+            First Name: ${loggedUser.firstName} <br>
+        </c:if> <br> <br>
+
         <c:forEach items="${listOfSubjects}" var="subject">
-            <spring:form>
+            <form method="post" action="/enroll/${subject.subjectId}">
                 ${subject.name} <br>
                 ${subject.duration} <br> <br>
                 Teacher:
-                ${subject.teacherByTeacherTeacherId.spetialization} <br>
+                Spetialization:
+                        ${subject.teacherByTeacherTeacherId.spetialization} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
-            </spring:form>
+                <button type="submit">Enroll</button>
+            </form>
         </c:forEach>
 
         <a href="${contextPath}/start">back</a> <br>
