@@ -20,6 +20,6 @@
         <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
 
         <a href="${contextPath}/signUp">Create an account</a> <br>
-        <a href="${contextPath}/start">back</a> <br>
+        <a href="${contextPath}/start">back to start page</a> <br>
     </body>
 </html>

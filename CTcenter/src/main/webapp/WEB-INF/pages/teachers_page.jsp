@@ -20,9 +20,10 @@
         <c:forEach items="${listOfTeachers}" var="teacher">
             ${teacher.spetialization} <br>
             ${teacher.userByUserUserId.firstName} <br>
-            ${teacher.userByUserUserId.lastName} <br> <br>
+            ${teacher.userByUserUserId.lastName} <br>
+            <a href="/readmoreTeacher/${teacher.teacherId}">Read More about teacher</a> <br>
         </c:forEach>
 
-        <a href="${contextPath}/start">back</a> <br>
+        <a href="${contextPath}/start">back to start page</a> <br>
     </body>
 </html>

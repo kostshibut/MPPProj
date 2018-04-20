@@ -16,4 +16,9 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> GetListOfTeachers() {
         return teacherDAO.GetDataFromTeacherTable();
     }
+
+    @Override
+    public Teacher FindTeacherInfo(int id) {
+        return teacherDAO.FindTeacherById(id);
+    }
 }

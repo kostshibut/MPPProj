@@ -72,6 +72,13 @@ public class HomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/readmoreTeacher/{id}")
+    public ModelAndView imageReadmoreTeacher(@PathVariable("id") int teacherID){
+        ModelAndView modelAndView = new ModelAndView("oneTeacher_page");
+        modelAndView.addObject("teacher", teacherService.FindTeacherInfo(teacherID));
+        return modelAndView;
+    }
+
     @RequestMapping(value = "subjectList", method = RequestMethod.GET)
     public ModelAndView imageSubjectList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("subjects_page");

@@ -14,7 +14,17 @@
     <body>
         <c:if test="${loggedUser != null}">
             Last Name: ${loggedUser.lastName} <br>
-            First Name: ${loggedUser.firstName} <br>
+            First Name: ${loggedUser.firstName} <br> <br>
         </c:if>
+
+        <c:if test="${teacher != null}">
+            ${teacher.spetialization} <br>
+            ${teacher.userByUserUserId.firstName} <br>
+            ${teacher.userByUserUserId.lastName} <br>
+            ${teacher.userByUserUserId.email} <br>
+            ${teacher.userByUserUserId.age} <br>
+            ${teacher.userByUserUserId.education} <br>
+        </c:if>
+    <a href="/teacherList">back to teachers list</a>
     </body>
 </html>

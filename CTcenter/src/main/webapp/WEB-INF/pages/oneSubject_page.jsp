@@ -25,5 +25,7 @@
             ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
             ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
         </c:if>
+
+    <a href="/subjectList">back to subject list</a>
     </body>
 </html>
