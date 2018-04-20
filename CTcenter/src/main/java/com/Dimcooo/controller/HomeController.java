@@ -2,6 +2,7 @@ package com.Dimcooo.controller;
 
 import com.Dimcooo.model.Error;
 import com.Dimcooo.model.LoginUser;
+import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Teacher.TeacherService;
@@ -64,10 +65,29 @@ public class HomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/readmoreSubject/{id}")
+    public ModelAndView imageReadmoreSubject(@PathVariable("id") int subjectID){
+        ModelAndView modelAndView = new ModelAndView("oneSubject_page");
+        modelAndView.addObject("subject", subjectService.FindSubjectInfo(subjectID));
+        return modelAndView;
+    }
+
     @RequestMapping(value = "subjectList", method = RequestMethod.GET)
     public ModelAndView imageSubjectList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("subjects_page");
-        modelAndView.addObject("listOfSubjects", subjectService.GetListOfSubjects());
+        User user = (User) request.getSession().getAttribute("loggedUser");
+        if (user != null) {
+            Scholar scholar = scholarService.FindScholarByUser(user);
+            modelAndView.addObject("listOfSubjects",
+                    Validator.isScholarGotSubject(scholar,
+                            subjectService.GetListOfSubjects(),
+                            scholarSubjectService.GetAllScholars()));
+
+        }
+        else {
+            modelAndView.addObject("listOfSubjects", subjectService.GetListOfSubjects());
+        }
+
         return modelAndView;
     }
 
@@ -80,13 +100,8 @@ public class HomeController {
 
     @RequestMapping(value = "/enroll/{id}", method = RequestMethod.POST)
     public String enrollToSubject(@PathVariable("id")int subjectID, HttpServletRequest request){
-        User user = (User)request.getSession().getAttribute("loggedUser");
-        System.out.println(user);
-        System.out.println(subjectID);
-        System.out.println(subjectService.FindSubjectInfo(subjectID));
-        System.out.println(scholarService.FindScholarByUser(user));
-        System.out.println(scholarSubjectService.EnrollScholarToSubject(scholarService.FindScholarByUser(user),
-                subjectService.FindSubjectInfo(subjectID)));
+        scholarSubjectService.EnrollScholarToSubject(scholarService.FindScholarByUser((User)request.getSession().getAttribute("loggedUser")),
+                subjectService.FindSubjectInfo(subjectID));
         return "redirect:/subjectList";
     }
 

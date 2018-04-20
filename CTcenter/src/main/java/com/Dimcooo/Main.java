@@ -14,13 +14,7 @@ import java.util.List;
 public class Main {
     public static void main(String args[]){
         try {
-            Session session = HibernateSessionFactory.getSessionFactory().openSession();
-            session.beginTransaction();
-
-            Criteria criteria = session.createCriteria(Subject.class);
-            System.out.println(criteria.list());
-
-            session.getTransaction().commit();
+            System.out.println(Encryptor.EncryptString("123"));
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

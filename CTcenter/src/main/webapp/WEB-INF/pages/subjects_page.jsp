@@ -27,8 +27,12 @@
                         ${subject.teacherByTeacherTeacherId.spetialization} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
-                ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
-                <button type="submit">Enroll</button>
+                    <a href="/readmoreSubject/${subject.subjectId}">read more</a>
+                    <c:if test="${loggedUser != null}">
+                        <button type="submit">Enroll</button>
+                    </c:if> <br> <br>
+
+
             </form>
         </c:forEach>
 

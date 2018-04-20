@@ -22,6 +22,11 @@
             <spring:button>Sign Up</spring:button>
         </spring:form>
 
+        <c:if test="${error != null}">
+            ${error.name} <br>
+            ${error.description} <br>
+        </c:if>
+
         <script>
             document.getElementById("login").addEventListener("focusout", function () {
                 checkFunc(/^.{1,10}$/, login);
@@ -49,7 +54,6 @@
             });
 
             function checkFunc(regEx, inputName) {
-
                 if(inputName.value.search(regEx) == -1){
                     console.log("it is NOT a normal value");
                 }

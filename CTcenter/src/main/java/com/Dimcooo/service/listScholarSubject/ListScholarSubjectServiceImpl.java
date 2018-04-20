@@ -7,6 +7,8 @@ import com.Dimcooo.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ListScholarSubjectServiceImpl implements ListScholarSubjectService {
     @Autowired
@@ -15,5 +17,10 @@ public class ListScholarSubjectServiceImpl implements ListScholarSubjectService 
     @Override
     public ListScholarSubject EnrollScholarToSubject(Scholar scholar, Subject subject) {
         return scholarSubjectDAO.AddToListSnS(scholar, subject);
+    }
+
+    @Override
+    public List<ListScholarSubject> GetAllScholars() {
+        return scholarSubjectDAO.GetAllDataFromTable();
     }
 }

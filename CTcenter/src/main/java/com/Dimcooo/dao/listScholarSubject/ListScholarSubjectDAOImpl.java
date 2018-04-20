@@ -4,9 +4,12 @@ import com.Dimcooo.model.ListScholarSubject;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.Subject;
 import com.Dimcooo.util.HibernateSessionFactory;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class ListScholarSubjectDAOImpl implements ListScholarSubjectDAO {
@@ -27,5 +30,16 @@ public class ListScholarSubjectDAOImpl implements ListScholarSubjectDAO {
         session.getTransaction().commit();
 
         return listScholarSubject;
+    }
+
+    @Override
+    public List<ListScholarSubject> GetAllDataFromTable() {
+        session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Criteria criteria = session.createCriteria(ListScholarSubject.class);
+
+        session.getTransaction().commit();
+        return criteria.list();
     }
 }
