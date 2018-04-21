@@ -14,11 +14,23 @@ public class SubjectServiceImpl implements SubjectService{
 
     @Override
     public List<Subject> GetListOfSubjects() {
-        return subjectDAO.GetDataFromSubjectTable();
+        try {
+            return subjectDAO.GetDataFromSubjectTable();
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Subject FindSubjectInfo(int id) {
-        return subjectDAO.FindSubjectById(id);
+        try {
+            return subjectDAO.FindSubjectById(id);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

@@ -15,24 +15,41 @@ public class SubjectDAOImpl implements SubjectDAO {
 
     @Override
     public List<Subject> GetDataFromSubjectTable() {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start get all data from subject table");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Criteria criteria = session.createCriteria(Subject.class);
+            Criteria criteria = session.createCriteria(Subject.class);
 
-        session.getTransaction().commit();
-        return criteria.list();
+            session.getTransaction().commit();
+            System.out.println("Finish get all data from subject table");
+            return criteria.list();
+        }
+        catch (Exception ex){
+            System.out.println("Error with get all data from subject table");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Subject FindSubjectById(int id) {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start getting data by id");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Subject subject = session.load(Subject.class, id);
+            Subject subject = session.load(Subject.class, id);
 
-        session.getTransaction().commit();
-
-        return subject;
+            session.getTransaction().commit();
+            System.out.println("Finish getting data by id");
+            return subject;
+        }
+        catch (Exception ex){
+            System.out.println("Error with get data by id");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

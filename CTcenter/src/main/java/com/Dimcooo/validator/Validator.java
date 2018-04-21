@@ -9,12 +9,16 @@ import java.util.List;
 
 public class Validator {
     public static boolean AutentificationSignIn(User user, LoginUser loginUser) {
-
-        if (user != null && user.getLogin().equals(loginUser.getLogin()) &&
-                user.getPassword().equals(Encryptor.EncryptString(loginUser.getPass()))) {
-            return true;
+        try {
+            if (user != null && user.getLogin().equals(loginUser.getLogin()) &&
+                    user.getPassword().equals(Encryptor.EncryptString(loginUser.getPass()))) {
+                return true;
+            } else {
+                return false;
+            }
         }
-        else {
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
             return false;
         }
     }
@@ -34,9 +38,7 @@ public class Validator {
                                                     List<ListScholarSubject> ScholarSubjectsList) {
         Iterator listSubject = subjectList.iterator();
         Iterator listScholarSubjects = ScholarSubjectsList.iterator();
-
         try {
-
             while (listScholarSubjects.hasNext()) {
                 ListScholarSubject scholarSubject = (ListScholarSubject) listScholarSubjects.next();
                 if (scholar.getScholarId() == scholarSubject.getScholarScholarId()) {

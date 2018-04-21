@@ -18,11 +18,9 @@ public class ScholarDAOImpl implements ScholarDAO {
     @Override
     public Scholar AddScholar(User user) {
         try {
-            System.out.println("try to set data to Scholar");
+            System.out.println("Start adding scholar");
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
-
-            System.out.println("try to open session");
 
             Scholar scholar = new Scholar();
             scholar.setUserByUserUserId(user);
@@ -30,12 +28,12 @@ public class ScholarDAOImpl implements ScholarDAO {
             session.save(scholar);
             session.getTransaction().commit();
 
-            System.out.println("saved");
-
             session.close();
+            System.out.println("Finish adding scholar");
             return scholar;
         }
         catch (Exception ex){
+            System.out.println("Error with adding scholar");
             System.out.println(ex.getMessage());
             return null;
         }
@@ -44,6 +42,7 @@ public class ScholarDAOImpl implements ScholarDAO {
     @Override
     public User FindScholarById(int id) {
         try {
+            System.out.println("Start finding scholar by id");
             session = HibernateSessionFactory.getSessionFactory().openSession();
             session.beginTransaction();
 
@@ -51,11 +50,11 @@ public class ScholarDAOImpl implements ScholarDAO {
 
             session.getTransaction().commit();
 
-            System.out.println("done");
-
+            System.out.println("Finish finding scholar by id");
             return user;
         }
         catch (Exception ex){
+            System.out.println("Error with finding scholar by id");
             System.out.println(ex.getMessage());
             return null;
         }
@@ -63,16 +62,23 @@ public class ScholarDAOImpl implements ScholarDAO {
 
     @Override
     public Scholar FindScholarByUserId(int id) {
-        System.out.println("start");
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start finding scholar by user id");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Criteria criteria = session.createCriteria(Scholar.class);
+            Criteria criteria = session.createCriteria(Scholar.class);
 
-        Scholar scholar = (Scholar)(criteria.add(Restrictions.eq("userUserId", id)).uniqueResult());
+            Scholar scholar = (Scholar) (criteria.add(Restrictions.eq("userUserId", id)).uniqueResult());
 
-        session.getTransaction().commit();
-
-        return scholar;
+            session.getTransaction().commit();
+            System.out.println("Finish finding scholar by user id");
+            return scholar;
+        }
+        catch (Exception ex){
+            System.out.println("Error with finding scholar by user id");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

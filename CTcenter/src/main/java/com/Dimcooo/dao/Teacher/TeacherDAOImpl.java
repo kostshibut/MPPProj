@@ -4,6 +4,7 @@ import com.Dimcooo.model.Teacher;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,24 +15,63 @@ public class TeacherDAOImpl implements TeacherDAO {
 
     @Override
     public List<Teacher> GetDataFromTeacherTable() {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start getting all data from Teacher table");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Criteria criteria = session.createCriteria(Teacher.class);
-        //List<Teacher> Teachers = criteria.list();
+            Criteria criteria = session.createCriteria(Teacher.class);
 
-        session.getTransaction().commit();
-        return criteria.list();
+            session.getTransaction().commit();
+            System.out.println("Finish getting all data from Teacher table");
+            return criteria.list();
+        }
+        catch (Exception ex){
+            System.out.println("Error with getting all data from Teacher table");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Teacher FindTeacherById(int id) {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start getting data from Teacher table by id");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Teacher teacher = session.load(Teacher.class, id);
+            Teacher teacher = session.load(Teacher.class, id);
 
-        session.getTransaction().commit();
-        return teacher;
+            session.getTransaction().commit();
+            System.out.println("Finish getting data from Teacher table by id");
+            return teacher;
+        }
+        catch (Exception ex){
+            System.out.println("Error with finding data by id in Teacher table");
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Teacher FindTeacherByUserId(int id) {
+        try {
+            System.out.println("Start finding data by user id");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Criteria criteria = session.createCriteria(Teacher.class);
+
+            Teacher teacher = (Teacher) (criteria.add(Restrictions.eq("userUserId", id)).uniqueResult());
+
+            session.getTransaction().commit();
+            System.out.println("Finish finding data by user id");
+            return teacher;
+        }
+        catch (Exception ex){
+            System.out.println("Error with finding data by user id in Teacher table");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

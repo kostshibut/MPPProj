@@ -4,6 +4,7 @@ import com.Dimcooo.model.Error;
 import com.Dimcooo.model.LoginUser;
 import com.Dimcooo.model.Scholar;
 import com.Dimcooo.model.User;
+import com.Dimcooo.service.Admin.AdminService;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
@@ -37,6 +38,9 @@ public class HomeController {
 
     @Autowired
     private ListScholarSubjectService scholarSubjectService;
+
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
@@ -82,14 +86,13 @@ public class HomeController {
     @RequestMapping(value = "subjectList", method = RequestMethod.GET)
     public ModelAndView imageSubjectList(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("subjects_page");
-        User user = (User) request.getSession().getAttribute("loggedUser");
-        if (user != null) {
-            Scholar scholar = scholarService.FindScholarByUser(user);
+        //User user = scholarService.FindScholarInfo((Scholar)request.getSession().getAttribute("loggedScholar"));
+        Scholar scholar = (Scholar)request.getSession().getAttribute("loggedScholar");
+        if (scholar != null) {
             modelAndView.addObject("listOfSubjects",
                     Validator.isScholarGotSubject(scholar,
                             subjectService.GetListOfSubjects(),
                             scholarSubjectService.GetAllScholars()));
-
         }
         else {
             modelAndView.addObject("listOfSubjects", subjectService.GetListOfSubjects());
@@ -107,7 +110,7 @@ public class HomeController {
 
     @RequestMapping(value = "/enroll/{id}", method = RequestMethod.POST)
     public String enrollToSubject(@PathVariable("id")int subjectID, HttpServletRequest request){
-        scholarSubjectService.EnrollScholarToSubject(scholarService.FindScholarByUser((User)request.getSession().getAttribute("loggedUser")),
+        scholarSubjectService.EnrollScholarToSubject(scholarService.FindScholarByUser((User)request.getSession().getAttribute("loggedScholar")),
                 subjectService.FindSubjectInfo(subjectID));
         return "redirect:/subjectList";
     }
@@ -119,7 +122,15 @@ public class HomeController {
 
         if (Validator.AutentificationSignIn(user, loginUser)) {
             modelAndView.setViewName("start_page");
-            request.getSession().setAttribute("loggedUser", user);
+            if (adminService.FindAdminByUser(user) != null){
+                request.getSession().setAttribute("loggedAdmin", adminService.FindAdminByUser(user));
+            }
+            if (teacherService.FindTeacherByUser(user) != null){
+                request.getSession().setAttribute("loggedTeacher", teacherService.FindTeacherByUser(user));
+            }
+            if (scholarService.FindScholarByUser(user) != null){
+                request.getSession().setAttribute("loggedScholar", scholarService.FindScholarByUser(user));
+            }
         }
         else {
             Error error = new Error();

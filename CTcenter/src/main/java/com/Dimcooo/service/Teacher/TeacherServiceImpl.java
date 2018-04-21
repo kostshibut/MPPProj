@@ -2,6 +2,7 @@ package com.Dimcooo.service.Teacher;
 
 import com.Dimcooo.dao.Teacher.TeacherDAO;
 import com.Dimcooo.model.Teacher;
+import com.Dimcooo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,34 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<Teacher> GetListOfTeachers() {
-        return teacherDAO.GetDataFromTeacherTable();
+        try {
+            return teacherDAO.GetDataFromTeacherTable();
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Teacher FindTeacherInfo(int id) {
-        return teacherDAO.FindTeacherById(id);
+        try {
+            return teacherDAO.FindTeacherById(id);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Teacher FindTeacherByUser(User user) {
+        try {
+            return teacherDAO.FindTeacherByUserId(user.getUserId());
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

@@ -13,14 +13,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User SaveUser(User user) {
-        userDAO.AddUser(user);
-        User userByLogin = FindByLogin(user.getLogin());
-        System.out.println("in Service" + userByLogin);
-        return userByLogin;
+        try {
+            userDAO.AddUser(user);
+            User userByLogin = FindByLogin(user.getLogin());
+            System.out.println("in Service" + userByLogin);
+            return userByLogin;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public User FindByLogin(String login) {
-        return userDAO.FindUserByLogin(login);
+        try {
+            return userDAO.FindUserByLogin(login);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

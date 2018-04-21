@@ -9,20 +9,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScholarServiceImpl implements ScholarService{
     @Autowired
-    ScholarDAO scholarDAO;
+    private ScholarDAO scholarDAO;
 
     @Override
     public Scholar AddScholar(User user) {
-        return scholarDAO.AddScholar(user);
+        try {
+            return scholarDAO.AddScholar(user);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public User FindScholarInfo(Scholar scholar) {
-        return scholarDAO.FindScholarById(scholar.getScholarId());
+        try {
+            return scholarDAO.FindScholarById(scholar.getScholarId());
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Scholar FindScholarByUser(User user) {
-        return scholarDAO.FindScholarByUserId(user.getUserId());
+        try {
+            return scholarDAO.FindScholarByUserId(user.getUserId());
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

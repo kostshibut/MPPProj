@@ -14,6 +14,15 @@ public class Subject {
     private Collection<ListScholarSubject> listScholarSubjectsBySubjectId;
     private Teacher teacherByTeacherTeacherId;
     private Collection<SubjectFeedback> subjectFeedbacksBySubjectId;
+    private boolean imageSetting;
+
+    public boolean isImageSetting() {
+        return imageSetting;
+    }
+
+    public void setImageSetting(boolean imageSetting) {
+        this.imageSetting = imageSetting;
+    }
 
     @Id
     @Column(name = "subject_id", nullable = false)

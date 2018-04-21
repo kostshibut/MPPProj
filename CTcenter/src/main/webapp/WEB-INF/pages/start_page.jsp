@@ -9,19 +9,34 @@
         <title>Title</title>
     </head>
     <body>
-        <c:if test="${loggedUser != null}">
-            Asuh ${loggedUser.firstName} <br>
-            <a href="${contextPath}/personalArea">Personal Area</a>
+        <%--<c:if test="${loggedUser != null}">--%>
+            <%--Asuh ${loggedUser.firstName} <br>--%>
+            <%--<a href="${contextPath}/personalArea">Personal Area</a>--%>
+        <%--</c:if> <br>--%>
+
+        <c:if test="${loggedAdmin != null}">
+            Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedTeacher != null}">
+            Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedScholar != null}">
+            Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedAdmin == null and loggedTeacher == null and loggedScholar == null or param.logout eq true}">
+            <a href="${contextPath}/signUp">Sign Up</a> <br>
+            <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
         <c:if test="${error != null}">
             ${error.name} <br>
             ${error.description} <br>
-        </c:if>
-
-        <c:if test="${loggedUser == null or param.logout eq true}">
-            <a href="${contextPath}/signUp">Sign Up</a> <br>
-            <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
         <br>

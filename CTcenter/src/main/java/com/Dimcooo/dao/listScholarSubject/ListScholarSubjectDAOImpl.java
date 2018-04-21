@@ -18,28 +18,45 @@ public class ListScholarSubjectDAOImpl implements ListScholarSubjectDAO {
     @Transactional
     @Override
     public ListScholarSubject AddToListSnS(Scholar scholar, Subject subject) {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start adding scholar and subject to list");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        ListScholarSubject listScholarSubject = new ListScholarSubject();
-        listScholarSubject.setScholarByScholarScholarId(scholar);
-        listScholarSubject.setSubjectBySubjectSubjectId(subject);
+            ListScholarSubject listScholarSubject = new ListScholarSubject();
+            listScholarSubject.setScholarByScholarScholarId(scholar);
+            listScholarSubject.setSubjectBySubjectSubjectId(subject);
 
-        session.save(listScholarSubject);
+            session.save(listScholarSubject);
 
-        session.getTransaction().commit();
-
-        return listScholarSubject;
+            session.getTransaction().commit();
+            System.out.println("Finish adding scholar and subject to list");
+            return listScholarSubject;
+        }
+        catch (Exception ex){
+            System.out.println("Error with adding scholar and subject to list");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<ListScholarSubject> GetAllDataFromTable() {
-        session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+        try {
+            System.out.println("Start getting all data from list scholar subject");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
 
-        Criteria criteria = session.createCriteria(ListScholarSubject.class);
+            Criteria criteria = session.createCriteria(ListScholarSubject.class);
 
-        session.getTransaction().commit();
-        return criteria.list();
+            session.getTransaction().commit();
+            System.out.println("Finish getting all data from list scholar subject");
+            return criteria.list();
+        }
+        catch (Exception ex){
+            System.out.println("Error with getting all data from list scholar subject");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

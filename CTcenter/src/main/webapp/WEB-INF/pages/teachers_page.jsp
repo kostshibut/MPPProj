@@ -12,16 +12,33 @@
         <title>Title</title>
     </head>
     <body>
-        <c:if test="${loggedUser != null}">
-            Last Name: ${loggedUser.lastName} <br>
-            First Name: ${loggedUser.firstName} <br>
-        </c:if> <br> <br>
+        <c:if test="${loggedAdmin != null}">
+            Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedTeacher != null}">
+            Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedScholar != null}">
+            Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedAdmin == null and loggedTeacher == null and loggedScholar == null or param.logout eq true}">
+            <a href="${contextPath}/signUp">Sign Up</a> <br>
+            <a href="${contextPath}/signIn">Sign In</a> <br>
+        </c:if>
 
         <c:forEach items="${listOfTeachers}" var="teacher">
+            ---------------------------------------------------------- <br>
             ${teacher.spetialization} <br>
             ${teacher.userByUserUserId.firstName} <br>
             ${teacher.userByUserUserId.lastName} <br>
             <a href="/readmoreTeacher/${teacher.teacherId}">Read More about teacher</a> <br>
+            ---------------------------------------------------------- <br>
         </c:forEach>
 
         <a href="${contextPath}/start">back to start page</a> <br>

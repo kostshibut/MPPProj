@@ -13,27 +13,42 @@
         <title>Title</title>
     </head>
     <body>
-        <c:if test="${loggedUser != null}">
-            Last Name: ${loggedUser.lastName} <br>
-            First Name: ${loggedUser.firstName} <br>
-        </c:if> <br>
+        <c:if test="${loggedAdmin != null}">
+            Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedTeacher != null}">
+            Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedScholar != null}">
+            Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
+            <a href="${contextPath}/personalArea">Personal Area</a> <br>
+        </c:if>
+
+        <c:if test="${loggedAdmin == null and loggedTeacher == null and loggedScholar == null or param.logout eq true}">
+            <a href="${contextPath}/signUp">Sign Up</a> <br>
+            <a href="${contextPath}/signIn">Sign In</a> <br>
+        </c:if>
 
         <c:forEach items="${listOfSubjects}" var="subject">
+            -------------------------------------------------------------------------------------
             <form method="post" action="/enroll/${subject.subjectId}">
                 ${subject.name} <br>
                 ${subject.duration} <br>
-                Teacher:
-                Spetialization:
+                Teacher: <br>
+                Spetialization: <br>
                         ${subject.teacherByTeacherTeacherId.spetialization} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
                     <a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>
-                    <c:if test="${loggedUser != null}">
+                    <c:if test="${loggedScholar != null}">
                         <button type="submit">Enroll</button>
-                    </c:if> <br> <br>
-
-
+                    </c:if> <br>
             </form>
+            -------------------------------------------------------------------------------------
         </c:forEach>
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>

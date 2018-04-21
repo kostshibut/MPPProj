@@ -16,11 +16,24 @@ public class ListScholarSubjectServiceImpl implements ListScholarSubjectService 
 
     @Override
     public ListScholarSubject EnrollScholarToSubject(Scholar scholar, Subject subject) {
-        return scholarSubjectDAO.AddToListSnS(scholar, subject);
+        try {
+            return scholarSubjectDAO.AddToListSnS(scholar, subject);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public List<ListScholarSubject> GetAllScholars() {
-        return scholarSubjectDAO.GetAllDataFromTable();
+        try {
+            return scholarSubjectDAO.GetAllDataFromTable();
+        }
+        catch (Exception ex){
+            System.out.println("Error in getting data");
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }
