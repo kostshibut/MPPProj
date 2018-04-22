@@ -9,19 +9,16 @@
         <title>Title</title>
     </head>
     <body>
-        <%--<c:if test="${loggedUser != null}">--%>
-            <%--Asuh ${loggedUser.firstName} <br>--%>
-            <%--<a href="${contextPath}/personalArea">Personal Area</a>--%>
-        <%--</c:if> <br>--%>
-
         <c:if test="${loggedAdmin != null}">
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
+            exclusive admin content
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
             Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
+            exclusive teacher content
         </c:if>
 
         <c:if test="${loggedScholar != null}">

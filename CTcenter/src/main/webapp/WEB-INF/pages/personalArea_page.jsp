@@ -21,12 +21,10 @@
 
         <c:if test="${loggedTeacher != null}">
             Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
-            <a href="${contextPath}/personalArea">Personal Area</a> <br>
         </c:if>
 
         <c:if test="${loggedScholar != null}">
             Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
-            <a href="${contextPath}/personalArea">Personal Area</a> <br>
         </c:if>
 
         <c:if test="${loggedAdmin == null and loggedTeacher == null and loggedScholar == null or param.logout eq true}">

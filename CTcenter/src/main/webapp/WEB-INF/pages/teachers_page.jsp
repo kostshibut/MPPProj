@@ -38,6 +38,9 @@
             ${teacher.userByUserUserId.firstName} <br>
             ${teacher.userByUserUserId.lastName} <br>
             <a href="/readmoreTeacher/${teacher.teacherId}">Read More about teacher</a> <br>
+            <c:if test="${loggedScholar != null}">
+
+            </c:if> <br>
             ---------------------------------------------------------- <br>
         </c:forEach>
 

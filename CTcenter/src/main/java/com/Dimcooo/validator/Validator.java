@@ -33,26 +33,46 @@ public class Validator {
         }
     }
 
-    public static List<Subject> isScholarGotSubject(Scholar scholar,
-                                                    List<Subject> subjectList,
-                                                    List<ListScholarSubject> ScholarSubjectsList) {
-        Iterator listSubject = subjectList.iterator();
+    public static List<Subject> ShowUnsubbedSubjects(Scholar scholar,
+                                                     List<Subject> subjectList,
+                                                     List<ListScholarSubject> ScholarSubjectsList) {
+        Iterator listSubject = null;
         Iterator listScholarSubjects = ScholarSubjectsList.iterator();
-        try {
+
             while (listScholarSubjects.hasNext()) {
                 ListScholarSubject scholarSubject = (ListScholarSubject) listScholarSubjects.next();
                 if (scholar.getScholarId() == scholarSubject.getScholarScholarId()) {
+                    listSubject = subjectList.iterator();
                     while (listSubject.hasNext()) {
                         Subject subject = (Subject) listSubject.next();
                         if (subject.getSubjectId() == scholarSubject.getSubjectSubjectId()) {
-                            subjectList.remove(subject);
+                            listSubject.remove();
                         }
                     }
+                    listSubject = null;
                 }
             }
-        }
-        catch (Exception ex){
-            System.out.println(ex.getMessage());
+        return subjectList;
+    }
+
+    public static List<Subject> ShowSubbedSubjects(Scholar scholar,
+                                                   List<Subject> subjectList,
+                                                   List<ListScholarSubject> ScholarSubjectsList){
+        Iterator listSubject = null;
+        Iterator listScholarSubjects = ScholarSubjectsList.iterator();
+
+        while (listScholarSubjects.hasNext()) {
+            ListScholarSubject scholarSubject = (ListScholarSubject) listScholarSubjects.next();
+            if (scholar.getScholarId() == scholarSubject.getScholarScholarId()) {
+                listSubject = subjectList.iterator();
+                while (listSubject.hasNext()) {
+                    Subject subject = (Subject) listSubject.next();
+                    if (subject.getSubjectId() != scholarSubject.getSubjectSubjectId()) {
+                        listSubject.remove();
+                    }
+                }
+                listSubject = null;
+            }
         }
         return subjectList;
     }
