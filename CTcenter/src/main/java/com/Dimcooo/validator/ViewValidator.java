@@ -1,9 +1,7 @@
 package com.Dimcooo.validator;
 
 import com.Dimcooo.dao.subject.SubjectDAOImpl;
-import com.Dimcooo.model.ListScholarSubject;
-import com.Dimcooo.model.Scholar;
-import com.Dimcooo.model.Subject;
+import com.Dimcooo.model.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,5 +42,25 @@ public class ViewValidator {
         }
 
         return subbedSubjectList;
+    }
+
+    public static boolean isHaveFeedback(List<TeacherFeedback> teacherFeedbacks,
+                                                Scholar scholar, Teacher teacher){
+        Iterator listOfFeedbacks = teacherFeedbacks.iterator();
+        TeacherFeedback teacherFeedback = null;
+        boolean answer = false;
+
+        while (listOfFeedbacks.hasNext()){
+            teacherFeedback = (TeacherFeedback)listOfFeedbacks.next();
+            if(teacherFeedback.getScholarScholarId() == scholar.getScholarId() &&
+                    teacherFeedback.getTeacherTeacherId() == teacher.getTeacherId()){
+                answer = false;
+            }
+            else {
+                answer = true;
+            }
+        }
+
+        return answer;
     }
 }

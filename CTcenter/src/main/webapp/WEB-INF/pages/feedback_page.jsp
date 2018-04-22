@@ -34,14 +34,18 @@
         </c:if>
 
         <c:if test="${loggedScholar != null}">
+            Feedback on teacher: ${teacher.userByUserUserId.firstName}
+            ${teacher.userByUserUserId.lastName} <br>
+            Spetialization: ${teacher.spetialization}
             <spring:form method="post" modelAttribute="feedbackOnTeacher" action="/createFeedback/${teacher.teacherId}/${loggedScholar.scholarId}">
                 Mark: <spring:input path="mark"/>
                 Description <spring:input path="description"/>
                 <spring:button>Send feedback</spring:button>
             </spring:form>
 
-            <c:if test="${success eq true}">
-                <h1>everything is cool</h1>
+            <c:if test="${error != null}">
+                ${error.name} <br>
+                ${error.description} <br>
             </c:if>
         </c:if>
 

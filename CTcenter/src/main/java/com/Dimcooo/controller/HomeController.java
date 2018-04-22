@@ -94,9 +94,21 @@ public class HomeController {
     @RequestMapping(value = "/createFeedback/{idTeacher}/{idScholar}", method = RequestMethod.POST)
     public ModelAndView createFeedback(@ModelAttribute("feedbackOnTeacher") TeacherFeedback teacherFeedback,
                                  @PathVariable("idTeacher") int idTeacher, @PathVariable("idScholar")int idScholar){
-        ModelAndView modelAndView = new ModelAndView("personalArea_page");
-        teacherFeedbackService.AddTeacherFeedback(teacherFeedback, teacherService.FindTeacherInfo(idTeacher),
-                scholarService.FindScholarById(idScholar));
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (ViewValidator.isHaveFeedback(teacherFeedbackService.GetScholarFeedback(scholarService.FindScholarById(idScholar)),
+                scholarService.FindScholarById(idScholar), teacherService.FindTeacherInfo(idTeacher))) {
+            modelAndView.setViewName("personalArea_page");
+            teacherFeedbackService.AddTeacherFeedback(teacherFeedback, teacherService.FindTeacherInfo(idTeacher),
+                    scholarService.FindScholarById(idScholar));
+        }
+        else {
+            Error error = new Error();
+            modelAndView.setViewName("feedback_page");
+            error.setName("Feedback Error");
+            error.setDescription("You already have the feedback on this teacher");
+            modelAndView.addObject(error);
+        }
         return modelAndView;
     }
 
