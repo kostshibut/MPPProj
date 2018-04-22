@@ -131,6 +131,7 @@ public class HomeController {
     public ModelAndView imageReadmoreTeacher(@PathVariable("id") int teacherID){
         ModelAndView modelAndView = new ModelAndView("oneTeacher_page");
         modelAndView.addObject("teacher", teacherService.FindTeacherInfo(teacherID));
+        modelAndView.addObject("teacherFeedback", teacherFeedbackService.GetTeacherFeedback(teacherID));
         return modelAndView;
     }
 

@@ -42,6 +42,16 @@
             <c:if test="${loggedScholar != null}">
                 <a href="/createFeedback/${teacher.teacherId}/${loggedScholar.scholarId}">Create feedback on teacher</a>
             </c:if>
+
+            <h1>Отзывы на учителя </h1>
+            <c:forEach items="${teacherFeedback}" var="feedback">
+                =================================================================== <br>
+                By ${feedback.scholarByScholarScholarId.userByUserUserId.firstName}
+                ${feedback.scholarByScholarScholarId.userByUserUserId.lastName} <br>
+                Mark: ${feedback.mark} <br>
+                Description ${feedback.description} <br>
+                =================================================================== <br>
+            </c:forEach>
         </c:if>
         <a href="/teacherList">back to teachers list</a> <br>
         <button type="button" name="back" onclick="history.back()">back</button>

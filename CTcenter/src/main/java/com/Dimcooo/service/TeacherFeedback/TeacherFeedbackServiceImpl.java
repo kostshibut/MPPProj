@@ -48,4 +48,15 @@ public class TeacherFeedbackServiceImpl implements TeacherFeedbackService {
             return null;
         }
     }
+
+    @Override
+    public List<TeacherFeedback> GetTeacherFeedback(int teacherId) {
+        try{
+            return teacherFeedbackDAO.GetAllTeacherFeedback(teacherId);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }

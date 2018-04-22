@@ -48,7 +48,7 @@ public class ViewValidator {
                                                 Scholar scholar, Teacher teacher){
         Iterator listOfFeedbacks = teacherFeedbacks.iterator();
         TeacherFeedback teacherFeedback = null;
-        boolean answer = false;
+        boolean answer = true;
 
         while (listOfFeedbacks.hasNext()){
             teacherFeedback = (TeacherFeedback)listOfFeedbacks.next();

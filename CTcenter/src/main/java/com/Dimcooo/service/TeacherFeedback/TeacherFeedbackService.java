@@ -10,4 +10,5 @@ public interface TeacherFeedbackService {
     TeacherFeedback AddTeacherFeedback(TeacherFeedback teacherFeedback, Teacher teacher, Scholar scholar);
     List<TeacherFeedback> GetScholarFeedback(Scholar scholar);
     List<TeacherFeedback> GetTeacherFeedback(Teacher teacher);
+    List<TeacherFeedback> GetTeacherFeedback(int teacherId);
 }
