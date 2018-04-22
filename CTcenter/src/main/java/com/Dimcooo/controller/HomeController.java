@@ -77,8 +77,11 @@ public class HomeController {
     @RequestMapping(value = "personalArea", method = RequestMethod.GET)
     public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
-        modelAndView.addObject("subbedSubject",
-                ViewValidator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
+        Scholar scholar = (Scholar) request.getSession().getAttribute("loggedScholar");
+        if(scholar != null) {
+            modelAndView.addObject("subbedSubject",
+                    ViewValidator.ShowSignedList(scholarSubjectService.GetScholarSubject(scholar)));
+        }
         return modelAndView;
     }
 

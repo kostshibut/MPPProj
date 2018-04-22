@@ -41,7 +41,7 @@
             Teacher email: ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
         </c:if>
 
-        <c:if test="${loggedScholar != null or loggedTeacher != null}">
+        <c:if test="${loggedScholar != null or loggedTeacher != null or loggedAdmin != null}">
             <c:forEach items="${lessonForSubject}" var="lesson">
                 <form method="post">
                     ============================================= <br>

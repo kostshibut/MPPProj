@@ -32,19 +32,20 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
-        <c:forEach items="${taskForSubject}" var="task">
-            ============================================================================= <br>
-            Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
-            Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
-            ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
-            Teacher spetialization: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.spetialization} <br>
-            <a href="/readmoreTeacher/${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
-            Lesson theme: ${task.lessonByLessonLessonId.theme} <br>
-            Task theme: ${task.theme} <br>
-            Content: ${task.content} <br>
-            ============================================================================= <br>
-        </c:forEach>
-
+        <c:if test="${loggedScholar != null or loggedTeacher != null or loggedAdmin != null}">
+            <c:forEach items="${taskForSubject}" var="task">
+                ============================================================================= <br>
+                Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
+                Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
+                ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
+                Teacher spetialization: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.spetialization} <br>
+                <a href="/readmoreTeacher/${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
+                Lesson theme: ${task.lessonByLessonLessonId.theme} <br>
+                Task theme: ${task.theme} <br>
+                Content: ${task.content} <br>
+                ============================================================================= <br>
+            </c:forEach>
+        </c:if>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>
