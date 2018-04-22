@@ -9,4 +9,5 @@ import java.util.List;
 public interface ListScholarSubjectDAO {
     ListScholarSubject AddToListSnS(Scholar scholar, Subject subject);
     List<ListScholarSubject> GetAllDataFromTable();
+    List<ListScholarSubject> GetAllScholarSubjects(int scholarId);
 }

@@ -34,18 +34,38 @@
         </c:if>
 
         <c:if test="${loggedScholar != null}">
+            Subbed <br> ========================================================= <br>
+        </c:if>
+        <c:forEach items="${signedSubject}" var="subject">
+            ========================================================== <br>
+            Subject name: ${subject.name} <br>
+            Subject duration:  ${subject.duration} <br>
+            Teacher spetialization: <br>
+            ${subject.teacherByTeacherTeacherId.spetialization}
+            Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName}
+            ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
+            <a href="/readmoreTeacher/${subject.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
+            <a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>
+            <c:if test="${loggedScholar != null}">
+                <label>You already subbed</label> <br>
+            </c:if>
+            ========================================================== <br>
+        </c:forEach>
+        <h1>Разделяю предметы, подписанный и не подписанный</h1>
+        <c:if test="${loggedScholar != null}">
             UnSubbed <br> ========================================================= <br>
         </c:if>
-        <c:forEach items="${listOfUnsubbedSubjects}" var="subject">
-            <c:if test="${listOfUnsubbedSubjects.size() != 0}">
+        <c:forEach items="${listOfUnSignedSubjects}" var="subject">
+            <c:if test="${listOfUnSignedSubjects.size() != 0}">
             ------------------------------------------------------------------------------------- <br>
             <form method="post" action="/enroll/${subject.subjectId}">
                 Subject name: ${subject.name} <br>
                 Subject duration:  ${subject.duration} <br>
                 Teacher spetialization: <br>
                         ${subject.teacherByTeacherTeacherId.spetialization}
-                Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
+                Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName}
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
+                <a href="/readmoreTeacher/${subject.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
                     <a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>
                     <c:if test="${loggedScholar != null}">
                         <button type="submit">Enroll</button>
@@ -54,6 +74,7 @@
             ------------------------------------------------------------------------------------- <br>
             </c:if>
         </c:forEach>
+
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>
 </html>

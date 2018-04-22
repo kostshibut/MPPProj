@@ -6,6 +6,7 @@ import com.Dimcooo.model.Subject;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,6 +56,28 @@ public class ListScholarSubjectDAOImpl implements ListScholarSubjectDAO {
         }
         catch (Exception ex){
             System.out.println("Error with getting all data from list scholar subject");
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ListScholarSubject> GetAllScholarSubjects(int scholarId) {
+        try {
+            System.out.println("Start getting data from list scholar subject by scholar id");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            List<ListScholarSubject> scholarSubjectList = session.createCriteria(ListScholarSubject.class)
+                    .add(Restrictions.like("scholarScholarId", scholarId))
+                    .list();
+
+            session.getTransaction().commit();
+            System.out.println("Finish getting data from list scholar subject by scholar id");
+            return scholarSubjectList;
+        }
+        catch (Exception ex){
+            System.out.println("Error with getting data from list scholar subject by scholar id");
             System.out.println(ex.getMessage());
             return null;
         }

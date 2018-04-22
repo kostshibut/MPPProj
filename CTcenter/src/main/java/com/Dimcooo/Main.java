@@ -2,6 +2,7 @@ package com.Dimcooo;
 
 import com.Dimcooo.dao.Lesson.LessonDAO;
 import com.Dimcooo.dao.Lesson.LessonDAOImpl;
+import com.Dimcooo.dao.listScholarSubject.ListScholarSubjectDAOImpl;
 import com.Dimcooo.dao.subject.SubjectDAOImpl;
 import com.Dimcooo.model.Subject;
 import com.Dimcooo.model.Teacher;
@@ -18,8 +19,8 @@ public class Main {
 
     public static void main(String args[]){
         try {
-            LessonDAOImpl lessonDAO = new LessonDAOImpl();
-            System.out.println(lessonDAO.GetDataFromLessonTable(5));
+            ListScholarSubjectDAOImpl scholarSubjectDAO = new ListScholarSubjectDAOImpl();
+            System.out.println(scholarSubjectDAO.GetAllScholarSubjects(23));
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

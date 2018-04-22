@@ -36,4 +36,15 @@ public class ListScholarSubjectServiceImpl implements ListScholarSubjectService 
             return null;
         }
     }
+
+    @Override
+    public List<ListScholarSubject> GetScholarSubject(Scholar scholar) {
+        try {
+            return scholarSubjectDAO.GetAllScholarSubjects(scholar.getScholarId());
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }

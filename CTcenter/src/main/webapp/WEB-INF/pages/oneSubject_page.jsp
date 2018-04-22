@@ -54,6 +54,6 @@
             </c:forEach>
         </c:if>
 
-        <button type="button" name="back" onclick="history.back()">back</button>
+        <a href="/subjectList">back to subject list</a>
     </body>
 </html>

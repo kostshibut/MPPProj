@@ -9,4 +9,5 @@ import java.util.List;
 public interface ListScholarSubjectService {
     ListScholarSubject EnrollScholarToSubject(Scholar scholar, Subject subject);
     List<ListScholarSubject> GetAllScholars();
+    List<ListScholarSubject> GetScholarSubject(Scholar scholar);
 }

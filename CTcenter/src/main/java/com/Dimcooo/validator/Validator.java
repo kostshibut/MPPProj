@@ -1,9 +1,12 @@
 package com.Dimcooo.validator;
 
 import com.Dimcooo.dao.User.UserDAOImpl;
+import com.Dimcooo.dao.subject.SubjectDAOImpl;
 import com.Dimcooo.model.*;
 import com.Dimcooo.util.Encryptor;
+import com.sun.org.apache.xpath.internal.axes.IteratorPool;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class Validator {
         }
     }
 
-    public static List<Subject> ShowUnsubbedSubjects(Scholar scholar,
+    public static List<Subject> ShowUnSignedSubjects(Scholar scholar,
                                                      List<Subject> subjectList,
                                                      List<ListScholarSubject> ScholarSubjectsList) {
         Iterator listSubject = null;
@@ -53,5 +56,19 @@ public class Validator {
                 }
             }
         return subjectList;
+    }
+
+    public static List<Subject> ShowSignedList(List<ListScholarSubject> scholarSubjectList){
+        Iterator listSchSubIterator = scholarSubjectList.iterator();
+        ArrayList<Subject> subbedSubjectList = new ArrayList<Subject>();
+        ListScholarSubject scholarSubject = null;
+        SubjectDAOImpl subjectDAO = new SubjectDAOImpl();
+
+        while (listSchSubIterator.hasNext()){
+            scholarSubject = (ListScholarSubject)listSchSubIterator.next();
+            subbedSubjectList.add(subjectDAO.FindSubjectById(scholarSubject.getSubjectSubjectId()));
+        }
+
+        return subbedSubjectList;
     }
 }

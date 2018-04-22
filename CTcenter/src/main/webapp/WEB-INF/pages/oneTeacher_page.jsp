@@ -40,6 +40,7 @@
             Teacher age: ${teacher.userByUserUserId.age} <br>
             Teacher education: ${teacher.userByUserUserId.education} <br>
         </c:if>
-    <a href="/teacherList">back to teachers list</a>
+        <a href="/teacherList">back to teachers list</a> <br>
+        <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

@@ -32,6 +32,23 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <h1>Предметы, на которые подписан ученик</h1>
+        <c:forEach items="${subbedSubject}" var="subject">
+            ========================================================== <br>
+            Subject name: ${subject.name} <br>
+            Subject duration:  ${subject.duration} <br>
+            Teacher spetialization: <br>
+            ${subject.teacherByTeacherTeacherId.spetialization}
+            Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName}
+            ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
+            <a href="/readmoreTeacher/${subject.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
+            <a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>
+            <c:if test="${loggedScholar != null}">
+                <label>You already subbed</label> <br>
+            </c:if>
+            ========================================================== <br>
+        </c:forEach>
+
         <a href="${contextPath}/start">back to start page</a> <br>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>

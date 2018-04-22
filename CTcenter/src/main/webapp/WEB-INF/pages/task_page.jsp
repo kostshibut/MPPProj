@@ -38,6 +38,7 @@
             Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
             ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
             Teacher spetialization: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.spetialization} <br>
+            <a href="/readmoreTeacher/${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.teacherId}">Read More about teacher</a> <br>
             Lesson theme: ${task.lessonByLessonLessonId.theme} <br>
             Task theme: ${task.theme} <br>
             Content: ${task.content} <br>

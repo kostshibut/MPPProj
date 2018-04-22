@@ -72,6 +72,8 @@ public class HomeController {
     @RequestMapping(value = "personalArea", method = RequestMethod.GET)
     public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
+        modelAndView.addObject("subbedSubject",
+                Validator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
         return modelAndView;
     }
 
@@ -102,13 +104,16 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView("subjects_page");
         Scholar scholar = (Scholar)request.getSession().getAttribute("loggedScholar");
         if (scholar != null) {
-            modelAndView.addObject("listOfUnsubbedSubjects",
-                    Validator.ShowUnsubbedSubjects(scholar,
+            modelAndView.addObject("listOfUnSignedSubjects",
+                    Validator.ShowUnSignedSubjects(scholar,
                             subjectService.GetListOfSubjects(),
                             scholarSubjectService.GetAllScholars()));
+
+            modelAndView.addObject("signedSubject",
+                    Validator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
         }
         else {
-            modelAndView.addObject("listOfUnsubbedSubjects", subjectService.GetListOfSubjects());
+            modelAndView.addObject("listOfUnSignedSubjects", subjectService.GetListOfSubjects());
         }
 
         return modelAndView;
