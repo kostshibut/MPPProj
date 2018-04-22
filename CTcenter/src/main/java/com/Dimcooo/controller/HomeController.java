@@ -3,6 +3,7 @@ package com.Dimcooo.controller;
 import com.Dimcooo.model.*;
 import com.Dimcooo.model.Error;
 import com.Dimcooo.service.Admin.AdminService;
+import com.Dimcooo.service.Lesson.LessonService;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
@@ -40,6 +41,9 @@ public class HomeController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private LessonService lessonService;
+
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
         return "start_page";
@@ -71,6 +75,7 @@ public class HomeController {
     public ModelAndView imageReadmoreSubject(@PathVariable("id") int subjectID){
         ModelAndView modelAndView = new ModelAndView("oneSubject_page");
         modelAndView.addObject("subject", subjectService.FindSubjectInfo(subjectID));
+        modelAndView.addObject("lessonForSubject",lessonService.GetLessonsForSubjectById(subjectID));
         return modelAndView;
     }
 
@@ -88,11 +93,6 @@ public class HomeController {
         if (scholar != null) {
             modelAndView.addObject("listOfUnsubbedSubjects",
                     Validator.ShowUnsubbedSubjects(scholar,
-                            subjectService.GetListOfSubjects(),
-                            scholarSubjectService.GetAllScholars()));
-
-            modelAndView.addObject("listOfSubbedSubjects",
-                    Validator.ShowSubbedSubjects(scholar,
                             subjectService.GetListOfSubjects(),
                             scholarSubjectService.GetAllScholars()));
         }

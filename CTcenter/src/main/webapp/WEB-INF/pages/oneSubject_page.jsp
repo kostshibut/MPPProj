@@ -31,7 +31,7 @@
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
-
+        <br>
         <c:if test="${subject != null}">
             ${subject.name} <br>
             ${subject.duration} <br>
@@ -40,6 +40,16 @@
             ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
             ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
         </c:if>
+
+        <c:forEach items="${lessonForSubject}" var="lesson">
+            <form method="post">
+                ============================================= <br>
+                ${lesson.theme} <br>
+                ${lesson.duration} <br>
+                ${lesson.subjectBySubjectSubjectId.name} <br>
+                ============================================= <br>
+            </form>
+        </c:forEach>
 
     <a href="/subjectList">back to subject list</a>
     </body>

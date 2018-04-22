@@ -54,26 +54,4 @@ public class Validator {
             }
         return subjectList;
     }
-
-    public static List<Subject> ShowSubbedSubjects(Scholar scholar,
-                                                   List<Subject> subjectList,
-                                                   List<ListScholarSubject> ScholarSubjectsList){
-        Iterator listSubject = null;
-        Iterator listScholarSubjects = ScholarSubjectsList.iterator();
-
-        while (listScholarSubjects.hasNext()) {
-            ListScholarSubject scholarSubject = (ListScholarSubject) listScholarSubjects.next();
-            if (scholar.getScholarId() == scholarSubject.getScholarScholarId()) {
-                listSubject = subjectList.iterator();
-                while (listSubject.hasNext()) {
-                    Subject subject = (Subject) listSubject.next();
-                    if (subject.getSubjectId() != scholarSubject.getSubjectSubjectId()) {
-                        listSubject.remove();
-                    }
-                }
-                listSubject = null;
-            }
-        }
-        return subjectList;
-    }
 }

@@ -33,27 +33,6 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
-        <%--<c:if test="${loggedScholar != null}">--%>
-            <%--Subbed <br> ========================================================= <br>--%>
-        <%--</c:if>--%>
-        <%--<c:forEach items="${listOfSubbedSubjects}" var="subject">--%>
-            <%--------------------------------------------------------------------------------------- <br>--%>
-            <%--<form method="post" action="/enroll/${subject.subjectId}">--%>
-                    <%--${subject.name} <br>--%>
-                    <%--${subject.duration} <br>--%>
-                <%--Teacher: <br>--%>
-                <%--Spetialization: <br>--%>
-                    <%--${subject.teacherByTeacherTeacherId.spetialization} <br>--%>
-                    <%--${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>--%>
-                    <%--${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>--%>
-                <%--<a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>--%>
-                <%--<c:if test="${loggedScholar != null}">--%>
-                    <%--<label>You already enroll</label>--%>
-                <%--</c:if> <br>--%>
-            <%--</form>--%>
-            <%--------------------------------------------------------------------------------------- <br>--%>
-        <%--</c:forEach>--%>
-
         <c:if test="${loggedScholar != null}">
             UnSubbed <br> ========================================================= <br>
         </c:if>
