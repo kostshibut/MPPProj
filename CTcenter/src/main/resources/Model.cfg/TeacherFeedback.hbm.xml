@@ -20,10 +20,10 @@
         <property name="teacherTeacherId" insert="false" update="false">
             <column name="teacher_teacher_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="scholarByScholarScholarId" class="com.Dimcooo.model.Scholar">
+        <many-to-one name="scholarByScholarScholarId" cascade="delete" class="com.Dimcooo.model.Scholar">
             <column name="scholar_scholar_id"/>
         </many-to-one>
-        <many-to-one name="teacherByTeacherTeacherId" class="com.Dimcooo.model.Teacher">
+        <many-to-one name="teacherByTeacherTeacherId" cascade="delete" class="com.Dimcooo.model.Teacher">
             <column name="teacher_teacher_id"/>
         </many-to-one>
     </class>

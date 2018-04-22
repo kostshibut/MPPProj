@@ -11,7 +11,7 @@
         <property name="userUserId">
             <column name="user_user_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="userByUserUserId" class="com.Dimcooo.model.User" insert="false" update="false">
+        <many-to-one name="userByUserUserId" cascade="delete" class="com.Dimcooo.model.User" insert="false" update="false">
             <column name="user_user_id"/>
         </many-to-one>
     </class>

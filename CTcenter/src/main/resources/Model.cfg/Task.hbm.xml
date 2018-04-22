@@ -17,7 +17,7 @@
         <property name="lessonLessonId" insert="false" update="false">
             <column name="lesson_lesson_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="lessonByLessonLessonId" class="com.Dimcooo.model.Lesson" insert="false" update="false">
+        <many-to-one name="lessonByLessonLessonId" cascade="delete" class="com.Dimcooo.model.Lesson" insert="false" update="false">
             <column name="lesson_lesson_id"/>
         </many-to-one>
     </class>

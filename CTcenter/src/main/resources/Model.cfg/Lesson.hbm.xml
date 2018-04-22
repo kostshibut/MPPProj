@@ -17,7 +17,7 @@
         <property name="subjectSubjectId" insert="false" update="false">
             <column name="subject_subject_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="subjectBySubjectSubjectId" class="com.Dimcooo.model.Subject">
+        <many-to-one name="subjectBySubjectSubjectId" cascade="delete" class="com.Dimcooo.model.Subject">
             <column name="subject_subject_id"/>
         </many-to-one>
         <set name="tasksByLessonId" inverse="true">

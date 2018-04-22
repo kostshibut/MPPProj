@@ -13,6 +13,7 @@
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
             exclusive admin content
+            <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">

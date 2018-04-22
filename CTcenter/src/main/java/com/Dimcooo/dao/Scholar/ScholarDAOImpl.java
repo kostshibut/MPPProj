@@ -9,10 +9,30 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public class ScholarDAOImpl implements ScholarDAO {
 
     private Session session;
+
+    @Override
+    public List<Scholar> GetAllDataFromTable() {
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Criteria criteria = session.createCriteria(Scholar.class);
+
+            session.getTransaction().commit();
+
+            return criteria.list();
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 
     @Transactional
     @Override
@@ -96,6 +116,23 @@ public class ScholarDAOImpl implements ScholarDAO {
         catch (Exception ex){
             System.out.println(ex.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public Boolean DeleteScholar(Scholar scholar) {
+        try {
+            session.clear();
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            session.delete(scholar);
+
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (Exception ex){
+            return false;
         }
     }
 }
