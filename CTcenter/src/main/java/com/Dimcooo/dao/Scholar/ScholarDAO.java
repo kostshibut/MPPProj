@@ -7,4 +7,5 @@ public interface ScholarDAO {
     Scholar AddScholar(User user);
     User FindScholarById(int id);
     Scholar FindScholarByUserId(int id);
+    Scholar FindScholarByScholarId(int id);
 }

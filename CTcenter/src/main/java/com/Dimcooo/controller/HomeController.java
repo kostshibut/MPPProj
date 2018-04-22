@@ -7,9 +7,11 @@ import com.Dimcooo.service.Lesson.LessonService;
 import com.Dimcooo.service.Scholar.ScholarService;
 import com.Dimcooo.service.Task.TaskService;
 import com.Dimcooo.service.Teacher.TeacherService;
+import com.Dimcooo.service.TeacherFeedback.TeacherFeedbackService;
 import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.service.listScholarSubject.ListScholarSubjectService;
 import com.Dimcooo.service.subject.SubjectService;
+import com.Dimcooo.validator.ViewValidator;
 import com.Dimcooo.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +50,9 @@ public class HomeController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private TeacherFeedbackService teacherFeedbackService;
+
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
         return "start_page";
@@ -73,7 +78,25 @@ public class HomeController {
     public ModelAndView personalArea(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("personalArea_page");
         modelAndView.addObject("subbedSubject",
-                Validator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
+                ViewValidator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createFeedback/{idTeacher}/{idScholar}", method = RequestMethod.GET)
+    public ModelAndView imageFeedbackPage(@ModelAttribute("feedbackOnTeacher") TeacherFeedback teacherFeedback,
+                                          @PathVariable("idTeacher") int teacherID, @PathVariable("idScholar")int scholarId){
+        ModelAndView modelAndView = new ModelAndView("feedback_page");
+        modelAndView.addObject("teacher", teacherService.FindTeacherInfo(teacherID));
+        modelAndView.addObject("scholar", scholarService.FindScholarById(scholarId));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/createFeedback/{idTeacher}/{idScholar}", method = RequestMethod.POST)
+    public ModelAndView createFeedback(@ModelAttribute("feedbackOnTeacher") TeacherFeedback teacherFeedback,
+                                 @PathVariable("idTeacher") int idTeacher, @PathVariable("idScholar")int idScholar){
+        ModelAndView modelAndView = new ModelAndView("personalArea_page");
+        teacherFeedbackService.AddTeacherFeedback(teacherFeedback, teacherService.FindTeacherInfo(idTeacher),
+                scholarService.FindScholarById(idScholar));
         return modelAndView;
     }
 
@@ -105,12 +128,12 @@ public class HomeController {
         Scholar scholar = (Scholar)request.getSession().getAttribute("loggedScholar");
         if (scholar != null) {
             modelAndView.addObject("listOfUnSignedSubjects",
-                    Validator.ShowUnSignedSubjects(scholar,
+                    ViewValidator.ShowUnSignedSubjects(scholar,
                             subjectService.GetListOfSubjects(),
                             scholarSubjectService.GetAllScholars()));
 
             modelAndView.addObject("signedSubject",
-                    Validator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
+                    ViewValidator.ShowSignedList(scholarSubjectService.GetScholarSubject((Scholar) request.getSession().getAttribute("loggedScholar"))));
         }
         else {
             modelAndView.addObject("listOfUnSignedSubjects", subjectService.GetListOfSubjects());

@@ -43,4 +43,15 @@ public class ScholarServiceImpl implements ScholarService{
             return null;
         }
     }
+
+    @Override
+    public Scholar FindScholarById(int id) {
+        try {
+            return scholarDAO.FindScholarByScholarId(id);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }

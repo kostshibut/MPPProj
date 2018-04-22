@@ -39,7 +39,7 @@
             ${teacher.userByUserUserId.lastName} <br>
             <a href="/readmoreTeacher/${teacher.teacherId}">Read More about teacher</a> <br>
             <c:if test="${loggedScholar != null}">
-                zagitovka pod otziv
+                <a href="/createFeedback/${teacher.teacherId}/${loggedScholar.scholarId}">Create feedback on teacher</a>
             </c:if> <br>
             ---------------------------------------------------------- <br>
         </c:forEach>

@@ -81,4 +81,21 @@ public class ScholarDAOImpl implements ScholarDAO {
             return null;
         }
     }
+
+    @Override
+    public Scholar FindScholarByScholarId(int id) {
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Scholar scholar = session.load(Scholar.class, id);
+
+            session.getTransaction().commit();
+            return scholar;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }
