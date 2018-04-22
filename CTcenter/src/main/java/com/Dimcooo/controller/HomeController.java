@@ -5,6 +5,7 @@ import com.Dimcooo.model.Error;
 import com.Dimcooo.service.Admin.AdminService;
 import com.Dimcooo.service.Lesson.LessonService;
 import com.Dimcooo.service.Scholar.ScholarService;
+import com.Dimcooo.service.Task.TaskService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.service.listScholarSubject.ListScholarSubjectService;
@@ -44,6 +45,9 @@ public class HomeController {
     @Autowired
     private LessonService lessonService;
 
+    @Autowired
+    private TaskService taskService;
+
     @RequestMapping(value = {"/", "start"}, method = RequestMethod.GET)
     public String startConfig(){
         return "start_page";
@@ -75,7 +79,14 @@ public class HomeController {
     public ModelAndView imageReadmoreSubject(@PathVariable("id") int subjectID){
         ModelAndView modelAndView = new ModelAndView("oneSubject_page");
         modelAndView.addObject("subject", subjectService.FindSubjectInfo(subjectID));
-        modelAndView.addObject("lessonForSubject",lessonService.GetLessonsForSubjectById(subjectID));
+        modelAndView.addObject("lessonForSubject", lessonService.GetLessonsBySubjectById(subjectID));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/task/{id}")
+    public ModelAndView imageTask(@PathVariable("id") int lessonID){
+        ModelAndView modelAndView = new ModelAndView("task_page");
+        modelAndView.addObject("taskForSubject", taskService.GetTaskByLessonId(lessonID));
         return modelAndView;
     }
 

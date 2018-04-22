@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yakubovich
-  Date: 20.04.2018
-  Time: 14:30
+  Date: 22.04.2018
+  Time: 18:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -31,28 +31,18 @@
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
-        <br>
-        <c:if test="${subject != null}">
-            Subject name: ${subject.name} <br>
-            Subject duration: ${subject.duration} <br>
-            Teacher spetialization: ${subject.teacherByTeacherTeacherId.spetialization} <br>
-            Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
-            ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
-            Teacher email: ${subject.teacherByTeacherTeacherId.userByUserUserId.email} <br>
-        </c:if>
 
-        <c:if test="${loggedScholar != null or loggedTeacher != null}">
-            <c:forEach items="${lessonForSubject}" var="lesson">
-                <form method="post">
-                    ============================================= <br>
-                    Lesson theme: ${lesson.theme} <br>
-                    Lesson duration: ${lesson.duration} <br>
-                    Subject name: ${lesson.subjectBySubjectSubjectId.name} <br>
-                    ============================================= <br>
-                    <a href="/task/${lesson.lessonId}">Check tasks</a>
-                </form>
-            </c:forEach>
-        </c:if>
+        <c:forEach items="${taskForSubject}" var="task">
+            ============================================================================= <br>
+            Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
+            Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
+            ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
+            Teacher spetialization: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.spetialization} <br>
+            Lesson theme: ${task.lessonByLessonLessonId.theme} <br>
+            Task theme: ${task.theme} <br>
+            Content: ${task.content} <br>
+            ============================================================================= <br>
+        </c:forEach>
 
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>

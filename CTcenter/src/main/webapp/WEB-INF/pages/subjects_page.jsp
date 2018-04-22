@@ -40,12 +40,11 @@
             <c:if test="${listOfUnsubbedSubjects.size() != 0}">
             ------------------------------------------------------------------------------------- <br>
             <form method="post" action="/enroll/${subject.subjectId}">
-                ${subject.name} <br>
-                ${subject.duration} <br>
-                Teacher: <br>
-                Spetialization: <br>
-                        ${subject.teacherByTeacherTeacherId.spetialization} <br>
-                ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
+                Subject name: ${subject.name} <br>
+                Subject duration:  ${subject.duration} <br>
+                Teacher spetialization: <br>
+                        ${subject.teacherByTeacherTeacherId.spetialization}
+                Teacher name: ${subject.teacherByTeacherTeacherId.userByUserUserId.firstName} <br>
                 ${subject.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
                     <a href="/readmoreSubject/${subject.subjectId}">Read More about subject</a> <br>
                     <c:if test="${loggedScholar != null}">
@@ -54,10 +53,6 @@
             </form>
             ------------------------------------------------------------------------------------- <br>
             </c:if>
-            <c:if test="${listOfUnsubbedSubjects.size() == 0}">
-                No uno subjecto
-            </c:if>
-
         </c:forEach>
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>

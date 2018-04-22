@@ -14,7 +14,7 @@ public class LessonServiceImpl implements LessonService {
     private LessonDAO lessonDAO;
 
     @Override
-    public List<Lesson> GetLessonsForSubjectById(int id) {
+    public List<Lesson> GetLessonsBySubjectById(int id) {
         return lessonDAO.GetDataFromLessonTable(id);
     }
 }

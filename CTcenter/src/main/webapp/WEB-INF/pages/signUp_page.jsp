@@ -64,5 +64,6 @@
         </script>
 
         <a href="${contextPath}/start">back to start page</a>
+        <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

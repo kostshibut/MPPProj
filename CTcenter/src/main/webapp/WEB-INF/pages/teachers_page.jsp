@@ -34,16 +34,17 @@
 
         <c:forEach items="${listOfTeachers}" var="teacher">
             ---------------------------------------------------------- <br>
-            ${teacher.spetialization} <br>
-            ${teacher.userByUserUserId.firstName} <br>
+            Teacher spetialization: ${teacher.spetialization} <br>
+            Teacher name ${teacher.userByUserUserId.firstName} <br>
             ${teacher.userByUserUserId.lastName} <br>
             <a href="/readmoreTeacher/${teacher.teacherId}">Read More about teacher</a> <br>
             <c:if test="${loggedScholar != null}">
-
+                zagitovka pod otziv
             </c:if> <br>
             ---------------------------------------------------------- <br>
         </c:forEach>
 
         <a href="${contextPath}/start">back to start page</a> <br>
+        <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

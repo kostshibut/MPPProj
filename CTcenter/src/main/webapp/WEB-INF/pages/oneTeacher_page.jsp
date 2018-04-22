@@ -33,12 +33,12 @@
         </c:if>
 
         <c:if test="${teacher != null}">
-            ${teacher.spetialization} <br>
-            ${teacher.userByUserUserId.firstName} <br>
+            Teacher spetialization: ${teacher.spetialization} <br>
+            Teacher name: ${teacher.userByUserUserId.firstName} <br>
             ${teacher.userByUserUserId.lastName} <br>
-            ${teacher.userByUserUserId.email} <br>
-            ${teacher.userByUserUserId.age} <br>
-            ${teacher.userByUserUserId.education} <br>
+            Teacher email ${teacher.userByUserUserId.email} <br>
+            Teacher age: ${teacher.userByUserUserId.age} <br>
+            Teacher education: ${teacher.userByUserUserId.education} <br>
         </c:if>
     <a href="/teacherList">back to teachers list</a>
     </body>

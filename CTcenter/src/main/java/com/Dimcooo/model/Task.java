@@ -9,6 +9,7 @@ public class Task {
     private String theme;
     private int lessonLessonId;
     private Lesson lessonByLessonLessonId;
+    private String content;
 
     @Id
     @Column(name = "task_id", nullable = false)
@@ -64,5 +65,15 @@ public class Task {
 
     public void setLessonByLessonLessonId(Lesson lessonByLessonLessonId) {
         this.lessonByLessonLessonId = lessonByLessonLessonId;
+    }
+
+    @Basic
+    @Column(name = "content", nullable = true, length = 200)
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

@@ -21,5 +21,6 @@
 
         <a href="${contextPath}/signUp">Create an account</a> <br>
         <a href="${contextPath}/start">back to start page</a> <br>
+        <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>
