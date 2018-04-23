@@ -14,10 +14,10 @@
         <property name="content">
             <column name="content" sql-type="varchar(200)" length="200" not-null="true"/>
         </property>
-        <property name="lessonLessonId" insert="false" update="false">
+        <property name="lessonLessonId">
             <column name="lesson_lesson_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="lessonByLessonLessonId" cascade="delete" class="com.Dimcooo.model.Lesson" insert="false" update="false">
+        <many-to-one name="lessonByLessonLessonId" insert="false" update="false" class="com.Dimcooo.model.Lesson">
             <column name="lesson_lesson_id"/>
         </many-to-one>
     </class>

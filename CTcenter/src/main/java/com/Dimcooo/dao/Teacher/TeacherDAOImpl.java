@@ -1,6 +1,7 @@
 package com.Dimcooo.dao.Teacher;
 
 import com.Dimcooo.model.Teacher;
+import com.Dimcooo.model.User;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -72,6 +73,47 @@ public class TeacherDAOImpl implements TeacherDAO {
             System.out.println("Error with finding data by user id in Teacher table");
             System.out.println(ex.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public Teacher AddTeacherToTable(User user, String spetialization) {
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Teacher teacher = new Teacher();
+            teacher.setUserUserId(user.getUserId());
+            teacher.setSpetialization(spetialization);
+
+            session.save(teacher);
+
+            session.getTransaction().commit();
+
+            return teacher;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public boolean DeleteTeacher(Teacher teacher) {
+        try {
+            session.clear();
+            System.out.println("clear session");
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            session.delete(teacher);
+
+            session.getTransaction().commit();
+            return true;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
         }
     }
 }

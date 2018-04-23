@@ -47,9 +47,20 @@ public class ScholarServiceImpl implements ScholarService{
     }
 
     @Override
-    public User FindScholarInfo(Scholar scholar) {
+    public User FindUserByScholar(Scholar scholar) {
         try {
-            return scholarDAO.FindScholarById(scholar.getScholarId());
+            return scholarDAO.FindUserInfoByScholarId(scholar.getScholarId());
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public User FindUserByScholar(int scholarId) {
+        try {
+            return scholarDAO.FindUserInfoByScholarId(scholarId);
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

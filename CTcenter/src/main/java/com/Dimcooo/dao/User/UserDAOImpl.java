@@ -67,8 +67,6 @@ public class UserDAOImpl implements UserDAO {
 
             session.getTransaction().commit();
 
-//            session.getSessionFactory().close();
-
             System.out.println("done");
 
             return user;

@@ -11,11 +11,11 @@
         <property name="spetialization">
             <column name="spetialization" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
-        <property name="userUserId" insert="false" update="false">
-            <column name="user_user_id" sql-type="int(11)"/>
+        <property name="userUserId">
+            <column name="user_user_id" sql-type="int(11)" not-null="true"/>
         </property>
-        <many-to-one name="userByUserUserId" cascade="delete" class="com.Dimcooo.model.User" insert="false" update="false">
-            <column name="user_user_id"/>
+        <many-to-one name="userByUserUserId" insert="false" update="false" class="com.Dimcooo.model.User">
+            <column name="user_user_id" not-null="true"/>
         </many-to-one>
         <set name="subjectsByTeacherId" inverse="true">
             <key>

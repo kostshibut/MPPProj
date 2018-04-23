@@ -70,11 +70,30 @@
                     <c:if test="${loggedScholar != null}">
                         <button type="submit">Enroll</button>
                     </c:if> <br>
+                <c:if test="${loggedAdmin != null}">
+                    <a href="/deleteSubject/${subject.subjectId}">delete</a>
+                </c:if>
             </form>
             ------------------------------------------------------------------------------------- <br>
             </c:if>
         </c:forEach>
 
+        <c:if test="${loggedAdmin != null}">
+            <h1>Exclusive admin panel</h1>
+            <form onsubmit="window.location = '/createSubject/' + teacherId.value + '/'+ subjectName.value + '/' + duration.value; return false;">
+                Teacher id: <input name="teacherId"/>
+                Subject name <input name="subjectName">
+                Subject duration <input name="duration">
+                <input type="submit" value="Create subject">
+            </form>
+
+            <%--<form onsubmit="window.location = '/createTeacher/' + scholarId.value + '/'+ spetialization.value; return false;">--%>
+            <%--Update scholar to teacher (all schollar data will be delete) <br>--%>
+            <%--Scholar id: <input name="scholarId"/> <br>--%>
+            <%--Spetialization: <input name="spetialization"/> <br>--%>
+            <%--<input type="submit" value="Send">--%>
+            <%--</form>--%>
+        </c:if>
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>
 </html>

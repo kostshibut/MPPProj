@@ -60,7 +60,7 @@ public class ScholarDAOImpl implements ScholarDAO {
     }
 
     @Override
-    public User FindScholarById(int id) {
+    public User FindUserInfoByScholarId(int id) {
         try {
             System.out.println("Start finding scholar by id");
             session = HibernateSessionFactory.getSessionFactory().openSession();

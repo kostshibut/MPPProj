@@ -1,10 +1,10 @@
 package com.Dimcooo.dao.subject;
 
 import com.Dimcooo.model.Subject;
-import com.Dimcooo.model.Teacher;
 import com.Dimcooo.util.HibernateSessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -48,6 +48,56 @@ public class SubjectDAOImpl implements SubjectDAO {
         }
         catch (Exception ex){
             System.out.println("Error with get data by id");
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public boolean DeleteSubject(Subject subject) {
+        try {
+            session.clear();
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            session.delete(subject);
+
+            session.getTransaction().commit();
+            System.out.println("Finish deletion subject");
+            return true;
+        }
+        catch (Exception ex){
+            System.out.println("Error with deletion subject");
+            return false;
+        }
+    }
+
+    @Override
+    public Subject AddSubject(Subject subject) {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            session.save(subject);
+
+            session.getTransaction().commit();
+            System.out.println("Finish deletion subject");
+            return subject;
+    }
+
+    @Override
+    public Subject FindSubjectByName(String name) {
+        try {
+            session = HibernateSessionFactory.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Criteria criteria = session.createCriteria(Subject.class);
+            Subject subject = (Subject)(criteria.add(Restrictions.eq("name", name)).uniqueResult());
+
+            session.getTransaction().commit();
+
+            return subject;
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;
         }

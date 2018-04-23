@@ -8,10 +8,10 @@
         <id name="scholarId">
             <column name="scholar_id" sql-type="int(11)"/>
         </id>
-        <property name="userUserId" insert="false" update="false">
+        <property name="userUserId">
             <column name="user_user_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="userByUserUserId" cascade="delete" class="com.Dimcooo.model.User">
+        <many-to-one name="userByUserUserId" insert="false" update="false" class="com.Dimcooo.model.User">
             <column name="user_user_id"/>
         </many-to-one>
         <set name="listScholarSubjectsByScholarId" inverse="true">
@@ -19,12 +19,6 @@
                 <column name="scholar_scholar_id"/>
             </key>
             <one-to-many not-found="ignore" class="com.Dimcooo.model.ListScholarSubject"/>
-        </set>
-        <set name="subjectFeedbacksByScholarId" inverse="true">
-            <key>
-                <column name="scholar_scholar_id"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.Dimcooo.model.SubjectFeedback"/>
         </set>
         <set name="teacherFeedbacksByScholarId" inverse="true">
             <key>

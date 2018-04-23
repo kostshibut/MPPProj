@@ -2,7 +2,6 @@ package com.Dimcooo.dao.Lesson;
 
 import com.Dimcooo.model.Lesson;
 import com.Dimcooo.util.HibernateSessionFactory;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;

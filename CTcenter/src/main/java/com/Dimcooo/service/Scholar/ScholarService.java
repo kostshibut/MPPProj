@@ -9,7 +9,8 @@ public interface ScholarService {
     Boolean DeleteScholar(Scholar scholar);
     List<Scholar> GetAllScholars();
     Scholar AddScholar(User user);
-    User FindScholarInfo(Scholar scholar);
+    User FindUserByScholar(Scholar scholar);
+    User FindUserByScholar(int scholarId);
     Scholar FindScholarByUser(User user);
     Scholar FindScholarById(int id);
 }

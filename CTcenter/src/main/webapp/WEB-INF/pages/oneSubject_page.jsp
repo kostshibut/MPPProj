@@ -49,6 +49,7 @@
                     Lesson duration: ${lesson.duration} <br>
                     Subject name: ${lesson.subjectBySubjectSubjectId.name} <br>
                     ============================================= <br>
+
                     <a href="/task/${lesson.lessonId}">Check tasks</a>
                 </form>
             </c:forEach>

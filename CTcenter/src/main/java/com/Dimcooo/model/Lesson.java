@@ -66,16 +66,6 @@ public class Lesson {
     }
 
     @Override
-    public String toString() {
-        return "Lesson{" +
-                "lessonId=" + lessonId +
-                ", theme='" + theme + '\'' +
-                ", duration=" + duration +
-                ", subjectSubjectId=" + subjectSubjectId +
-                '}';
-    }
-
-    @Override
     public int hashCode() {
 
         return Objects.hash(lessonId, theme, duration, subjectSubjectId);

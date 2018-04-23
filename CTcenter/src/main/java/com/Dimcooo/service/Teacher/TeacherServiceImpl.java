@@ -45,4 +45,26 @@ public class TeacherServiceImpl implements TeacherService {
             return null;
         }
     }
+
+    @Override
+    public Teacher CreateTeacher(User user, String spetialization) {
+        try {
+            return teacherDAO.AddTeacherToTable(user, spetialization);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean DeleteTeacher(Teacher teacher) {
+        try {
+            return teacherDAO.DeleteTeacher(teacher);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }

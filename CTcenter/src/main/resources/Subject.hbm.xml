@@ -12,12 +12,12 @@
             <column name="name" sql-type="varchar(45)" length="45"/>
         </property>
         <property name="duration">
-            <column name="duration" sql-type="int(11)" not-null="true"/>
+            <column name="duration" sql-type="int(11)"/>
         </property>
-        <property name="teacherTeacherId" insert="false" update="false">
+        <property name="teacherTeacherId">
             <column name="teacher_teacher_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="teacherByTeacherTeacherId" class="com.Dimcooo.model.Teacher" insert="false" update="false">
+        <many-to-one name="teacherByTeacherTeacherId" insert="false" update="false" class="com.Dimcooo.model.Teacher">
             <column name="teacher_teacher_id"/>
         </many-to-one>
         <set name="lessonsBySubjectId" inverse="true">
@@ -31,12 +31,6 @@
                 <column name="subject_subject_id"/>
             </key>
             <one-to-many not-found="ignore" class="com.Dimcooo.model.ListScholarSubject"/>
-        </set>
-        <set name="subjectFeedbacksBySubjectId" inverse="true">
-            <key>
-                <column name="subject_subject_id"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.Dimcooo.model.SubjectFeedback"/>
         </set>
     </class>
 </hibernate-mapping>

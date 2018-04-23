@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "list_scholar_subject", schema = "ct_center")
+@Table(name = "list_scholar_subject", schema = "ct_center", catalog = "")
 public class ListScholarSubject {
     private int listScholarSubjectId;
     private int scholarScholarId;
@@ -76,16 +76,5 @@ public class ListScholarSubject {
 
     public void setSubjectBySubjectSubjectId(Subject subjectBySubjectSubjectId) {
         this.subjectBySubjectSubjectId = subjectBySubjectSubjectId;
-    }
-
-    @Override
-    public String toString() {
-        return "ListScholarSubject{" +
-                "listScholarSubjectId=" + listScholarSubjectId +
-                ", scholarScholarId=" + scholarScholarId +
-                ", subjectSubjectId=" + subjectSubjectId +
-                ", scholarByScholarScholarId=" + scholarByScholarScholarId +
-                ", subjectBySubjectSubjectId=" + subjectBySubjectSubjectId +
-                '}';
     }
 }

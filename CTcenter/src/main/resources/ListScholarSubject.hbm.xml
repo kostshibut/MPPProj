@@ -8,16 +8,16 @@
         <id name="listScholarSubjectId">
             <column name="list_scholar_subject_id" sql-type="int(11)"/>
         </id>
-        <property name="scholarScholarId" insert="false" update="false">
+        <property name="scholarScholarId">
             <column name="scholar_scholar_id" sql-type="int(11)"/>
         </property>
-        <property name="subjectSubjectId" insert="false" update="false">
+        <property name="subjectSubjectId">
             <column name="subject_subject_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="scholarByScholarScholarId" cascade="delete" class="com.Dimcooo.model.Scholar">
+        <many-to-one name="scholarByScholarScholarId" insert="false" update="false" class="com.Dimcooo.model.Scholar">
             <column name="scholar_scholar_id"/>
         </many-to-one>
-        <many-to-one name="subjectBySubjectSubjectId" cascade="delete" class="com.Dimcooo.model.Subject">
+        <many-to-one name="subjectBySubjectSubjectId" insert="false" update="false" class="com.Dimcooo.model.Subject">
             <column name="subject_subject_id"/>
         </many-to-one>
     </class>

@@ -14,10 +14,10 @@
         <property name="duration">
             <column name="duration" sql-type="time(5)"/>
         </property>
-        <property name="subjectSubjectId" insert="false" update="false">
+        <property name="subjectSubjectId">
             <column name="subject_subject_id" sql-type="int(11)"/>
         </property>
-        <many-to-one name="subjectBySubjectSubjectId" cascade="delete" class="com.Dimcooo.model.Subject">
+        <many-to-one name="subjectBySubjectSubjectId" insert="false" update="false" class="com.Dimcooo.model.Subject">
             <column name="subject_subject_id"/>
         </many-to-one>
         <set name="tasksByLessonId" inverse="true">

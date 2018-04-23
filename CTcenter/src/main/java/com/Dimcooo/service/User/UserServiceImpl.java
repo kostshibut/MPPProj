@@ -35,4 +35,15 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public User FindUserById(int id) {
+        try {
+            return userDAO.FindUserByID(id);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 }

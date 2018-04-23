@@ -9,30 +9,30 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
-    <mapping class="com.Dimcooo.model.Admin"/>
-      <mapping resource="Model.cfg/Admin.hbm.xml"/>
+      <mapping resource="Admin.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Admin"/>
+      <mapping resource="Lesson.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Lesson"/>
-      <mapping resource="Model.cfg/Lesson.hbm.xml"/>
-      <mapping resource="Model.cfg/ListScholarSubject.hbm.xml"/>
+      <mapping resource="ListScholarSubject.hbm.xml"/>
       <mapping class="com.Dimcooo.model.ListScholarSubject"/>
+      <mapping resource="Scholar.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Scholar"/>
-      <mapping resource="Model.cfg/Scholar.hbm.xml"/>
-      <mapping resource="Model.cfg/Subject.hbm.xml"/>
+      <mapping resource="Subject.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Subject"/>
+      <mapping resource="SubjectFeedback.hbm.xml"/>
       <mapping class="com.Dimcooo.model.SubjectFeedback"/>
-      <mapping resource="Model.cfg/SubjectFeedback.hbm.xml"/>
-      <mapping resource="Model.cfg/Task.hbm.xml"/>
+      <mapping resource="Task.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Task"/>
-      <mapping resource="Model.cfg/Teacher.hbm.xml"/>
+      <mapping resource="Teacher.hbm.xml"/>
       <mapping class="com.Dimcooo.model.Teacher"/>
+      <mapping resource="TeacherFeedback.hbm.xml"/>
       <mapping class="com.Dimcooo.model.TeacherFeedback"/>
-      <mapping resource="Model.cfg/TeacherFeedback.hbm.xml"/>
-      <mapping resource="Model.cfg/User.hbm.xml"/>
+      <mapping resource="User.hbm.xml"/>
       <mapping class="com.Dimcooo.model.User"/>
-      <mapping resource="Model.cfg/User.hbm.xml"/>
-    <mapping resource="Model.cfg/User.hbm.xml"/>
-      <mapping resource="Model.cfg/User.hbm.xml"/>
-      <mapping resource="Model.cfg/Task.hbm.xml"/>
-    <mapping resource="Model.cfg/Task.hbm.xml"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

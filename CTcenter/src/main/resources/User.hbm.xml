@@ -43,7 +43,7 @@
         </set>
         <set name="teachersByUserId" inverse="true">
             <key>
-                <column name="user_user_id"/>
+                <column name="user_user_id" not-null="true"/>
             </key>
             <one-to-many not-found="ignore" class="com.Dimcooo.model.Teacher"/>
         </set>

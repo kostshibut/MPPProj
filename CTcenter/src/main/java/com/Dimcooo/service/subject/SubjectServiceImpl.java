@@ -33,4 +33,31 @@ public class SubjectServiceImpl implements SubjectService{
             return null;
         }
     }
+
+    @Override
+    public boolean DeleteSubject(Subject subject) {
+        try {
+            return subjectDAO.DeleteSubject(subject);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public Subject SaveSubject(String subjectName, Integer subjectDuration, int teacherId) {
+//        try {
+            Subject subject = new Subject();
+            subject.setName(subjectName);
+            subject.setDuration(subjectDuration);
+            subject.setTeacherTeacherId(teacherId);
+            subjectDAO.AddSubject(subject);
+            Subject subjectByName = subjectDAO.FindSubjectByName(subject.getName());
+            return subjectByName;
+//        }
+//        catch (Exception ex){
+//            return null;
+//        }
+    }
 }
