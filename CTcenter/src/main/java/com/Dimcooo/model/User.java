@@ -1,6 +1,7 @@
 package com.Dimcooo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -144,5 +145,19 @@ public class User {
 
     public void setTeachersByUserId(Collection<Teacher> teachersByUserId) {
         this.teachersByUserId = teachersByUserId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", education='" + education + '\'' +
+                '}';
     }
 }

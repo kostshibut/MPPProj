@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ScholarServiceImpl implements ScholarService{
+public class ScholarServiceImpl implements ScholarService {
     @Autowired
     private ScholarDAO scholarDAO;
 

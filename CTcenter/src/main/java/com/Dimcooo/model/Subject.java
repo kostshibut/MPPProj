@@ -8,11 +8,21 @@ import java.util.Objects;
 public class Subject {
     private int subjectId;
     private String name;
-    private int duration;
+    private Integer duration;
     private int teacherTeacherId;
     private Collection<Lesson> lessonsBySubjectId;
     private Collection<ListScholarSubject> listScholarSubjectsBySubjectId;
     private Teacher teacherByTeacherTeacherId;
+    private Collection<SubjectFeedback> subjectFeedbacksBySubjectId;
+    private boolean imageSetting;
+
+    public boolean isImageSetting() {
+        return imageSetting;
+    }
+
+    public void setImageSetting(boolean imageSetting) {
+        this.imageSetting = imageSetting;
+    }
 
     @Id
     @Column(name = "subject_id", nullable = false)
@@ -35,12 +45,12 @@ public class Subject {
     }
 
     @Basic
-    @Column(name = "duration", nullable = false)
-    public int getDuration() {
+    @Column(name = "duration", nullable = true)
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -60,9 +70,9 @@ public class Subject {
         if (o == null || getClass() != o.getClass()) return false;
         Subject subject = (Subject) o;
         return subjectId == subject.subjectId &&
-                duration == subject.duration &&
                 teacherTeacherId == subject.teacherTeacherId &&
-                Objects.equals(name, subject.name);
+                Objects.equals(name, subject.name) &&
+                Objects.equals(duration, subject.duration);
     }
 
     @Override
@@ -97,5 +107,24 @@ public class Subject {
 
     public void setTeacherByTeacherTeacherId(Teacher teacherByTeacherTeacherId) {
         this.teacherByTeacherTeacherId = teacherByTeacherTeacherId;
+    }
+
+    @OneToMany(mappedBy = "subjectBySubjectSubjectId")
+    public Collection<SubjectFeedback> getSubjectFeedbacksBySubjectId() {
+        return subjectFeedbacksBySubjectId;
+    }
+
+    public void setSubjectFeedbacksBySubjectId(Collection<SubjectFeedback> subjectFeedbacksBySubjectId) {
+        this.subjectFeedbacksBySubjectId = subjectFeedbacksBySubjectId;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "subjectId=" + subjectId +
+                ", name='" + name + '\'' +
+                ", duration=" + duration +
+                ", teacherTeacherId=" + teacherTeacherId +
+                '}';
     }
 }

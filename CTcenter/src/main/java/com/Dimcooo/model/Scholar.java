@@ -8,8 +8,10 @@ import java.util.Objects;
 public class Scholar {
     private int scholarId;
     private int userUserId;
+    private String role;
     private Collection<ListScholarSubject> listScholarSubjectsByScholarId;
     private User userByUserUserId;
+    private Collection<SubjectFeedback> subjectFeedbacksByScholarId;
     private Collection<TeacherFeedback> teacherFeedbacksByScholarId;
 
     @Id
@@ -67,11 +69,29 @@ public class Scholar {
     }
 
     @OneToMany(mappedBy = "scholarByScholarScholarId")
+    public Collection<SubjectFeedback> getSubjectFeedbacksByScholarId() {
+        return subjectFeedbacksByScholarId;
+    }
+
+    public void setSubjectFeedbacksByScholarId(Collection<SubjectFeedback> subjectFeedbacksByScholarId) {
+        this.subjectFeedbacksByScholarId = subjectFeedbacksByScholarId;
+    }
+
+    @OneToMany(mappedBy = "scholarByScholarScholarId")
     public Collection<TeacherFeedback> getTeacherFeedbacksByScholarId() {
         return teacherFeedbacksByScholarId;
     }
 
     public void setTeacherFeedbacksByScholarId(Collection<TeacherFeedback> teacherFeedbacksByScholarId) {
         this.teacherFeedbacksByScholarId = teacherFeedbacksByScholarId;
+    }
+
+    @Override
+    public String toString() {
+        return "Scholar{" +
+                "scholarId=" + scholarId +
+                ", userUserId=" + userUserId +
+                ", userByUserUserId=" + userByUserUserId +
+                '}';
     }
 }

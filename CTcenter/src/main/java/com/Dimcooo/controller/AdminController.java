@@ -1,10 +1,9 @@
 package com.Dimcooo.controller;
 
-import com.Dimcooo.model.Scholar;
-import com.Dimcooo.model.Subject;
-import com.Dimcooo.model.Teacher;
-import com.Dimcooo.model.User;
+import com.Dimcooo.model.*;
+import com.Dimcooo.service.Lesson.LessonService;
 import com.Dimcooo.service.Scholar.ScholarService;
+import com.Dimcooo.service.Task.TaskService;
 import com.Dimcooo.service.Teacher.TeacherService;
 import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.service.subject.SubjectService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Time;
 
 @Controller
 public class AdminController {
@@ -30,6 +30,12 @@ public class AdminController {
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private LessonService lessonService;
+
+    @Autowired
+    private TaskService taskService;
 
     @RequestMapping(value = "userControll", method = RequestMethod.GET)
     public ModelAndView imageUserControll(){
@@ -60,12 +66,44 @@ public class AdminController {
         return "redirect:/subjectList";
     }
 
+    @RequestMapping(value = "/deleteLesson/{id}/{subjId}", method = RequestMethod.GET)
+    public String deleteLesson(@PathVariable("id") int lessonId,
+                               @PathVariable("subjId") int subjectId){
+        Lesson lesson = lessonService.FindLessonInfo(lessonId);
+        lessonService.DeleteLesson(lesson);
+        return "redirect:/readmoreSubject/" + lessonId;
+    }
+
+    @RequestMapping(value = "/deleteTask/{id}/{lessonId}", method = RequestMethod.GET)
+    public String deleteTask(@PathVariable("id") int taskId,
+                             @PathVariable("lessonId") int lessonId){
+        Task task = taskService.FindTaskInfo(taskId);
+        taskService.DeleteTask(task);
+        return "redirect:/task/" + lessonId;
+    }
+
     @RequestMapping(value = "/createSubject/{teacherId}/{name}/{duration}", method = RequestMethod.GET)
     public String addSubject(@PathVariable("teacherId") int teacherId,
                              @PathVariable("name") String subjectName,
                              @PathVariable Integer duration){
         subjectService.SaveSubject(subjectName, duration, teacherId);
         return "redirect:/subjectList";
+    }
+
+    @RequestMapping(value = "/createLesson/{theme}/{duration}/{subjectId}", method = RequestMethod.GET)
+    public String addLesson(@PathVariable("theme")String theme,
+                            @PathVariable("duration")String timeLesson,
+                            @PathVariable("subjectId")int subjectId){
+        lessonService.SaveLesson(theme, timeLesson, subjectId);
+        return "redirect:/readmoreSubject/" + subjectId;
+    }
+
+    @RequestMapping(value = "/createTask/{theme}/{content}/{lessonId}", method = RequestMethod.GET)
+    public String addTask(@PathVariable("theme") String theme,
+                          @PathVariable("content") String content,
+                          @PathVariable("lessonId") int lessonId){
+        taskService.SaveTask(theme, content, lessonId);
+        return "redirect:/task/" + lessonId;
     }
 
     @RequestMapping(value = "/createTeacher/{scholarId}/{spetialization}", method = RequestMethod.GET)

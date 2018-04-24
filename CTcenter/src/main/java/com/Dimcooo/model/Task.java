@@ -7,9 +7,9 @@ import java.util.Objects;
 public class Task {
     private int taskId;
     private String theme;
-    private String content;
     private int lessonLessonId;
     private Lesson lessonByLessonLessonId;
+    private String content;
 
     @Id
     @Column(name = "task_id", nullable = false)
@@ -32,16 +32,6 @@ public class Task {
     }
 
     @Basic
-    @Column(name = "content", nullable = true, length = 200)
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Basic
     @Column(name = "lesson_lesson_id", nullable = false)
     public int getLessonLessonId() {
         return lessonLessonId;
@@ -58,14 +48,13 @@ public class Task {
         Task task = (Task) o;
         return taskId == task.taskId &&
                 lessonLessonId == task.lessonLessonId &&
-                Objects.equals(theme, task.theme) &&
-                Objects.equals(content, task.content);
+                Objects.equals(theme, task.theme);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(taskId, theme, content, lessonLessonId);
+        return Objects.hash(taskId, theme, lessonLessonId);
     }
 
     @ManyToOne
@@ -76,5 +65,26 @@ public class Task {
 
     public void setLessonByLessonLessonId(Lesson lessonByLessonLessonId) {
         this.lessonByLessonLessonId = lessonByLessonLessonId;
+    }
+
+    @Basic
+    @Column(name = "content", nullable = true, length = 200)
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId=" + taskId +
+                ", theme='" + theme + '\'' +
+                ", lessonLessonId=" + lessonLessonId +
+                ", lessonByLessonLessonId=" + lessonByLessonLessonId +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

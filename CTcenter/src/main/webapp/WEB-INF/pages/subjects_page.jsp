@@ -86,13 +86,6 @@
                 Subject duration <input name="duration">
                 <input type="submit" value="Create subject">
             </form>
-
-            <%--<form onsubmit="window.location = '/createTeacher/' + scholarId.value + '/'+ spetialization.value; return false;">--%>
-            <%--Update scholar to teacher (all schollar data will be delete) <br>--%>
-            <%--Scholar id: <input name="scholarId"/> <br>--%>
-            <%--Spetialization: <input name="spetialization"/> <br>--%>
-            <%--<input type="submit" value="Send">--%>
-            <%--</form>--%>
         </c:if>
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>

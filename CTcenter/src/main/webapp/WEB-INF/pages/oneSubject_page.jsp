@@ -51,10 +51,23 @@
                     ============================================= <br>
 
                     <a href="/task/${lesson.lessonId}">Check tasks</a>
+
+                    <c:if test="${loggedAdmin != null or loggedTeacher != null}">
+                        <a href="/deleteLesson/${lesson.lessonId}/${subject.subjectId}">delete</a>
+                    </c:if>
                 </form>
             </c:forEach>
         </c:if>
 
+        <c:if test="${loggedAdmin != null or loggedTeacher != null}">
+            <h1>Exclusive admin panel</h1>
+            Create lesson
+            <form onsubmit="window.location = '/createLesson/' + theme.value + '/' + duration.value + '/' + ${subject.subjectId}; return false;">
+                Lesson theme: <input name="theme"/>
+                Lesson duration: <input name="duration">
+                <input type="submit" value="Create subject">
+            </form>
+        </c:if>
         <a href="/subjectList">back to subject list</a>
     </body>
 </html>

@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface TaskDAO {
     List<Task> GetDataFromTaskTable(int id);
+    boolean DeleteTask(Task task);
+    Task CreateTask(Task task);
+    Task FindTaskByTheme(String theme);
+    Task FindTaskById(int taskId);
 }

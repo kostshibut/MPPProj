@@ -9,8 +9,10 @@ public class SubjectFeedback {
     private int subjectFeedbackId;
     private Integer mark;
     private String description;
-    private Integer subjectSubjectId;
-    private Integer scholarScholarId;
+    private int subjectSubjectId;
+    private int scholarScholarId;
+    private Subject subjectBySubjectSubjectId;
+    private Scholar scholarByScholarScholarId;
 
     @Id
     @Column(name = "subject_feedback_id", nullable = false)
@@ -43,22 +45,22 @@ public class SubjectFeedback {
     }
 
     @Basic
-    @Column(name = "subject_subject_id", nullable = true)
-    public Integer getSubjectSubjectId() {
+    @Column(name = "subject_subject_id", nullable = false)
+    public int getSubjectSubjectId() {
         return subjectSubjectId;
     }
 
-    public void setSubjectSubjectId(Integer subjectSubjectId) {
+    public void setSubjectSubjectId(int subjectSubjectId) {
         this.subjectSubjectId = subjectSubjectId;
     }
 
     @Basic
-    @Column(name = "scholar_scholar_id", nullable = true)
-    public Integer getScholarScholarId() {
+    @Column(name = "scholar_scholar_id", nullable = false)
+    public int getScholarScholarId() {
         return scholarScholarId;
     }
 
-    public void setScholarScholarId(Integer scholarScholarId) {
+    public void setScholarScholarId(int scholarScholarId) {
         this.scholarScholarId = scholarScholarId;
     }
 
@@ -68,15 +70,35 @@ public class SubjectFeedback {
         if (o == null || getClass() != o.getClass()) return false;
         SubjectFeedback that = (SubjectFeedback) o;
         return subjectFeedbackId == that.subjectFeedbackId &&
+                subjectSubjectId == that.subjectSubjectId &&
+                scholarScholarId == that.scholarScholarId &&
                 Objects.equals(mark, that.mark) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(subjectSubjectId, that.subjectSubjectId) &&
-                Objects.equals(scholarScholarId, that.scholarScholarId);
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
 
         return Objects.hash(subjectFeedbackId, mark, description, subjectSubjectId, scholarScholarId);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "subject_subject_id", referencedColumnName = "subject_id", nullable = false)
+    public Subject getSubjectBySubjectSubjectId() {
+        return subjectBySubjectSubjectId;
+    }
+
+    public void setSubjectBySubjectSubjectId(Subject subjectBySubjectSubjectId) {
+        this.subjectBySubjectSubjectId = subjectBySubjectSubjectId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "scholar_scholar_id", referencedColumnName = "scholar_id", nullable = false)
+    public Scholar getScholarByScholarScholarId() {
+        return scholarByScholarScholarId;
+    }
+
+    public void setScholarByScholarScholarId(Scholar scholarByScholarScholarId) {
+        this.scholarByScholarScholarId = scholarByScholarScholarId;
     }
 }

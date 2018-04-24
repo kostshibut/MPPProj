@@ -35,6 +35,8 @@
         <c:if test="${loggedScholar != null or loggedTeacher != null or loggedAdmin != null}">
             <c:forEach items="${taskForSubject}" var="task">
                 ============================================================================= <br>
+                <c:set var="lessonId" value="${task.lessonLessonId}"/>
+                Lesson id: ${task.lessonLessonId}
                 Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
                 Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
                 ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
@@ -43,8 +45,20 @@
                 Lesson theme: ${task.lessonByLessonLessonId.theme} <br>
                 Task theme: ${task.theme} <br>
                 Content: ${task.content} <br>
+
+                <c:if test="${loggedAdmin != null or loggedTeacher != null}">
+                    <a href="/deleteTask/${task.taskId}/${task.lessonLessonId}">delete</a>
+                </c:if> <br>
                 ============================================================================= <br>
             </c:forEach>
+
+            <c:if test="${loggedAdmin != null or loggedTeacher != null}">
+                <form onsubmit="window.location = '/createTask/' + theme.value + '/' + content.value + '/' + ${lessonId}; return false;">
+                    Task theme: <input name="theme"/>
+                    Task content <input name="content">
+                    <input type="submit" value="Create task">
+                </form>
+            </c:if>
         </c:if>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>

@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Lesson {
     private int lessonId;
     private String theme;
-    private Time duration;
+    private String duration;
     private int subjectSubjectId;
     private Subject subjectBySubjectSubjectId;
     private Collection<Task> tasksByLessonId;
@@ -36,11 +36,11 @@ public class Lesson {
 
     @Basic
     @Column(name = "duration", nullable = false)
-    public Time getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Time duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -63,6 +63,16 @@ public class Lesson {
                 subjectSubjectId == lesson.subjectSubjectId &&
                 Objects.equals(theme, lesson.theme) &&
                 Objects.equals(duration, lesson.duration);
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "lessonId=" + lessonId +
+                ", theme='" + theme + '\'' +
+                ", duration=" + duration +
+                ", subjectSubjectId=" + subjectSubjectId +
+                '}';
     }
 
     @Override

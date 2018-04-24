@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
     <class name="com.Dimcooo.model.Teacher" table="teacher" schema="ct_center">
@@ -14,16 +14,16 @@
         <property name="userUserId">
             <column name="user_user_id" sql-type="int(11)" not-null="true"/>
         </property>
-        <many-to-one name="userByUserUserId" insert="false" update="false" class="com.Dimcooo.model.User">
+        <many-to-one name="userByUserUserId" cascade="save-update" insert="false" update="false" class="com.Dimcooo.model.User">
             <column name="user_user_id" not-null="true"/>
         </many-to-one>
-        <set name="subjectsByTeacherId" inverse="true">
+        <set name="subjectsByTeacherId" cascade="save-update" inverse="true">
             <key>
                 <column name="teacher_teacher_id"/>
             </key>
             <one-to-many not-found="ignore" class="com.Dimcooo.model.Subject"/>
         </set>
-        <set name="teacherFeedbacksByTeacherId" inverse="true">
+        <set name="teacherFeedbacksByTeacherId" cascade="save-update" inverse="true">
             <key>
                 <column name="teacher_teacher_id"/>
             </key>

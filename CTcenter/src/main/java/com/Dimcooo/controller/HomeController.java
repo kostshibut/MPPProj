@@ -1,7 +1,7 @@
 package com.Dimcooo.controller;
 
-import com.Dimcooo.model.*;
 import com.Dimcooo.model.Error;
+import com.Dimcooo.model.*;
 import com.Dimcooo.service.Admin.AdminService;
 import com.Dimcooo.service.Lesson.LessonService;
 import com.Dimcooo.service.Scholar.ScholarService;
@@ -11,8 +11,8 @@ import com.Dimcooo.service.TeacherFeedback.TeacherFeedbackService;
 import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.service.listScholarSubject.ListScholarSubjectService;
 import com.Dimcooo.service.subject.SubjectService;
-import com.Dimcooo.validator.ViewValidator;
 import com.Dimcooo.validator.Validator;
+import com.Dimcooo.validator.ViewValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

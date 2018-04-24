@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Teacher {
     private int teacherId;
     private String spetialization;
-    private Integer userUserId;
+    private int userUserId;
     private Collection<Subject> subjectsByTeacherId;
     private User userByUserUserId;
     private Collection<TeacherFeedback> teacherFeedbacksByTeacherId;
@@ -34,12 +34,12 @@ public class Teacher {
     }
 
     @Basic
-    @Column(name = "user_user_id", nullable = true)
-    public Integer getUserUserId() {
+    @Column(name = "user_user_id", nullable = false)
+    public int getUserUserId() {
         return userUserId;
     }
 
-    public void setUserUserId(Integer userUserId) {
+    public void setUserUserId(int userUserId) {
         this.userUserId = userUserId;
     }
 
@@ -49,8 +49,8 @@ public class Teacher {
         if (o == null || getClass() != o.getClass()) return false;
         Teacher teacher = (Teacher) o;
         return teacherId == teacher.teacherId &&
-                Objects.equals(spetialization, teacher.spetialization) &&
-                Objects.equals(userUserId, teacher.userUserId);
+                userUserId == teacher.userUserId &&
+                Objects.equals(spetialization, teacher.spetialization);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Teacher {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_user_id", referencedColumnName = "user_id", nullable = false)
     public User getUserByUserUserId() {
         return userByUserUserId;
     }
@@ -85,5 +85,17 @@ public class Teacher {
 
     public void setTeacherFeedbacksByTeacherId(Collection<TeacherFeedback> teacherFeedbacksByTeacherId) {
         this.teacherFeedbacksByTeacherId = teacherFeedbacksByTeacherId;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", spetialization='" + spetialization + '\'' +
+                ", userUserId=" + userUserId +
+                ", subjectsByTeacherId=" + subjectsByTeacherId +
+                ", userByUserUserId=" + userByUserUserId +
+                ", teacherFeedbacksByTeacherId=" + teacherFeedbacksByTeacherId +
+                '}';
     }
 }
