@@ -13,6 +13,7 @@
         <title>Title</title>
     </head>
     <body>
+        <a href="${contextPath}/start">back to start page</a> <br>
         <a href="${contextPath}/logout">logout</a> <br>
 
         <c:if test="${loggedAdmin != null}">
@@ -51,8 +52,6 @@
             </c:if>
             ========================================================== <br>
         </c:forEach>
-
-        <a href="${contextPath}/start">back to start page</a> <br>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

@@ -6,6 +6,7 @@
         <title>Title</title>
     </head>
     <body>
+        <a href="${contextPath}/start">back to start page</a> <br>
         <spring:form method="post" modelAttribute="userUp" action="/signUp">
             Login: <spring:input path="login"/> <br>
             Password: <spring:input path="password"/> <br>
@@ -62,8 +63,6 @@
                 }
             }
         </script>
-
-        <a href="${contextPath}/start">back to start page</a>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

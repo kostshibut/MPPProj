@@ -6,6 +6,7 @@
         <title>Title</title>
     </head>
     <body>
+        <a href="${contextPath}/start">back to start page</a> <br>
         <spring:form method="post" modelAttribute="loginUser" action="/signIn">
             Login: <spring:input path="login"/>
             Password: <spring:input path="pass"/>

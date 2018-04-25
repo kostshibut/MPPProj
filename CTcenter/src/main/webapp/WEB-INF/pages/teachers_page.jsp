@@ -12,6 +12,7 @@
         <title>Title</title>
     </head>
     <body>
+        <a href="${contextPath}/start">back to start page</a> <br>
         <c:if test="${loggedAdmin != null}">
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
@@ -47,7 +48,6 @@
             ---------------------------------------------------------- <br>
         </c:forEach>
 
-        <a href="${contextPath}/start">back to start page</a> <br>
         <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>
