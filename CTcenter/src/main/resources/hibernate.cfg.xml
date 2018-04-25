@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/ct_center</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+    <mapping class="com.Dimcooo.model.Admin"/>
+      <mapping resource="Model.cfg/Admin.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Lesson"/>
+      <mapping resource="Model.cfg/Lesson.hbm.xml"/>
+      <mapping resource="Model.cfg/ListScholarSubject.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.ListScholarSubject"/>
+      <mapping class="com.Dimcooo.model.Scholar"/>
+      <mapping resource="Model.cfg/Scholar.hbm.xml"/>
+      <mapping resource="Model.cfg/Subject.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Subject"/>
+      <mapping class="com.Dimcooo.model.SubjectFeedback"/>
+      <mapping resource="Model.cfg/SubjectFeedback.hbm.xml"/>
+      <mapping resource="Model.cfg/Task.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Task"/>
+      <mapping resource="Model.cfg/Teacher.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.Teacher"/>
+      <mapping class="com.Dimcooo.model.TeacherFeedback"/>
+      <mapping resource="Model.cfg/TeacherFeedback.hbm.xml"/>
+      <mapping resource="Model.cfg/User.hbm.xml"/>
+      <mapping class="com.Dimcooo.model.User"/>
+      <mapping resource="Model.cfg/User.hbm.xml"/>
+    <mapping resource="Model.cfg/User.hbm.xml"/>
+      <mapping resource="Model.cfg/User.hbm.xml"/>
+      <mapping resource="Model.cfg/Task.hbm.xml"/>
+    <mapping resource="Model.cfg/Task.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

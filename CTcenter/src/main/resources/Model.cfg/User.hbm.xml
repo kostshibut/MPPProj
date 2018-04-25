@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.User" table="user" schema="ct_center">
+        <id name="userId">
+            <column name="user_id" sql-type="int(11)"/>
+        </id>
+        <property name="login">
+            <column name="login" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(100)" length="100"/>
+        </property>
+        <property name="firstName">
+            <column name="firstName" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="lastName">
+            <column name="lastName" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="age">
+            <column name="age" sql-type="int(3)"/>
+        </property>
+        <property name="education">
+            <column name="education" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
+        <set name="adminsByUserId" inverse="true">
+            <key>
+                <column name="user_user_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.Admin"/>
+        </set>
+        <set name="scholarsByUserId" inverse="true">
+            <key>
+                <column name="user_user_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.Scholar"/>
+        </set>
+        <set name="teachersByUserId" inverse="true">
+            <key>
+                <column name="user_user_id"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.Dimcooo.model.Teacher"/>
+        </set>
+    </class>
+</hibernate-mapping>

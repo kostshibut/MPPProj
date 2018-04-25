@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.Dimcooo.model.SubjectFeedback" table="subject_feedback" schema="ct_center">
+        <id name="subjectFeedbackId">
+            <column name="subject_feedback_id" sql-type="int(11)"/>
+        </id>
+        <property name="mark">
+            <column name="mark" sql-type="int(5)" not-null="true"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="subjectSubjectId" insert="false" update="false">
+            <column name="subject_subject_id" sql-type="int(11)"/>
+        </property>
+        <property name="scholarScholarId" insert="false" update="false">
+            <column name="scholar_scholar_id" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="subjectBySubjectSubjectId" class="com.Dimcooo.model.Subject" insert="false" update="false">
+            <column name="subject_subject_id"/>
+        </many-to-one>
+        <many-to-one name="scholarByScholarScholarId" class="com.Dimcooo.model.Scholar" insert="false" update="false">
+            <column name="scholar_scholar_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
