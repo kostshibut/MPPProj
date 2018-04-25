@@ -48,41 +48,34 @@ public class AdminController {
 
     @RequestMapping(value = "/deleteScholar/{id}", method = RequestMethod.GET)
     public String deleteScholar(HttpServletRequest request, @PathVariable("id")int scholarId){
-        Scholar scholar = scholarService.FindScholarById(scholarId);
-        scholarService.DeleteScholar(scholar);
+        scholarService.DeleteScholar(scholarService.FindScholarById(scholarId));
         return "redirect:/userControll";
     }
 
     @RequestMapping(value = "/deleteTeacher/{id}", method = RequestMethod.GET)
     public String deleteTeacher(HttpServletRequest request, @PathVariable("id")int teacherId){
-        Teacher teacher = teacherService.FindTeacherInfo(teacherId);
-        teacherService.DeleteTeacher(teacher);
+        teacherService.DeleteTeacher(teacherService.FindTeacherInfo(teacherId));
         return "redirect:/userControll";
     }
 
     @RequestMapping(value = "/deleteSubject/{id}", method = RequestMethod.GET)
     public String deleteSubject(@PathVariable("id") int subjectId){
-        Subject subject = subjectService.FindSubjectInfo(subjectId);
-        subjectService.DeleteSubject(subject);
+        subjectService.DeleteSubject(subjectService.FindSubjectInfo(subjectId));
         return "redirect:/subjectList";
     }
 
     @RequestMapping(value = "/deleteLesson/{id}/{subjId}", method = RequestMethod.GET)
     public String deleteLesson(@PathVariable("id") int lessonId,
                                @PathVariable("subjId") int subjectId){
-        Lesson lesson = lessonService.FindLessonInfo(lessonId);
-        lessonService.DeleteLesson(lesson);
+        lessonService.DeleteLesson(lessonService.FindLessonInfo(lessonId));
         return "redirect:/readmoreSubject/" + subjectId;
     }
 
     @RequestMapping(value = "/deleteTask/{id}/{lessonId}", method = RequestMethod.GET)
     public String deleteTask(@PathVariable("id") int taskId,
                              @PathVariable("lessonId") int lessonId){
-        Task task = taskService.FindTaskInfo(taskId);
-        taskService.DeleteTask(task);
-        Lesson lesson = lessonService.FindLessonInfo(lessonId);
-        Subject subject = subjectService.FindSubjectInfo(lesson.getSubjectSubjectId());
-        return "redirect:/readmoreSubject/" + subject.getSubjectId();
+        taskService.DeleteTask(taskService.FindTaskInfo(taskId));
+        return "redirect:/readmoreSubject/" + subjectService.FindSubjectInfo(lessonService.FindLessonInfo(lessonId).getSubjectSubjectId()).getSubjectId();
     }
 
     @RequestMapping(value = "/createSubject/{teacherId}/{name}/{duration}", method = RequestMethod.GET)
@@ -110,17 +103,13 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/createTeacher/{scholarId}/{spetialization}", method = RequestMethod.GET)
-    public ModelAndView createTeacher(@PathVariable("scholarId") int scholarId,
+    public String createTeacher(@PathVariable("scholarId") int scholarId,
                                       @PathVariable("spetialization") String spetialization){
-
-        ModelAndView modelAndView = new ModelAndView("start_page");
-
         Scholar scholar = scholarService.FindScholarById(scholarId);
         User user = userService.FindUserById(scholar.getUserUserId());
         userService.SaveUser(user);
         scholarService.DeleteScholar(scholar);
         teacherService.CreateTeacher(user, spetialization);
-
-        return modelAndView;
+        return "redirect:/userControll";
     }
 }

@@ -15,31 +15,56 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> GetTaskByLessonId(int id) {
-        return taskDAO.GetDataFromTaskTable(id);
+        try {
+            return taskDAO.GetDataFromTaskTable(id);
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 
     @Override
     public Task SaveTask(String theme, String content, int lessonId) {
-        Task task = new Task();
-        task.setTheme(theme);
-        task.setContent(content);
-        task.setLessonLessonId(lessonId);
-        taskDAO.CreateTask(task);
-        return taskDAO.FindTaskByTheme(task.getTheme());
+        try {
+            Task task = new Task();
+            task.setTheme(theme);
+            task.setContent(content);
+            task.setLessonLessonId(lessonId);
+            taskDAO.CreateTask(task);
+            return taskDAO.FindTaskByTheme(task.getTheme());
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 
     @Override
     public Task SaveTask(Task task) {
-        return taskDAO.CreateTask(task);
+        try {
+            return taskDAO.CreateTask(task);
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 
     @Override
     public boolean DeleteTask(Task task) {
-        return taskDAO.DeleteTask(task);
+        try {
+            return taskDAO.DeleteTask(task);
+        }
+        catch (Exception ex){
+            return false;
+        }
     }
 
     @Override
     public Task FindTaskInfo(int taskId) {
-        return taskDAO.FindTaskById(taskId);
+        try {
+            return taskDAO.FindTaskById(taskId);
+        }
+        catch (Exception ex) {
+            return null;
+        }
     }
 }

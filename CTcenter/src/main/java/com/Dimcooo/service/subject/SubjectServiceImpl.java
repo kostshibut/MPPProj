@@ -47,12 +47,17 @@ public class SubjectServiceImpl implements SubjectService{
 
     @Override
     public Subject SaveSubject(String subjectName, Integer subjectDuration, int teacherId) {
-        Subject subject = new Subject();
-        subject.setName(subjectName);
-        subject.setDuration(subjectDuration);
-        subject.setTeacherTeacherId(teacherId);
-        subjectDAO.AddSubject(subject);
-        Subject subjectByName = subjectDAO.FindSubjectByName(subject.getName());
-        return subjectByName;
+        try {
+            Subject subject = new Subject();
+            subject.setName(subjectName);
+            subject.setDuration(subjectDuration);
+            subject.setTeacherTeacherId(teacherId);
+            subjectDAO.AddSubject(subject);
+            Subject subjectByName = subjectDAO.FindSubjectByName(subject.getName());
+            return subjectByName;
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 }

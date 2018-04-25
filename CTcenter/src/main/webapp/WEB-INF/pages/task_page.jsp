@@ -33,11 +33,10 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
-        <br>
-
         <c:if test="${loggedScholar != null or loggedTeacher != null or loggedAdmin != null}">
             <c:forEach items="${taskForSubject}" var="task">
                 ============================================================================= <br>
+                <c:set var="subject" value="${task.lessonByLessonLessonId.subjectBySubjectSubjectId.subjectId}"/>
                 Lesson id: ${task.lessonLessonId} <br>
                 Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
                 Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}

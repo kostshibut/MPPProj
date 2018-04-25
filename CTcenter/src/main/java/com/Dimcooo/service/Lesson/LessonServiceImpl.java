@@ -15,18 +15,30 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public List<Lesson> GetLessonsBySubjectById(int id) {
-        return lessonDAO.GetDataFromLessonTable(id);
+        try {
+            return lessonDAO.GetDataFromLessonTable(id);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
     public Lesson SaveLesson(String theme, String duration, int subjectId) {
-        Lesson lesson = new Lesson();
-        lesson.setTheme(theme);
-        lesson.setDuration(duration);
-        lesson.setSubjectSubjectId(subjectId);
-        lessonDAO.CreateLesson(lesson);
-        Lesson lessonByTheme = lessonDAO.FindLessonByTheme(lesson.getTheme());
-        return lessonByTheme;
+        try {
+            Lesson lesson = new Lesson();
+            lesson.setTheme(theme);
+            lesson.setDuration(duration);
+            lesson.setSubjectSubjectId(subjectId);
+            lessonDAO.CreateLesson(lesson);
+            Lesson lessonByTheme = lessonDAO.FindLessonByTheme(lesson.getTheme());
+            return lessonByTheme;
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -42,6 +54,12 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public Lesson FindLessonInfo(int lessonId) {
-        return lessonDAO.FindSubjectById(lessonId);
+        try {
+            return lessonDAO.FindSubjectById(lessonId);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }
