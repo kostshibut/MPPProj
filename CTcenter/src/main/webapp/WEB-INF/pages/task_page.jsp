@@ -33,12 +33,12 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <br>
+
         <c:if test="${loggedScholar != null or loggedTeacher != null or loggedAdmin != null}">
             <c:forEach items="${taskForSubject}" var="task">
                 ============================================================================= <br>
-                <c:set var="lessonId" value="${task.lessonLessonId}"/>
-                <c:set var="subject" value="${task.lessonByLessonLessonId.subjectBySubjectSubjectId.subjectId}"/>
-                 Lesson id: ${task.lessonLessonId}
+                Lesson id: ${task.lessonLessonId} <br>
                 Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
                 Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
                 ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
@@ -55,11 +55,10 @@
             </c:forEach>
 
             <c:if test="${loggedAdmin != null or loggedTeacher != null}">
-                Create task
                 <form onsubmit="window.location = '/createTask/' + theme.value + '/' + contentTask.value + '/' + ${lessonId}; return false;">
-                    Task theme: <input name="theme"/>
-                    Task content <input name="contentTask"/>
-                    <input type="submit" value="Create task">
+                Lesson theme: <input name="theme"/>
+                Lesson duration: <input name="contentTask">
+                <input type="submit" value="Create subject">
                 </form>
             </c:if>
         </c:if>

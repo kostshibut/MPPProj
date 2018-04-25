@@ -34,6 +34,8 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <br>
+
         <c:if test="${loggedScholar != null}">
             Feedback on teacher: ${teacher.userByUserUserId.firstName}
             ${teacher.userByUserUserId.lastName} <br>

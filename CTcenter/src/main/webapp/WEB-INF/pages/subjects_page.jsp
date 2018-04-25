@@ -37,6 +37,9 @@
         <c:if test="${loggedScholar != null}">
             Subbed <br> ========================================================= <br>
         </c:if>
+
+        <br>
+
         <c:forEach items="${signedSubject}" var="subject">
             ========================================================== <br>
             Subject name: ${subject.name} <br>
@@ -87,6 +90,18 @@
                 Subject duration <input name="duration">
                 <input type="submit" value="Create subject">
             </form>
+
+            <h1>Teachers</h1>
+            <c:forEach items="${teacherList}" var="teacher">
+                ======================================================== <br>
+                User id: ${teacher.userByUserUserId.userId}
+                Teacher id: ${teacher.teacherId}
+                ${teacher.userByUserUserId.firstName}
+                ${teacher.userByUserUserId.lastName}
+                ${teacher.spetialization} <br>
+                ======================================================== <br>
+            </c:forEach>
+
         </c:if>
         <a href="${contextPath}/start">back to start page</a> <br>
     </body>

@@ -33,6 +33,8 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <br>
+
         <c:if test="${teacher != null}">
             Teacher spetialization: ${teacher.spetialization} <br>
             Teacher name: ${teacher.userByUserUserId.firstName} <br>
@@ -55,6 +57,6 @@
             </c:forEach>
         </c:if>
         <a href="/teacherList">back to teachers list</a> <br>
-        <%--<button type="button" name="back" onclick="history.back()">back</button>--%>
+        <button type="button" name="back" onclick="history.back()">back</button>
     </body>
 </html>

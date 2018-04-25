@@ -29,6 +29,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Task SaveTask(Task task) {
+        return taskDAO.CreateTask(task);
+    }
+
+    @Override
     public boolean DeleteTask(Task task) {
         return taskDAO.DeleteTask(task);
     }

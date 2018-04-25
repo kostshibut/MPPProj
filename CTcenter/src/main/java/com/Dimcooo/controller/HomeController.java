@@ -127,6 +127,7 @@ public class HomeController {
     public ModelAndView imageTask(@PathVariable("id") int lessonID){
         ModelAndView modelAndView = new ModelAndView("task_page");
         modelAndView.addObject("taskForSubject", taskService.GetTaskByLessonId(lessonID));
+        modelAndView.addObject("lessonId", lessonID);
         return modelAndView;
     }
 
@@ -153,6 +154,10 @@ public class HomeController {
         }
         else {
             modelAndView.addObject("listOfUnSignedSubjects", subjectService.GetListOfSubjects());
+        }
+
+        if(request.getSession().getAttribute("loggedAdmin") != null){
+            modelAndView.addObject("teacherList", teacherService.GetListOfTeachers());
         }
 
         return modelAndView;

@@ -9,6 +9,7 @@ import com.Dimcooo.service.User.UserService;
 import com.Dimcooo.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -104,9 +105,8 @@ public class AdminController {
     public String addTask(@PathVariable("theme") String theme,
                           @PathVariable("content") String content,
                           @PathVariable("lessonId") int lessonId){
-//        taskService.SaveTask(theme, content, lessonId);
-        System.out.println(theme + " " + content + " " + lessonId);
-        return "redirect:/subjectList";
+        taskService.SaveTask(theme, content, lessonId);
+        return "redirect:/task/" + lessonId;
     }
 
     @RequestMapping(value = "/createTeacher/{scholarId}/{spetialization}", method = RequestMethod.GET)

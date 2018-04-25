@@ -15,7 +15,6 @@
         <c:if test="${loggedAdmin != null}">
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
-            <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
@@ -32,7 +31,9 @@
             <a href="${contextPath}/signUp">Sign Up</a> <br>
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
+
         <br>
+
         <c:if test="${subject != null}">
             Subject name: ${subject.name} <br>
             Subject duration: ${subject.duration} <br>
@@ -61,6 +62,7 @@
         </c:if>
 
         <c:if test="${loggedAdmin != null or loggedTeacher != null}">
+            <h1>Exclusive admin panel</h1>
             Create lesson
             <form onsubmit="window.location = '/createLesson/' + theme.value + '/' + duration.value + '/' + ${subject.subjectId}; return false;">
                 Lesson theme: <input name="theme"/>

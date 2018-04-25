@@ -33,6 +33,8 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <br>
+
         <c:forEach items="${listOfTeachers}" var="teacher">
             ---------------------------------------------------------- <br>
             Teacher spetialization: ${teacher.spetialization} <br>

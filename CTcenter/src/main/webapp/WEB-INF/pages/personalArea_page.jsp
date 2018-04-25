@@ -33,6 +33,8 @@
             <a href="${contextPath}/signIn">Sign In</a> <br>
         </c:if>
 
+        <br>
+
         <h1>Предметы, на которые подписан ученик</h1>
         <c:forEach items="${subbedSubject}" var="subject">
             ========================================================== <br>
