@@ -31,7 +31,13 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public boolean DeleteLesson(Lesson lesson) {
-        return lessonDAO.DeleteLesson(lesson);
+        try {
+            return lessonDAO.DeleteLesson(lesson);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
     @Override

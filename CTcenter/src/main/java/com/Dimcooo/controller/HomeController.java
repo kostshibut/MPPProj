@@ -101,7 +101,7 @@ public class HomeController {
 
         if (ViewValidator.isHaveFeedback(teacherFeedbackService.GetScholarFeedback(scholarService.FindScholarById(idScholar)),
                 scholarService.FindScholarById(idScholar), teacherService.FindTeacherInfo(idTeacher))) {
-            modelAndView.setViewName("personalArea_page");
+            modelAndView.setViewName("start_page");
             teacherFeedbackService.AddTeacherFeedback(teacherFeedback, teacherService.FindTeacherInfo(idTeacher),
                     scholarService.FindScholarById(idScholar));
         }
@@ -169,7 +169,7 @@ public class HomeController {
     public String enrollToSubject(@PathVariable("id")int subjectID, HttpServletRequest request){
         scholarSubjectService.EnrollScholarToSubject((Scholar) request.getSession().getAttribute("loggedScholar"),
                 subjectService.FindSubjectInfo(subjectID));
-        return "redirect:/readmoreSubject/{id}";
+        return "redirect:/subjectList";
     }
 
     @RequestMapping(value = "signIn", method = RequestMethod.POST)

@@ -15,6 +15,7 @@
         <c:if test="${loggedAdmin != null}">
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
+            <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
@@ -54,6 +55,6 @@
             </c:forEach>
         </c:if>
         <a href="/teacherList">back to teachers list</a> <br>
-        <button type="button" name="back" onclick="history.back()">back</button>
+        <%--<button type="button" name="back" onclick="history.back()">back</button>--%>
     </body>
 </html>

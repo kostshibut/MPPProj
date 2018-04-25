@@ -71,7 +71,7 @@ public class AdminController {
                                @PathVariable("subjId") int subjectId){
         Lesson lesson = lessonService.FindLessonInfo(lessonId);
         lessonService.DeleteLesson(lesson);
-        return "redirect:/readmoreSubject/" + lessonId;
+        return "redirect:/readmoreSubject/" + subjectId;
     }
 
     @RequestMapping(value = "/deleteTask/{id}/{lessonId}", method = RequestMethod.GET)
@@ -79,7 +79,9 @@ public class AdminController {
                              @PathVariable("lessonId") int lessonId){
         Task task = taskService.FindTaskInfo(taskId);
         taskService.DeleteTask(task);
-        return "redirect:/task/" + lessonId;
+        Lesson lesson = lessonService.FindLessonInfo(lessonId);
+        Subject subject = subjectService.FindSubjectInfo(lesson.getSubjectSubjectId());
+        return "redirect:/readmoreSubject/" + subject.getSubjectId();
     }
 
     @RequestMapping(value = "/createSubject/{teacherId}/{name}/{duration}", method = RequestMethod.GET)
@@ -102,8 +104,9 @@ public class AdminController {
     public String addTask(@PathVariable("theme") String theme,
                           @PathVariable("content") String content,
                           @PathVariable("lessonId") int lessonId){
-        taskService.SaveTask(theme, content, lessonId);
-        return "redirect:/task/" + lessonId;
+//        taskService.SaveTask(theme, content, lessonId);
+        System.out.println(theme + " " + content + " " + lessonId);
+        return "redirect:/subjectList";
     }
 
     @RequestMapping(value = "/createTeacher/{scholarId}/{spetialization}", method = RequestMethod.GET)

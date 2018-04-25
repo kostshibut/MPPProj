@@ -15,6 +15,7 @@
         <c:if test="${loggedAdmin != null}">
             Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
+            <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
@@ -36,7 +37,8 @@
             <c:forEach items="${taskForSubject}" var="task">
                 ============================================================================= <br>
                 <c:set var="lessonId" value="${task.lessonLessonId}"/>
-                Lesson id: ${task.lessonLessonId}
+                <c:set var="subject" value="${task.lessonByLessonLessonId.subjectBySubjectSubjectId.subjectId}"/>
+                 Lesson id: ${task.lessonLessonId}
                 Subject: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.name} <br>
                 Teacher name: ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.firstName}
                 ${task.lessonByLessonLessonId.subjectBySubjectSubjectId.teacherByTeacherTeacherId.userByUserUserId.lastName} <br>
@@ -53,13 +55,17 @@
             </c:forEach>
 
             <c:if test="${loggedAdmin != null or loggedTeacher != null}">
-                <form onsubmit="window.location = '/createTask/' + theme.value + '/' + content.value + '/' + ${lessonId}; return false;">
+                Create task
+                <form onsubmit="window.location = '/createTask/' + theme.value + '/' + contentTask.value + '/' + ${lessonId}; return false;">
                     Task theme: <input name="theme"/>
-                    Task content <input name="content">
+                    Task content <input name="contentTask"/>
                     <input type="submit" value="Create task">
                 </form>
             </c:if>
         </c:if>
-        <button type="button" name="back" onclick="history.back()">back</button>
+
+        <c:if test="${loggedScholar != null}">
+            <a href="/readmoreSubject/${subject}">back</a>
+        </c:if>
     </body>
 </html>

@@ -55,5 +55,6 @@
             </form>
         </c:if>
         <button type="button" name="back" onclick="history.back()">back</button>
+        <a href="${contextPath}/start">back to start page</a> <br>
     </body>
 </html>
