@@ -17,16 +17,16 @@
         <a href="${contextPath}/logout">logout</a> <br>
 
         <c:if test="${loggedAdmin != null}">
-            Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
+            admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
-            Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
+             teacher ${loggedTeacher.userByUserUserId.login} <br>
         </c:if>
 
         <c:if test="${loggedScholar != null}">
-            Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
+            scholar ${loggedScholar.userByUserUserId.login} <br>
         </c:if>
 
         <c:if test="${loggedAdmin == null and loggedTeacher == null and loggedScholar == null or param.logout eq true}">

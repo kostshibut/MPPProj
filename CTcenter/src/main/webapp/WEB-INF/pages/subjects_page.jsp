@@ -15,18 +15,18 @@
     <body>
         <a href="${contextPath}/start">back to start page</a> <br>
         <c:if test="${loggedAdmin != null}">
-            Asuh admin ${loggedAdmin.userByUserUserId.login} <br>
+             admin ${loggedAdmin.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
             <a href="/userControll">ControllUser</a>
         </c:if>
 
         <c:if test="${loggedTeacher != null}">
-            Asuh teacher ${loggedTeacher.userByUserUserId.login} <br>
+             teacher ${loggedTeacher.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
         </c:if>
 
         <c:if test="${loggedScholar != null}">
-            Asuh scholar ${loggedScholar.userByUserUserId.login} <br>
+             scholar ${loggedScholar.userByUserUserId.login} <br>
             <a href="${contextPath}/personalArea">Personal Area</a> <br>
         </c:if>
 
