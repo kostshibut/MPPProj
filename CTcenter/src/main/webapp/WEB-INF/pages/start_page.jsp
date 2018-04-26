@@ -13,6 +13,9 @@
     </head>
     <body>
     <style>
+        body{
+            background-color: gainsboro;
+        }
         <%@include file="../_css/bootstrap.min.css"%>
         <%@include file="../_css/justified-nav.css"%>
         <%@include file="../js/bootstrap.min.js"%>
